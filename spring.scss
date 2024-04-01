@@ -1,0 +1,41 @@
+/*-- scss:defaults --*/
+  
+$color: #54671B;
+
+/*-- scss:rules --*/
+
+.callout {
+  background-color: #FFFFFF;
+}
+
+.callout-caption {
+  color: $body-color;
+}
+
+.title-colors {
+  background: linear-gradient(to right, #F4EBE7 0%, #F4EBE7 50%, #FEF1F6 50%, #FEF1F6 100%),
+              linear-gradient(to right, #E5ECF2 0%, #E5ECF2 50%, #E7E0DC 50%, #E7E0DC 100%);
+  background-size: 100% 50%;
+  background-position: center top, center bottom;
+  background-repeat: no-repeat;
+}
+
+a {
+  color: #E6AE3E;
+}
+
+a:hover {
+  color: #EC9E74;
+}
+
+.h1, .h2, .h3 {
+  color: #E54470;
+}
+
+.slide-background-content {
+    background-color: #F4EBE7;
+}
+
+pre code {
+    background-color: #F4EBE7;
+}
