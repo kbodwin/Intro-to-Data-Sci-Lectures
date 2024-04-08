@@ -387,7 +387,7 @@ df_CO["Edad"].median()
 * One measure of spread is the **variance**.
 
 * The variance of a variable whose values are $x_1, x_2, x_3, ..., x_n$ is calculated using the formula
-$$\textrm{var(\varname{x})} = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}$$
+$$\textrm{var(X)} = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}$$
 
 * Does this look familiar?  It's the **sum of squared error**!  (Divided by $n-1$, the "degrees of freedom")
 
