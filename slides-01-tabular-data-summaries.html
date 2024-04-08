@@ -471,6 +471,150 @@
 </section>
 <section id="looking-at-rows" class="slide level2">
 <h2>Looking at rows</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df.loc[<span class="dv">1</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>name          Allison, Master. Hudson Trevor
+pclass                                     1
+survived                                   1
+sex                                     male
+age                                   0.9167
+sibsp                                      1
+parch                                      2
+ticket                                113781
+fare                                  151.55
+cabin                                C22 C26
+embarked                                   S
+boat                                      11
+body                                     NaN
+home.dest    Montreal, PQ / Chesterville, ON
+Name: 1, dtype: object</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df.iloc[<span class="dv">1</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>name          Allison, Master. Hudson Trevor
+pclass                                     1
+survived                                   1
+sex                                     male
+age                                   0.9167
+sibsp                                      1
+parch                                      2
+ticket                                113781
+fare                                  151.55
+cabin                                C22 C26
+embarked                                   S
+boat                                      11
+body                                     NaN
+home.dest    Montreal, PQ / Chesterville, ON
+Name: 1, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="looking-at-rows-1" class="slide level2">
+<h2>Looking at rows</h2>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<ul>
+<li class="fragment"><p>What is the difference between <code>.loc</code> and <code>.iloc</code>?</p></li>
+<li class="fragment"><p>What <strong>type</strong> of object is returned?</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="loc-iloc-and-index" class="slide level2">
+<h2>loc, iloc, and index</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df2 <span class="op">=</span> df.set_index(<span class="st">'name'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>df2.loc[<span class="dv">1</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df2.iloc[<span class="dv">1</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pclass                                     1
+survived                                   1
+sex                                     male
+age                                   0.9167
+sibsp                                      1
+parch                                      2
+ticket                                113781
+fare                                  151.55
+cabin                                C22 C26
+embarked                                   S
+boat                                      11
+body                                     NaN
+home.dest    Montreal, PQ / Chesterville, ON
+Name: Allison, Master. Hudson Trevor, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="loc-iloc-and-index-1" class="slide level2">
+<h2>loc, iloc, and index</h2>
+<p>Think of <code>iloc</code> as <strong>integer location</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df2.loc[<span class="st">"Allison, Master. Hudson Trevor"</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pclass                                     1
+survived                                   1
+sex                                     male
+age                                   0.9167
+sibsp                                      1
+parch                                      2
+ticket                                113781
+fare                                  151.55
+cabin                                C22 C26
+embarked                                   S
+boat                                      11
+body                                     NaN
+home.dest    Montreal, PQ / Chesterville, ON
+Name: Allison, Master. Hudson Trevor, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="looking-at-columns" class="slide level2">
+<h2>Looking at columns</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['name', 'pclass', 'survived', 'sex', 'age', 'sibsp', 'parch', 'ticket',
+       'fare', 'cabin', 'embarked', 'boat', 'body', 'home.dest'],
+      dtype='object')</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df[<span class="st">'home.dest'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0                          St Louis, MO
+1       Montreal, PQ / Chesterville, ON
+2       Montreal, PQ / Chesterville, ON
+3       Montreal, PQ / Chesterville, ON
+4       Montreal, PQ / Chesterville, ON
+                     ...               
+1304                                NaN
+1305                                NaN
+1306                                NaN
+1307                                NaN
+1308                                NaN
+Name: home.dest, Length: 1309, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="caution-object-types" class="slide level2">
+<h2>Caution: Object types</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="bu">type</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="bu">type</span>(df.loc[<span class="dv">1</span>, :])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">type</span>(df[<span class="st">'name'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+</div>
 </section></section>
 <section>
 <section id="summarizing-a-data-frame" class="title-slide slide level1 center">
@@ -485,19 +629,11 @@
 <li class="fragment"><p>Which variables are <strong>labels</strong> (e.g.&nbsp;names or ID numbers)?</p></li>
 <li class="fragment"><p>Which variables are <strong>text</strong>?</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Index(['name', 'pclass', 'survived', 'sex', 'age', 'sibsp', 'parch', 'ticket',
-       'fare', 'cabin', 'embarked', 'boat', 'body', 'home.dest'],
-      dtype='object')</code></pre>
-</div>
-</div>
 </section>
 <section id="a-quick-look-at-the-data" class="slide level2">
 <h2>A quick look at the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            pclass     survived  ...         fare        body
 count  1309.000000  1309.000000  ...  1308.000000  121.000000
@@ -531,13 +667,13 @@ max       3.000000     1.000000  ...   512.329200  328.000000
 <li class="fragment"><p>It’s our job to check and fix data!</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df[<span class="st">"pclass"</span>] <span class="op">=</span> df[<span class="st">"pclass"</span>].astype(<span class="st">"category"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df[<span class="st">"pclass"</span>] <span class="op">=</span> df[<span class="st">"pclass"</span>].astype(<span class="st">"category"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summary-of-categorical-variable" class="slide level2">
 <h2>Summary of categorical variable</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df[<span class="st">"pclass"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df[<span class="st">"pclass"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pclass
 3    709
@@ -545,7 +681,7 @@ max       3.000000     1.000000  ...   512.329200  328.000000
 2    277
 Name: count, dtype: int64</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df[<span class="st">"pclass"</span>].value_counts(normalize <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df[<span class="st">"pclass"</span>].value_counts(normalize <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pclass
 3    0.541635

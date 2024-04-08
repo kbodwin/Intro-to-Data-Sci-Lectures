@@ -1,0 +1,519 @@
+---
+title: "Visualizing and Comparing Categorical Variables"
+format:
+  revealjs: 
+    theme: [default, spring.scss]
+    incremental: true 
+    output-file: slides-02-conditional-distributions.html
+    shift-heading-level-by: -1
+execute:
+  echo: true
+---
+
+```{r}
+#| include: false
+library(reticulate)
+use_python("/usr/local/bin/python3")
+```
+
+```{python}
+#| include: false
+import numpy as np
+import pandas as pd
+```
+
+## The story so far
+
+### Getting and prepping data
+
+```{python}
+df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
+```
+
+```{python}
+df["pclass"] = df["pclass"].astype("category")
+df["survived"] = df["survived"].astype("category")
+```
+
+### Thinking about variable types
+
+```{r}
+#| echo: false
+library(knitr)
+kable(py$df)
+```
+
+### Accessing rows and columns
+
+::: columns
+::: {.column width="50%"}
+```{python}
+df.iloc[5,]
+```
+:::
+
+::: {.column width="50%"}
+```{python}
+df["name"]
+```
+:::
+:::
+
+### Quick summary of quantitative variables
+
+```{python}
+df.describe()
+```
+
+### Summarizing categorical variables
+
+The list of percents for each category is called the **distribution** of the variable.
+
+```{python}
+df["pclass"].value_counts()
+df["pclass"].value_counts(normalize = True)
+```
+
+## Visualizing categorical variables
+
+### The Grammar of Graphics
+
+The *grammar of graphics* is a framework for creating data visualizations.
+
+A visualization consists of:
+
+-   The **aesthetic**: Which *variables* are dictating which *plot elements*.
+
+-   The **geometry**: What *shape* of plot you are making.
+
+-   The **theme**: Other choices about the appearance.
+
+### Example
+
+::: columns
+::: {.column width="50%"}
+The **aesthetic** is **species** on the x-axis, **bill_length_mm** on the y-axis, colored by **species**.
+
+The **geometry** is a **boxplot**.
+:::
+
+::: {.column width="50%"}
+```{python}
+#| code-fold: true
+import pandas as pd
+from palmerpenguins import load_penguins
+from plotnine import ggplot, geom_point, aes, geom_boxplot
+
+penguins = load_penguins()
+
+(ggplot(penguins, aes(x = "species", y = "bill_length_mm", fill = "species"))
++ geom_boxplot()
+)
+```
+:::
+:::
+
+### plotnine
+
+The `plotnine` library implements the *grammar of graphics* in Python.
+
+Code for the previous example:
+
+```{python}
+#| eval: false
+(ggplot(penguins, aes(x = "species", y = "bill_length_mm", fill = "species"))
++ geom_boxplot()
+)
+```
+
+-   The `aes()` function is the place to specify aesthetics.
+
+-   `x`, `y`, and `fill` are three possible aesthetics that can be specified, that map variables in our data set to plot elements.
+
+-   A variety of `geom_*` functions allow for different plotting shapes (e.g. boxplot, histogram, etc.)
+
+#### Themes
+
+::: columns
+::: {.column width="50%"}
+```{python}
+#| code-fold: true
+(ggplot(penguins, aes(x = "species", y = "bill_length_mm", fill = "species"))
++ geom_boxplot()
+)
+```
+:::
+
+::: {.column width="50%"}
+```{python}
+#| code-fold: true
+from plotnine import theme_classic
+(ggplot(penguins, aes(x = "species", y = "bill_length_mm", fill = "species"))
++ geom_boxplot()
++ theme_classic()
+)
+```
+:::
+:::
+
+### Check-In
+
+What are the *aesthetics* and *geometry* in the cartoon plot below?
+
+![An xkcd comic of time spent going up the down escalator](images/xkcd.png)
+
+### Bar Plots
+
+To visualize the **distribution** of a categorical variable, we should use a **bar plot**.
+
+```{python}
+#| code-fold: true
+from plotnine import *
+(ggplot(df, aes(x = "pclass"))
++ geom_bar()
++ theme_classic()
+)
+```
+
+### Percents
+
+```{python}
+pclass_dist = df['pclass'].value_counts(normalize=True).to_frame().reset_index()
+pclass_dist
+```
+
+### Percents
+
+```{python}
+#| code-fold: true
+(ggplot(pclass_dist, aes(x = "pclass", y = "proportion"))
++ geom_col()   ### notice this change to a column plot!
++ theme_classic()
+)
+```
+
+## Visualizing two categorical variables
+
+### Option 1: Stacked Bar Plot
+
+```{python}
+#| code-fold: true
+(ggplot(df, aes(x = "pclass", fill = "sex"))
++ geom_bar()
++ theme_classic()
+)
+```
+
+### Option 1: Stacked Bar Plot
+
+::: callout
+What are some pros and cons of the stacked barplot?
+:::
+
+-   Pros:
+
+-   We can still see the total counts in each class
+
+-   We can easily compare the `female` counts in each class
+
+-   Cons:
+
+-   It is hard to compare the `male` counts.
+
+-   It is hard to estimate the *distributions*.
+
+### Option 2: Side-by-side barplot
+
+```{python}
+#| code-fold: true
+(ggplot(df, aes(x = "pclass", fill = "sex"))
++ geom_bar(position = "dodge")
++ theme_classic()
+)
+```
+
+### Option 2: Side-by-side barplot
+
+::: callout
+What are some pros and cons of the side-by-side barplot?
+:::
+
+-   Pros:
+
+-   We can easily compare the `female` counts in each class
+
+-   We can easily compare the `male` counts in each class
+
+-   We can easily see counts of each within each class
+
+-   Cons:
+
+-   It is hard to see *total* counts in each class.
+
+-   It is hard to estimate the *distributions*.
+
+### Option 3: Stacked percentage barplot
+
+```{python}
+#| code-fold: true
+(ggplot(df, aes(x = "pclass", fill = "sex"))
++ geom_bar(position = "fill")
++ theme_classic()
+)
+```
+
+### Option 3: Stacked percentage barplot
+
+-   Cons:
+
+-   We can no longer see **any** counts!
+
+-   Pros:
+
+-   This is the **best** way to compare sex balance across classes!
+
+-   This is the option I use the most, because it can answer "Are you more likely to find \_\_\_\_\_\_ in \_\_\_\_\_\_ ?" type questions.
+
+## Activity {.smaller}
+
+Choose one of the plots from lecture so far and "upgrade" it.
+
+::: columns
+::: {.column width="60%"}
+You can do this by:
+
+-   Finding and using a different `theme`
+
+-   Using `+ labs(...)` to change the axis labels and title
+
+-   Trying different variables
+
+-   Trying a different *geometry*
+
+-   Using `+ scale_fill_manual(...)` to change the colors being used
+
+
+```{r}
+#| echo: false
+library(countdown)
+countdown(minutes = 15, left = "0")
+```
+:::
+
+::: {.column width="40%"}
+Hints:
+
+-   You will need to use documentation of `plotnine` and online resources!
+
+-   Check out <https://www.data-to-viz.com/> for ideas and example code.
+
+-   Ask GenAI questions like, "What do I add to a plotnine bar plot to change the colors?" *(But of course, make sure you understand the code you use!)*
+
+:::
+:::
+
+## Joint distributions
+
+### Two categorical variables
+
+```{python}
+df[["pclass", "sex"]].value_counts()
+```
+### Two-way Table
+
+```{python}
+df[["pclass", "sex"]].value_counts().unstack()
+```
+* This is sometimes called a *cross-tab* or *cross-tabulation*.
+
+### Two-way Table - Percents
+
+```{python}
+df[["pclass", "sex"]].value_counts(normalize=True).unstack()
+```
+* This should add up to 1, aka, 100%!
+
+### Switching variables
+
+```{python}
+df[["sex", "pclass"]].value_counts(normalize=True).unstack()
+```
+### Interpretation
+
+We call this the **joint distribution** of the two variables.
+
+```{python}
+#| echo: false
+df[["pclass", "sex"]].value_counts(normalize=True).unstack()
+```
+
+> Of all the passengers on the Titanic, 11% were females riding in first class.
+
+* NOT "11% of all females on Titanic..."
+* NOT "11% of all first class passengers..."
+
+
+## Conditional distributions
+
+### Conditional distribution from counts
+
+We know that:
+
+* 466 passengers were **female**
+
+* 144 passengers were **females in first class**
+
+So:
+
+* 144/466 = 31% **of female passengers** rode in first class
+
+Here we **conditioned on** the passenger being female, and then looked at the **conditional distribution** of `pclass`.
+
+
+### Conditional distribution from counts
+
+We know that:
+
+* 35.5% of all passengers were **female**
+
+* 11% of all passengers were **females in first class**
+
+So:
+
+* 0.11/0.355 = 31% **of female passengers** rode in first class
+
+Here we **conditioned on** the passenger being female, and then looked at the **conditional distribution** of `pclass`.
+
+### Swapping variables
+
+We know that:
+
+* 323 passengers **rode in first class**
+
+* 144 passengers were **females in first class**
+
+So:
+
+* 144/323 = 44.6% **of first class passengers** were female
+
+Here we **conditioned on** the passenger being in first class, and then looked at the **conditional distribution** of `sex`.
+
+### Which one to condition on?
+
+* This depends on the **research question** you are trying to answer.
+
+* "What class did most female passengers ride in?"
+
+* ->  Of all *female passengers*, what is the conditional distribution of *class*?
+
+* "What was the gender breakdown of first class?"
+
+* -> Of all *first class passengers*, what is the conditional distribution of *sex*?
+
+### Calculating in python
+
+When we study two variables, we call the individual one-variable distributions the **marginal distribution** of that variable.
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+```{python}
+marginal_class = df['pclass'].value_counts(normalize = True)
+marginal_class
+```
+
+:::
+
+:::{.column width="50%"}
+
+```{python}
+marginal_sex = df['sex'].value_counts(normalize = True)
+marginal_sex
+```
+
+:::
+
+::::
+
+### Calculating in python
+
+We need to divide the **joint distribution** (e.g. "11% of passengers were first class female") by the **marginal distribution** of the variable we want to **condition on** (e.g. 35.5% of passengers were female).
+
+```{python}
+joint_class_sex = df[["pclass", "sex"]].value_counts(normalize=True).unstack()
+joint_class_sex.divide(marginal_sex)
+```
+### Conditional on sex
+
+Check:  Should the **rows** or **columns** add up to 100%?  Why?
+
+```{python}
+#| echo: false
+joint_class_sex = df[["pclass","sex"]].value_counts(normalize=True).unstack()
+joint_class_sex.divide(marginal_sex)
+```
+
+### Check-In (on the board)
+
+How does `.divide()` work?
+
+
+### Conditional on class
+
+```{python}
+joint_class_sex = df[["sex","pclass"]].value_counts(normalize=True).unstack()
+joint_class_sex.divide(marginal_class)
+```
+### What if you get it backwards?
+
+```{python}
+joint_class_sex = df[["pclass","sex"]].value_counts(normalize=True).unstack()
+joint_class_sex.divide(marginal_class)
+```
+
+### Visualization
+
+Which plot better answers the question, "Did women tend to ride in first class more than men?"
+
+::::{.columns}
+
+:::{.column width="50%"}
+```{python}
+#| code-fold: true
+(ggplot(df, aes(x = "pclass", fill = "sex"))
++ geom_bar(position = "fill")
++ theme_classic()
+)
+```
+:::
+
+:::{.column width="50%"}
+
+```{python}
+#| code-fold: true
+(ggplot(df, aes(x = "sex", fill = "pclass"))
++ geom_bar(position = "fill")
++ theme_classic()
+)
+```
+
+:::
+::::
+
+
+## Takeaways
+
+### Takeaways{.smaller}
+
+* We use `plotnine` and the **grammar of graphics** to make visuals.
+
+* For two categorical variables, we might use a **stacked bar plot**, a **side-by-side bar plot**, or a **stacked percentage bar plot** - depending on what we are trying to show.
+
+* The **joint distribution** of two variables gives the percents in each subcategory.
+
+* The **marginal distribution** of a variable is its individual distribution.
+
+* The **conditional distribution** of a variable is its distribution among *only one category* of a different variable.
+
+* We calculate the **conditional distribution** by dividing the **joint** by the **marginal**.

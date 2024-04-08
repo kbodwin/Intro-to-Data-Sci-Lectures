@@ -1,0 +1,7 @@
+.lectitle {
+  font-size: 250%;
+  border: 5px solid #ccc;
+  padding: 10px; /* Add padding to the inside of the border */
+  margin: 10px; /* Add margin to the outside of the border */
+  text-align: center;
+}

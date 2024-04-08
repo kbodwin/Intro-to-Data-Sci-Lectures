@@ -1,0 +1,39 @@
+---
+title: "DS 112 Lecture Notes"
+format: 
+  html: 
+    theme: [minty]
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    css: styles.css
+editor: visual
+---
+
+
+
+:::{.lectitle} 
+# Tabular Data Summaries
+
+[Slides](slides-01-tabular-data-summaries.html)
+:::
+
+{{< include 01-tabular-data-summaries.qmd >}}
+
+
+:::{.lectitle} 
+# Visualization and Conditional Distributions
+
+[Slides](slides-02-conditional_distributions.html)
+:::
+
+{{< include 02-conditional_distributions.qmd >}}
+
+
+:::{.lectitle} 
+# Visualizing and Summarizing Quantitative Variables
+
+[Slides](slides-03-quantitative_variables.html)
+:::
+
+{{< include 03-quantitative_variables.qmd >}}

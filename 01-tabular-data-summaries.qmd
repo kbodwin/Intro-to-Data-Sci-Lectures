@@ -1,11 +1,10 @@
 ---
 title: "Tabular data and variable summaries"
-format:
-  html: default
+format:  
   revealjs: 
     theme: [default, spring.scss]
     incremental: true 
-    output-file: slides-01-tabular-data-summaries.html
+    shift-heading-level-by: -1
 execute:
   echo: true
 ---
@@ -13,7 +12,7 @@ execute:
 ```{r}
 #| include: false
 library(reticulate)
-#use_python("/usr/local/bin/python3")
+use_python("/usr/local/bin/python3")
 ```
 
 ```{python}
@@ -24,9 +23,9 @@ import pandas as pd
 
 
 
-# Data "on disk"
+### Data "on disk"
 
-## Data is stored in plain text files
+### Data is stored in plain text files
 
 ```
 name,pclass,survived,sex,age,sibsp,parch,ticket,fare,cabin,embarked,boat,body,home.dest
@@ -49,7 +48,7 @@ name,pclass,survived,sex,age,sibsp,parch,ticket,fare,cabin,embarked,boat,body,ho
 
 * `.txt` files might have different separators
 
-## Reading data
+### Reading data
 
 We *read the data* into a program like `python` by specifying:
 
@@ -61,14 +60,14 @@ We *read the data* into a program like `python` by specifying:
 
 * ... and other information in special cases!
 
-## Example using `pandas` data frame:
+### Example using `pandas` data frame:
 
 ```{python}
 df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
 df
 ```
 
-## Check in:
+### Check in:
 
 ```{python}
 df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
@@ -82,14 +81,14 @@ df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
 
 :::
 
-## Looking at rows
+### Looking at rows
 
 ```{python}
 df.loc[1, :]
 df.iloc[1, :]
 ```
 
-## Looking at rows
+### Looking at rows
 
 :::{.callout}
 
@@ -99,7 +98,7 @@ df.iloc[1, :]
 
 :::
 
-## loc, iloc, and index
+### loc, iloc, and index
 
 ```{python}
 #| error: true
@@ -107,7 +106,7 @@ df2 = df.set_index('name')
 df2.loc[1, :]
 df2.iloc[1, :]
 ```
-## loc, iloc, and index
+### loc, iloc, and index
 
 Think of `iloc` as **integer location**.
 
@@ -117,14 +116,14 @@ df2.loc["Allison, Master. Hudson Trevor", :]
 ```
 
 
-## Looking at columns
+### Looking at columns
 
 ```{python}
 df.columns
 df['home.dest']
 ```
 
-## Caution: Object types
+### Caution: Object types
 
 ```{python}
 
@@ -136,9 +135,9 @@ type(df['name'])
 
 
 
-# Summarizing a data frame
+## Summarizing a data frame
 
-## Questions to ask
+### Questions to ask
 
 * Which variables (columns) are **categorical**?
 
@@ -151,7 +150,7 @@ type(df['name'])
 
 
 
-## A quick look at the data
+### A quick look at the data
 
 ```{python}
 df.describe()
@@ -166,7 +165,7 @@ df.describe()
 
 :::
 
-## Variable types
+### Variable types
 
 * The variable `pclass` was **categorical**, but python assumed it was *quantitative*.
 
@@ -176,7 +175,7 @@ df.describe()
 df["pclass"] = df["pclass"].astype("category")
 ```
 
-## Summary of categorical variable
+### Summary of categorical variable
 
 ```{python}
 df["pclass"].value_counts()
