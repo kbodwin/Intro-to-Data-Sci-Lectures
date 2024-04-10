@@ -37,3 +37,12 @@ editor: visual
 :::
 
 {{< include 03-quantitative_variables.qmd >}}
+
+
+:::{.lectitle} 
+# Multivariate Summaries
+
+[Slides](slides-04-group_by.html)
+:::
+
+{{< include 04-group_by.qmd >}}
