@@ -356,11 +356,11 @@ df.groupby("origin")["dep_delay"].std()
 
 ### Standardized values
 
-Suppose you fly from `LGA` and your flight is 40 minutes early.
+Suppose you fly from `LGA` and your flight is 40 minutes late
 
-Your friend flies from `JFK` and their flight is 30 minutes early.
+Your friend flies from `JFK` and their flight is 30 minutes late
 
-Who got "luckier"?
+Who got "unluckier"?
 
 ```{python}
 (40 + 0.48)/26

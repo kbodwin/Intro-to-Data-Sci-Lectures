@@ -21793,7 +21793,7 @@ Name: proportion, dtype: float64</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_43963667" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_071debff" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -22782,8 +22782,8 @@ Name: Edad, Length: 25366, dtype: int64</code></pre>
 <li><p>Often we use a <strong>log</strong> transformation.</p></li>
 </ul>
 </section>
-<section id="log-transformation" class="level3" data-number="4.2.9">
-<h3 data-number="4.2.9" class="anchored" data-anchor-id="log-transformation"><span class="header-section-number">4.2.9</span> Log transformation</h3>
+<section id="log-transformation" class="level3 smaller" data-number="4.2.9">
+<h3 class="smaller anchored" data-number="4.2.9" data-anchor-id="log-transformation"><span class="header-section-number">4.2.9</span> Log transformation</h3>
 <ul>
 <li>Example: Salaries of $10,000 and $100,000 and $10,000,000:</li>
 </ul>
@@ -22898,22 +22898,52 @@ Name: Edad, Length: 25366, dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
 <span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a>df_jfk <span class="op">=</span> df[is_jfk]</span>
 <span id="cb166-3"><a href="#cb166-3" aria-hidden="true" tabindex="-1"></a>df_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    carrier  flight origin dest  dep_delay  delay_shifted  log_delay
+2        AA    2243    JFK  MIA        2.0           22.0   3.091042
+3        UA     303    JFK  SFO       -8.0           12.0   2.484907
+11       EV    5716    JFK  IAD       -4.0           16.0   2.772589
+12       B6     583    JFK  MCO       -3.0           17.0   2.833213
+14       B6    1403    JFK  SJU       -2.0           18.0   2.890372
+..      ...     ...    ...  ...        ...            ...        ...
+570      B6     718    JFK  BOS        1.0           21.0   3.044522
+571      B6    1816    JFK  SYR       20.0           40.0   3.688879
+572      B6    1503    JFK  SJU      -10.0           10.0   2.302585
+573      B6     745    JFK  PSE       -3.0           17.0   2.833213
+574      B6     839    JFK  BQN        0.0           20.0   2.995732
+
+[208 rows x 7 columns]</code></pre>
+</div>
 </div>
 </section>
 <section id="aside-boolean-masking" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="aside-boolean-masking"><span class="header-section-number">4.4.2</span> (Aside: Boolean masking)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
-<span id="cb167-2"><a href="#cb167-2" aria-hidden="true" tabindex="-1"></a>is_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a>is_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0      False
+1      False
+2       True
+3       True
+4      False
+       ...  
+573     True
+574     True
+575    False
+576    False
+577    False
+Name: origin, Length: 578, dtype: bool</code></pre>
+</div>
 </div>
 </section>
 <section id="facetting-2" class="level3" data-number="4.4.3">
 <h3 data-number="4.4.3" class="anchored" data-anchor-id="facetting-2"><span class="header-section-number">4.4.3</span> Facetting</h3>
 <p>Fortunately, <code>plotnine</code> (and other plotting packages) has a trick for you!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">'dep_delay'</span>))</span>
-<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_density()</span>
-<span id="cb168-3"><a href="#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> facet_wrap(<span class="st">'origin'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">'dep_delay'</span>))</span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_density()</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> facet_wrap(<span class="st">'origin'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;
 
@@ -22927,8 +22957,8 @@ Name: Edad, Length: 25366, dtype: int64</code></pre>
 </section>
 <section id="summaries-by-groups" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="summaries-by-groups"><span class="header-section-number">4.5</span> Summaries by groups</h2>
-<section id="split-apply-combine" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="split-apply-combine"><span class="header-section-number">4.5.1</span> Split-apply-combine</h3>
+<section id="split-apply-combine" class="level3 smaller" data-number="4.5.1">
+<h3 class="smaller anchored" data-number="4.5.1" data-anchor-id="split-apply-combine"><span class="header-section-number">4.5.1</span> Split-apply-combine</h3>
 <ul>
 <li><p>Our visualizations told us some of the story, but can we use <strong>numeric summaries</strong> as well?</p></li>
 <li><p>To do this, we want to calculate the <strong>mean</strong> or <strong>median</strong> delay time for <strong>each</strong> origin airport.</p></li>
@@ -22944,7 +22974,7 @@ Name: Edad, Length: 25366, dtype: int64</code></pre>
 <section id="group-by" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="group-by"><span class="header-section-number">4.5.2</span> Group-by</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR    4.064935
@@ -22952,7 +22982,7 @@ JFK    1.461538
 LGA   -0.485294
 Name: dep_delay, dtype: float64</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR   -3.0
@@ -22971,7 +23001,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <li><p>Which code is causing the re-combining of the data?</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -23015,7 +23045,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <li>In addition to having different <strong>centers</strong>, the three origins also have different <strong>spreads</strong>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR    25.646258
@@ -23030,15 +23060,15 @@ Name: dep_delay, dtype: float64</code></pre>
 </section>
 <section id="standardized-values-1" class="level3" data-number="4.6.5">
 <h3 data-number="4.6.5" class="anchored" data-anchor-id="standardized-values-1"><span class="header-section-number">4.6.5</span> Standardized values</h3>
-<p>Suppose you fly from <code>LGA</code> and your flight is 40 minutes early.</p>
-<p>Your friend flies from <code>JFK</code> and their flight is 30 minutes early.</p>
-<p>Who got “luckier”?</p>
+<p>Suppose you fly from <code>LGA</code> and your flight is 40 minutes late</p>
+<p>Your friend flies from <code>JFK</code> and their flight is 30 minutes late</p>
+<p>Who got “unluckier”?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">40</span> <span class="op">+</span> <span class="fl">0.48</span>)<span class="op">/</span><span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">40</span> <span class="op">+</span> <span class="fl">0.48</span>)<span class="op">/</span><span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.5569230769230769</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">30</span> <span class="op">-</span> <span class="fl">1.46</span>)<span class="op">/</span><span class="fl">18.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">30</span> <span class="op">-</span> <span class="fl">1.46</span>)<span class="op">/</span><span class="fl">18.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.5262032085561497</code></pre>
 </div>
@@ -23069,10 +23099,10 @@ Name: dep_delay, dtype: float64</code></pre>
 <p>To <strong>visualize</strong> two quantitative variables, we make a <strong>scatter plot</strong> (or <em>point</em> geometry).</p>
 <p>RQ: Did <em>older</em> passengers pay a <em>higher</em> fare on the Titanic?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>df_titanic <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"titanic.csv"</span>)</span>
-<span id="cb181-2"><a href="#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="#cb181-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb181-4"><a href="#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>df_titanic <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"titanic.csv"</span>)</span>
+<span id="cb183-2"><a href="#cb183-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-3"><a href="#cb183-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb183-4"><a href="#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;
 
@@ -23092,8 +23122,8 @@ Name: dep_delay, dtype: float64</code></pre>
 <li><p>“If you are older, you pay more” not “If you pay more, you get older”.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb183-2"><a href="#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scatter-plots-2" class="level3" data-number="4.7.3">
@@ -23127,12 +23157,12 @@ Name: dep_delay, dtype: float64</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
-<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>df_third <span class="op">=</span> df_titanic[is_third]</span>
-<span id="cb186-3"><a href="#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-4"><a href="#cb186-4" aria-hidden="true" tabindex="-1"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb186-5"><a href="#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
-<span id="cb186-6"><a href="#cb186-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a>df_third <span class="op">=</span> df_titanic[is_third]</span>
+<span id="cb188-3"><a href="#cb188-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-4"><a href="#cb188-4" aria-hidden="true" tabindex="-1"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb188-5"><a href="#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
+<span id="cb188-6"><a href="#cb188-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;
@@ -23166,17 +23196,17 @@ Name: dep_delay, dtype: float64</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
-<span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a>df_first <span class="op">=</span> df_titanic[is_third]</span>
-<span id="cb188-3"><a href="#cb188-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-4"><a href="#cb188-4" aria-hidden="true" tabindex="-1"></a>mean_age <span class="op">=</span> df_third[<span class="st">'age'</span>].mean()</span>
-<span id="cb188-5"><a href="#cb188-5" aria-hidden="true" tabindex="-1"></a>mean_fare <span class="op">=</span> df_third[<span class="st">'fare'</span>].mean()</span>
-<span id="cb188-6"><a href="#cb188-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-7"><a href="#cb188-7" aria-hidden="true" tabindex="-1"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb188-8"><a href="#cb188-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
-<span id="cb188-9"><a href="#cb188-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_vline(xintercept <span class="op">=</span> mean_age, color <span class="op">=</span> <span class="st">"red"</span>)</span>
-<span id="cb188-10"><a href="#cb188-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_hline(yintercept <span class="op">=</span> mean_fare, color <span class="op">=</span> <span class="st">"red"</span>)</span>
-<span id="cb188-11"><a href="#cb188-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a>df_first <span class="op">=</span> df_titanic[is_third]</span>
+<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a>mean_age <span class="op">=</span> df_third[<span class="st">'age'</span>].mean()</span>
+<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a>mean_fare <span class="op">=</span> df_third[<span class="st">'fare'</span>].mean()</span>
+<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb190-8"><a href="#cb190-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
+<span id="cb190-9"><a href="#cb190-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_vline(xintercept <span class="op">=</span> mean_age, color <span class="op">=</span> <span class="st">"red"</span>)</span>
+<span id="cb190-10"><a href="#cb190-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_hline(yintercept <span class="op">=</span> mean_fare, color <span class="op">=</span> <span class="st">"red"</span>)</span>
+<span id="cb190-11"><a href="#cb190-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;
@@ -23192,7 +23222,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <h3 data-number="4.7.9" class="anchored" data-anchor-id="correlation-2"><span class="header-section-number">4.7.9</span> Correlation</h3>
 <p>Interpret this result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb192"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           age      fare
 age   1.000000 -0.238137
@@ -23204,7 +23234,7 @@ fare -0.238137  1.000000</code></pre>
 <h3 data-number="4.7.10" class="anchored" data-anchor-id="correlation-3"><span class="header-section-number">4.7.10</span> Correlation</h3>
 <p>Interpret this result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb192"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb194"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           age      fare
 age   1.000000 -0.238137
