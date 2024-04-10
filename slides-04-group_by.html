@@ -550,7 +550,7 @@
 <li class="fragment"><p>Often we use a <strong>log</strong> transformation.</p></li>
 </ul>
 </section>
-<section id="log-transformation" class="slide level2">
+<section id="log-transformation" class="slide level2 smaller">
 <h2>Log transformation</h2>
 <ul>
 <li class="fragment">Example: Salaries of $10,000 and $100,000 and $10,000,000:</li>
@@ -662,22 +662,52 @@
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
 <span id="cb27-2"><a href="#cb27-2"></a>df_jfk <span class="op">=</span> df[is_jfk]</span>
 <span id="cb27-3"><a href="#cb27-3"></a>df_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    carrier  flight origin dest  dep_delay  delay_shifted  log_delay
+2        AA    2243    JFK  MIA        2.0           22.0   3.091042
+3        UA     303    JFK  SFO       -8.0           12.0   2.484907
+11       EV    5716    JFK  IAD       -4.0           16.0   2.772589
+12       B6     583    JFK  MCO       -3.0           17.0   2.833213
+14       B6    1403    JFK  SJU       -2.0           18.0   2.890372
+..      ...     ...    ...  ...        ...            ...        ...
+570      B6     718    JFK  BOS        1.0           21.0   3.044522
+571      B6    1816    JFK  SYR       20.0           40.0   3.688879
+572      B6    1503    JFK  SJU      -10.0           10.0   2.302585
+573      B6     745    JFK  PSE       -3.0           17.0   2.833213
+574      B6     839    JFK  BQN        0.0           20.0   2.995732
+
+[208 rows x 7 columns]</code></pre>
+</div>
 </div>
 </section>
 <section id="aside-boolean-masking" class="slide level2">
 <h2>(Aside: Boolean masking)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2"></a>is_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>is_jfk <span class="op">=</span> (df[<span class="st">'origin'</span>] <span class="op">==</span> <span class="st">"JFK"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>is_jfk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0      False
+1      False
+2       True
+3       True
+4      False
+       ...  
+573     True
+574     True
+575    False
+576    False
+577    False
+Name: origin, Length: 578, dtype: bool</code></pre>
+</div>
 </div>
 </section>
 <section id="facetting-2" class="slide level2">
 <h2>Facetting</h2>
 <p>Fortunately, <code>plotnine</code> (and other plotting packages) has a trick for you!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">'dep_delay'</span>))</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="op">+</span> geom_density()</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="op">+</span> facet_wrap(<span class="st">'origin'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">'dep_delay'</span>))</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="op">+</span> geom_density()</span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="op">+</span> facet_wrap(<span class="st">'origin'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
 </div>
@@ -689,7 +719,7 @@
 <h1>Summaries by groups</h1>
 
 </section>
-<section id="split-apply-combine" class="slide level2">
+<section id="split-apply-combine" class="slide level2 smaller">
 <h2>Split-apply-combine</h2>
 <ul>
 <li class="fragment"><p>Our visualizations told us some of the story, but can we use <strong>numeric summaries</strong> as well?</p></li>
@@ -706,7 +736,7 @@
 <section id="group-by" class="slide level2">
 <h2>Group-by</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR    4.064935
@@ -714,7 +744,7 @@ JFK    1.461538
 LGA   -0.485294
 Name: dep_delay, dtype: float64</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR   -3.0
@@ -733,7 +763,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <li class="fragment"><p>Which code is causing the re-combining of the data?</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -779,7 +809,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <li class="fragment">In addition to having different <strong>centers</strong>, the three origins also have different <strong>spreads</strong>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>df.groupby(<span class="st">"origin"</span>)[<span class="st">"dep_delay"</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin
 EWR    25.646258
@@ -798,11 +828,11 @@ Name: dep_delay, dtype: float64</code></pre>
 <p>Your friend flies from <code>JFK</code> and their flight is 30 minutes early.</p>
 <p>Who got “luckier”?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>(<span class="dv">40</span> <span class="op">+</span> <span class="fl">0.48</span>)<span class="op">/</span><span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>(<span class="dv">40</span> <span class="op">+</span> <span class="fl">0.48</span>)<span class="op">/</span><span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.5569230769230769</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>(<span class="dv">30</span> <span class="op">-</span> <span class="fl">1.46</span>)<span class="op">/</span><span class="fl">18.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>(<span class="dv">30</span> <span class="op">-</span> <span class="fl">1.46</span>)<span class="op">/</span><span class="fl">18.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.5262032085561497</code></pre>
 </div>
@@ -835,10 +865,10 @@ Name: dep_delay, dtype: float64</code></pre>
 <p>To <strong>visualize</strong> two quantitative variables, we make a <strong>scatter plot</strong> (or <em>point</em> geometry).</p>
 <p>RQ: Did <em>older</em> passengers pay a <em>higher</em> fare on the Titanic?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>df_titanic <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"titanic.csv"</span>)</span>
-<span id="cb42-2"><a href="#cb42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb42-4"><a href="#cb42-4"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>df_titanic <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"titanic.csv"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2"></a></span>
+<span id="cb44-3"><a href="#cb44-3"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
 </div>
@@ -854,8 +884,8 @@ Name: dep_delay, dtype: float64</code></pre>
 <li class="fragment"><p>“If you are older, you pay more” not “If you pay more, you get older”.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>(ggplot(df_titanic, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scatter-plots-2" class="slide level2">
@@ -882,12 +912,12 @@ Name: dep_delay, dtype: float64</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a>df_third <span class="op">=</span> df_titanic[is_third]</span>
-<span id="cb46-3"><a href="#cb46-3"></a></span>
-<span id="cb46-4"><a href="#cb46-4"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb46-5"><a href="#cb46-5"></a><span class="op">+</span> geom_point()</span>
-<span id="cb46-6"><a href="#cb46-6"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>df_third <span class="op">=</span> df_titanic[is_third]</span>
+<span id="cb48-3"><a href="#cb48-3"></a></span>
+<span id="cb48-4"><a href="#cb48-4"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb48-5"><a href="#cb48-5"></a><span class="op">+</span> geom_point()</span>
+<span id="cb48-6"><a href="#cb48-6"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
@@ -917,17 +947,17 @@ Name: dep_delay, dtype: float64</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a>df_first <span class="op">=</span> df_titanic[is_third]</span>
-<span id="cb48-3"><a href="#cb48-3"></a></span>
-<span id="cb48-4"><a href="#cb48-4"></a>mean_age <span class="op">=</span> df_third[<span class="st">'age'</span>].mean()</span>
-<span id="cb48-5"><a href="#cb48-5"></a>mean_fare <span class="op">=</span> df_third[<span class="st">'fare'</span>].mean()</span>
-<span id="cb48-6"><a href="#cb48-6"></a></span>
-<span id="cb48-7"><a href="#cb48-7"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
-<span id="cb48-8"><a href="#cb48-8"></a><span class="op">+</span> geom_point()</span>
-<span id="cb48-9"><a href="#cb48-9"></a><span class="op">+</span> geom_vline(xintercept <span class="op">=</span> mean_age, color <span class="op">=</span> <span class="st">"red"</span>)</span>
-<span id="cb48-10"><a href="#cb48-10"></a><span class="op">+</span> geom_hline(yintercept <span class="op">=</span> mean_fare, color <span class="op">=</span> <span class="st">"red"</span>)</span>
-<span id="cb48-11"><a href="#cb48-11"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>is_third<span class="op">=</span> df_titanic[<span class="st">'pclass'</span>] <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>df_first <span class="op">=</span> df_titanic[is_third]</span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a>mean_age <span class="op">=</span> df_third[<span class="st">'age'</span>].mean()</span>
+<span id="cb50-5"><a href="#cb50-5"></a>mean_fare <span class="op">=</span> df_third[<span class="st">'fare'</span>].mean()</span>
+<span id="cb50-6"><a href="#cb50-6"></a></span>
+<span id="cb50-7"><a href="#cb50-7"></a>(ggplot(df_third, aes(x <span class="op">=</span> <span class="st">'age'</span>, y <span class="op">=</span> <span class="st">'fare'</span>))</span>
+<span id="cb50-8"><a href="#cb50-8"></a><span class="op">+</span> geom_point()</span>
+<span id="cb50-9"><a href="#cb50-9"></a><span class="op">+</span> geom_vline(xintercept <span class="op">=</span> mean_age, color <span class="op">=</span> <span class="st">"red"</span>)</span>
+<span id="cb50-10"><a href="#cb50-10"></a><span class="op">+</span> geom_hline(yintercept <span class="op">=</span> mean_fare, color <span class="op">=</span> <span class="st">"red"</span>)</span>
+<span id="cb50-11"><a href="#cb50-11"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
@@ -939,7 +969,7 @@ Name: dep_delay, dtype: float64</code></pre>
 <h2>Correlation</h2>
 <p>Interpret this result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           age      fare
 age   1.000000 -0.238137
@@ -951,7 +981,7 @@ fare -0.238137  1.000000</code></pre>
 <h2>Correlation</h2>
 <p>Interpret this result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>df_third[[<span class="st">'age'</span>, <span class="st">'fare'</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           age      fare
 age   1.000000 -0.238137
