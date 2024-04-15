@@ -88,6 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visualization-and-conditional-distributions" id="toc-visualization-and-conditional-distributions" class="nav-link" data-scroll-target="#visualization-and-conditional-distributions"><span class="header-section-number">2</span> Visualization and Conditional Distributions</a></li>
   <li><a href="#visualizing-and-summarizing-quantitative-variables" id="toc-visualizing-and-summarizing-quantitative-variables" class="nav-link" data-scroll-target="#visualizing-and-summarizing-quantitative-variables"><span class="header-section-number">3</span> Visualizing and Summarizing Quantitative Variables</a></li>
   <li><a href="#multivariate-summaries" id="toc-multivariate-summaries" class="nav-link" data-scroll-target="#multivariate-summaries"><span class="header-section-number">4</span> Multivariate Summaries</a></li>
+  <li><a href="#distances" id="toc-distances" class="nav-link" data-scroll-target="#distances"><span class="header-section-number">5</span> Distances</a></li>
   </ul>
 </nav>
 </div>
@@ -21703,9 +21704,9 @@ Name: proportion, dtype: float64</code></pre>
 <ul>
 <li><p>Pros:</p></li>
 <li><p>We can still see the total counts in each class</p></li>
-<li><p>We can easily compare the <code>female</code> counts in each class</p></li>
+<li><p>We can easily compare the <code>male</code> counts in each class, since those bars are on the bottom.</p></li>
 <li><p>Cons:</p></li>
-<li><p>It is hard to compare the <code>male</code> counts.</p></li>
+<li><p>It is hard to compare the <code>female</code> counts, since those bars are stacked on top.</p></li>
 <li><p>It is hard to estimate the <em>distributions</em>.</p></li>
 </ul>
 </section>
@@ -21793,7 +21794,7 @@ Name: proportion, dtype: float64</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_071debff" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_461a302e" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23261,6 +23262,524 @@ fare -0.238137  1.000000</code></pre>
 <li><p>Plot <strong>relationships between quantitative variables</strong> with a <strong>scatter plot</strong></p></li>
 <li><p>Describe the <strong>strength</strong>, <strong>direction</strong>, and <strong>shape</strong> of the relationship.</p></li>
 <li><p>Summarize <strong>relationships between quantitative variables</strong> with the <strong>correlation</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="distances" class="level1 lectitle" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Distances</h1>
+<p><a href="slides-05-distances.html">Slides</a></p>
+</section>
+<section id="the-story-so-far-3" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-story-so-far-3"><span class="header-section-number">5.1</span> The story so far</h2>
+<section id="summarizing" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="summarizing"><span class="header-section-number">5.1.1</span> Summarizing</h3>
+<ul>
+<li><p><strong>One categorical variable:</strong> marginal distribution</p></li>
+<li><p><strong>Two categorical variables:</strong> joint and conditional distributions</p></li>
+<li><p><strong>One quantitative variable:</strong> mean, median, variance, standard deviation.</p></li>
+<li><p><strong>One quantitative, one categorical:</strong> mean, median, and std dev across groups (<code>groupby()</code>, <em>split-apply-combine</em>)</p></li>
+<li><p><strong>Two quantitative variables:</strong> z-scores, correlation</p></li>
+</ul>
+</section>
+<section id="visualizing" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="visualizing"><span class="header-section-number">5.1.2</span> Visualizing</h3>
+<ul>
+<li><p><strong>One categorical variable:</strong> bar plot or column plot</p></li>
+<li><p><strong>Two categorical variables:</strong> stacked bar plot, side-by-side bar plot, or stacked percentage bar plot</p></li>
+<li><p><strong>One quantitative variable:</strong> histogram, density, or boxplot</p></li>
+<li><p><strong>One quantitative, one categorical:</strong> overlapping densities, side-by-side boxplots, or facetting</p></li>
+<li><p><strong>Two quantitative variables:</strong> scatter plot</p></li>
+</ul>
+</section>
+</section>
+<section id="todays-data-house-prices" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="todays-data-house-prices"><span class="header-section-number">5.2</span> Today’s data: House prices</h2>
+<section id="ames-house-prices" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="ames-house-prices"><span class="header-section-number">5.2.1</span> Ames house prices</h3>
+<p><em>(Notice: <code>read_table</code> not <code>read_csv</code>)</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb196"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_table(<span class="st">"https://datasci112.stanford.edu/data/housing.tsv"</span>)</span>
+<span id="cb196-2"><a href="#cb196-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         PID  Gr Liv Area  Bedroom AbvGr  ...  Sale Type  Sale Condition  SalePrice
+0  526301100         1656              3  ...        WD           Normal     215000
+1  526350040          896              2  ...        WD           Normal     105000
+2  526351010         1329              3  ...        WD           Normal     172000
+3  526353030         2110              3  ...        WD           Normal     244000
+4  527105010         1629              3  ...        WD           Normal     189900
+
+[5 rows x 81 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="how-does-size-relate-to-number-of-bedrooms" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="how-does-size-relate-to-number-of-bedrooms"><span class="header-section-number">5.2.2</span> How does size relate to number of bedrooms?</h3>
+<p>What plot would you make?</p>
+<p>. . .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb198"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">"Gr Liv Area"</span>, y <span class="op">=</span> <span class="st">"Bedroom AbvGr"</span>)) </span>
+<span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-107-1.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="how-does-size-relate-to-number-of-bedrooms-1" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="how-does-size-relate-to-number-of-bedrooms-1"><span class="header-section-number">5.2.3</span> How does size relate to number of bedrooms?</h3>
+<p>What <em>statistic</em> would you calculate?</p>
+<p>. . .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb200"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>]].corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Gr Liv Area  Bedroom AbvGr
+Gr Liv Area       1.000000       0.516808
+Bedroom AbvGr     0.516808       1.000000</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="measuring-similarity-with-distance" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="measuring-similarity-with-distance"><span class="header-section-number">5.3</span> Measuring similarity with distance</h2>
+<section id="similarity" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="similarity"><span class="header-section-number">5.3.1</span> Similarity</h3>
+<p>How might we answer the question, “Are these two houses similar?”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb202"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">1707</span>, [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gr Liv Area      2956
+Bedroom AbvGr       5
+Name: 1707, dtype: object</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb204"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">290</span>, [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gr Liv Area      2650
+Bedroom AbvGr       6
+Name: 290, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="distance" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="distance"><span class="header-section-number">5.3.2</span> Distance</h3>
+<p>The <strong>distance</strong> between the <strong>two observations</strong> is:</p>
+<p><span class="math display">\[ \sqrt{ (2956 - 2650)^2 + (5 - 6)^2} = 306 \]</span></p>
+<p>. . .</p>
+<p>… what does this number mean? Not much! But we can use it to <strong>compare</strong> sets of houses and find the <strong>most similar</strong>.</p>
+</section>
+<section id="distance-1" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="distance-1"><span class="header-section-number">5.3.3</span> Distance</h3>
+<p>Consider House 1707 and another one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb206"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb206-1"><a href="#cb206-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">1707</span>, [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gr Liv Area      2956
+Bedroom AbvGr       5
+Name: 1707, dtype: object</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb208"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb208-1"><a href="#cb208-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">291</span>, [<span class="st">"Gr Liv Area"</span>, <span class="st">"Bedroom AbvGr"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gr Liv Area      1666
+Bedroom AbvGr       3
+Name: 291, dtype: object</code></pre>
+</div>
+</div>
+<p><span class="math display">\[ \sqrt{ (2956 - 1666)^2 + (5 - 3)^2} = 1290 \]</span> House 1707 is <strong>more similar</strong> to House 290 than to House 291.</p>
+</section>
+<section id="lecture-activity-part-1" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="lecture-activity-part-1"><span class="header-section-number">5.3.4</span> (Lecture Activity Part 1)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_0144c589" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scalingstandardizing" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="scalingstandardizing"><span class="header-section-number">5.4</span> Scaling/Standardizing</h2>
+<section id="house-160-seems-more-similar" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="house-160-seems-more-similar"><span class="header-section-number">5.4.1</span> House 160 seems more similar…</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb210"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb210-2"><a href="#cb210-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x <span class="op">=</span> <span class="st">"Gr Liv Area"</span>, y <span class="op">=</span> <span class="st">"Bedroom AbvGr"</span>)) </span>
+<span id="cb210-3"><a href="#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb210-4"><a href="#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">1707</span>]], color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb210-5"><a href="#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">160</span>]], color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb210-6"><a href="#cb210-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">2336</span>]], color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb210-7"><a href="#cb210-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic() </span>
+<span id="cb210-8"><a href="#cb210-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-112-1.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="even-if-we-zoom-in" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="even-if-we-zoom-in"><span class="header-section-number">5.4.2</span> … even if we zoom in…</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb212"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb212-1"><a href="#cb212-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb212-2"><a href="#cb212-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x <span class="op">=</span> <span class="st">"Gr Liv Area"</span>, y <span class="op">=</span> <span class="st">"Bedroom AbvGr"</span>)) </span>
+<span id="cb212-3"><a href="#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb212-4"><a href="#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">1707</span>]], color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb212-5"><a href="#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">160</span>]], color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb212-6"><a href="#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">2336</span>]], color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb212-7"><a href="#cb212-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic() </span>
+<span id="cb212-8"><a href="#cb212-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(limits<span class="op">=</span>(<span class="dv">2500</span>, <span class="dv">3500</span>))</span>
+<span id="cb212-9"><a href="#cb212-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;
+
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 2810 rows containing missing values.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-113-3.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="but-not-if-we-put-the-axes-on-the-same-scale" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="but-not-if-we-put-the-axes-on-the-same-scale"><span class="header-section-number">5.4.3</span> … but not if we put the axes on the same <strong>scale</strong>!</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb214"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb214-1"><a href="#cb214-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb214-2"><a href="#cb214-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x <span class="op">=</span> <span class="st">"Gr Liv Area"</span>, y <span class="op">=</span> <span class="st">"Bedroom AbvGr"</span>)) </span>
+<span id="cb214-3"><a href="#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb214-4"><a href="#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">1707</span>]], color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb214-5"><a href="#cb214-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">160</span>]], color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb214-6"><a href="#cb214-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">2336</span>]], color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb214-7"><a href="#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic() </span>
+<span id="cb214-8"><a href="#cb214-8" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(limits<span class="op">=</span>(<span class="dv">2900</span>, <span class="dv">3000</span>))</span>
+<span id="cb214-9"><a href="#cb214-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_y_continuous(limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span>
+<span id="cb214-10"><a href="#cb214-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;
+
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 2926 rows containing missing values.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-114-5.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="scaling" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="scaling"><span class="header-section-number">5.4.4</span> Scaling</h3>
+<ul>
+<li><p>We need to make sure our features are on the same <strong>scale</strong> before we can use <strong>distances</strong> to measure <strong>similarity</strong>.</p></li>
+<li><p>Recall: <strong>standardizing</strong> = subtract the mean, divide by the standard deviation.</p></li>
+<li><p>In this case, the <strong>mean</strong> doesn’t really matter. (why?)</p></li>
+</ul>
+</section>
+<section id="scaling-1" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="scaling-1"><span class="header-section-number">5.4.5</span> Scaling</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb216"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'size_scaled'</span>] <span class="op">=</span> (df[<span class="st">'Gr Liv Area'</span>] <span class="op">-</span> df[<span class="st">'Gr Liv Area'</span>].mean())<span class="op">/</span>df[<span class="st">'Gr Liv Area'</span>].std()</span>
+<span id="cb216-2"><a href="#cb216-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'bdrm_scaled'</span>] <span class="op">=</span> (df[<span class="st">'Bedroom AbvGr'</span>] <span class="op">-</span> df[<span class="st">'Bedroom AbvGr'</span>].mean())<span class="op">/</span>df[<span class="st">'Bedroom AbvGr'</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb217-2"><a href="#cb217-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x <span class="op">=</span> <span class="st">"size_scaled"</span>, y <span class="op">=</span> <span class="st">"bdrm_scaled"</span>)) </span>
+<span id="cb217-3"><a href="#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb217-4"><a href="#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">1707</span>]], color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb217-5"><a href="#cb217-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">160</span>]], color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb217-6"><a href="#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(df.loc[[<span class="dv">2336</span>]], color <span class="op">=</span> <span class="st">"green"</span>, size <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb217-7"><a href="#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic() </span>
+<span id="cb217-8"><a href="#cb217-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-116-7.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="lecture-activity-part-2" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="lecture-activity-part-2"><span class="header-section-number">5.4.6</span> (Lecture Activity Part 2)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_f05de72e" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scikit-learn" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="scikit-learn"><span class="header-section-number">5.5</span> Scikit-learn</h2>
+<section id="scikit-learn-1" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="scikit-learn-1"><span class="header-section-number">5.5.1</span> Scikit-learn</h3>
+<ul>
+<li><p><code>scikit-learn</code> is a library for <strong>machine learning</strong> and <strong>modeling</strong></p></li>
+<li><p>We will use it a lot in this class!</p></li>
+<li><p>For now, we will use it as a shortcut for <em>scaling</em> and for <em>computing distances</em></p></li>
+<li><p>The philosophy of <code>sklearn</code> is:</p>
+<ul>
+<li><strong>specify</strong> your analysis</li>
+<li><strong>fit</strong> on the data to prepare the analysis</li>
+<li><strong>transform</strong> the data</li>
+</ul></li>
+</ul>
+</section>
+<section id="specify" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="specify"><span class="header-section-number">5.5.2</span> Specify</h3>
+<p>No calculations have happened yet!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb219-3"><a href="#cb219-3" aria-hidden="true" tabindex="-1"></a>scaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>StandardScaler()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div>
+</div>
+</div>
+</section>
+<section id="fit" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="fit"><span class="header-section-number">5.5.3</span> Fit</h3>
+<p>The <code>scaler</code> object “learns” the means and standard deviations.</p>
+<p>We still have not altered the data at all!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb220"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb220-1"><a href="#cb220-1" aria-hidden="true" tabindex="-1"></a>df_orig <span class="op">=</span> df[[<span class="st">'Gr Liv Area'</span>, <span class="st">'Bedroom AbvGr'</span>]]</span>
+<span id="cb220-2"><a href="#cb220-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(df_orig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>StandardScaler()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>scaler.mean_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1499.69044369,    2.85426621])</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb223"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>scaler.scale_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([505.4226158 ,   0.82758988])</code></pre>
+</div>
+</div>
+</section>
+<section id="transform" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="transform"><span class="header-section-number">5.5.4</span> Transform</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a>df_scaled <span class="op">=</span> scaler.transform(df_orig)</span>
+<span id="cb225-2"><a href="#cb225-2" aria-hidden="true" tabindex="-1"></a>df_scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 0.30926506,  0.17609421],
+       [-1.19442705, -1.03223376],
+       [-0.33771825,  0.17609421],
+       ...,
+       [-1.04801492,  0.17609421],
+       [-0.21900572, -1.03223376],
+       [ 0.9898836 ,  0.17609421]])</code></pre>
+</div>
+</div>
+</section>
+<section id="sklearn-numpy-and-pandas" class="level3" data-number="5.5.5">
+<h3 data-number="5.5.5" class="anchored" data-anchor-id="sklearn-numpy-and-pandas"><span class="header-section-number">5.5.5</span> sklearn, numpy, and pandas</h3>
+<ul>
+<li><p>By default, <code>sklearn</code> functions return <code>numpy</code> objects.</p></li>
+<li><p>This is sometimes annoying; e.g.&nbsp;if we want to plot things after scaling.</p></li>
+<li><p>Solution: remake it, with the original column names.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(df_scaled, columns <span class="op">=</span> df_orig.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Gr Liv Area  Bedroom AbvGr
+0        0.309265       0.176094
+1       -1.194427      -1.032234
+2       -0.337718       0.176094
+3        1.207523       0.176094
+4        0.255844       0.176094
+...           ...            ...
+2925    -0.982723       0.176094
+2926    -1.182556      -1.032234
+2927    -1.048015       0.176094
+2928    -0.219006      -1.032234
+2929     0.989884       0.176094
+
+[2930 rows x 2 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="distances-with-sklearn" class="level3" data-number="5.5.6">
+<h3 data-number="5.5.6" class="anchored" data-anchor-id="distances-with-sklearn"><span class="header-section-number">5.5.6</span> Distances with sklearn</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> pairwise_distances</span>
+<span id="cb229-2"><a href="#cb229-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="#cb229-3" aria-hidden="true" tabindex="-1"></a>pairwise_distances(df_scaled[[<span class="dv">1707</span>]], df_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[3.52929876, 5.45459713, 4.0252646 , ..., 4.61305666, 4.76999349,
+        3.06886734]])</code></pre>
+</div>
+</div>
+</section>
+<section id="finding-the-most-similar" class="level3" data-number="5.5.7">
+<h3 data-number="5.5.7" class="anchored" data-anchor-id="finding-the-most-similar"><span class="header-section-number">5.5.7</span> Finding the most similar</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> pairwise_distances(df_scaled[[<span class="dv">1707</span>]], df_scaled)</span>
+<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>dists.argsort()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[1707,  160,  909, ...,  158, 2723, 2279]])</code></pre>
+</div>
+</div>
+</section>
+<section id="finding-the-most-similar-1" class="level3" data-number="5.5.8">
+<h3 data-number="5.5.8" class="anchored" data-anchor-id="finding-the-most-similar-1"><span class="header-section-number">5.5.8</span> Finding the most similar</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> dists.argsort().flatten()[<span class="dv">1</span>:<span class="dv">10</span>]</span>
+<span id="cb233-2"><a href="#cb233-2" aria-hidden="true" tabindex="-1"></a>df_orig.iloc[best]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Gr Liv Area  Bedroom AbvGr
+160          2978              5
+909          3082              5
+1288         2792              5
+2350         2784              5
+253          3222              5
+2592         2640              5
+585          2640              5
+2027         2526              5
+2330         3390              5</code></pre>
+</div>
+</div>
+</section>
+<section id="lecture-activity-part-3" class="level3" data-number="5.5.9">
+<h3 data-number="5.5.9" class="anchored" data-anchor-id="lecture-activity-part-3"><span class="header-section-number">5.5.9</span> (Lecture Activity Part 3)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_3ec89a38" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="alternatives" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="alternatives"><span class="header-section-number">5.6</span> Alternatives</h2>
+<section id="other-scaling" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="other-scaling"><span class="header-section-number">5.6.1</span> Other scaling</h3>
+<ul>
+<li><p>Standardization <span class="math display">\[x_i \leftarrow \frac{x_i - \bar{X}}{\text{sd}(X)}\]</span></p></li>
+<li><p>Min-Max Scaling <span class="math display">\[x_i \leftarrow \frac{x_i - \text{min}(X)}{\text{max}(X) - \text{min}(X)}\]</span></p></li>
+</ul>
+</section>
+<section id="other-distances" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="other-distances"><span class="header-section-number">5.6.2</span> Other distances</h3>
+<ul>
+<li><p>Euclidean (<span class="math inline">\(\ell_2\)</span>)</p>
+<p><span class="math display">\[\sqrt{\sum_{j=1}^m (x_j - x'_j)^2}\]</span></p></li>
+<li><p>Manhattan (<span class="math inline">\(\ell_1\)</span>)</p>
+<p><span class="math display">\[\sum_{j=1}^m |x_j - x'_j|\]</span></p></li>
+</ul>
+</section>
+<section id="lecture-activity-part-3-1" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="lecture-activity-part-3-1"><span class="header-section-number">5.6.3</span> (Lecture Activity Part 3)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_8f814250" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="distances-and-categorical-variables" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="distances-and-categorical-variables"><span class="header-section-number">5.7</span> Distances and Categorical Variables</h2>
+<section id="what-about-categorical-variables" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="what-about-categorical-variables"><span class="header-section-number">5.7.1</span> What about categorical variables?</h3>
+<p>Suppose we want to include the variable <code>Bldg Type</code> in our distance calculation…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Bldg Type"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bldg Type
+1Fam      2425
+TwnhsE     233
+Duplex     109
+Twnhs      101
+2fmCon      62
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>What is “single family minus townhouse squared”?</p>
+</section>
+<section id="converting-to-binary" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="converting-to-binary"><span class="header-section-number">5.7.2</span> Converting to binary</h3>
+<p>Let’s instead think about “Single family, or not”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb237"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_single_fam"</span>] <span class="op">=</span> df[<span class="st">"Bldg Type"</span>] <span class="op">==</span> <span class="st">"1Fam"</span></span>
+<span id="cb237-2"><a href="#cb237-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_single_fam"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>is_single_fam
+True     2425
+False     505
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="converting-to-binary-1" class="level3" data-number="5.7.3">
+<h3 data-number="5.7.3" class="anchored" data-anchor-id="converting-to-binary-1"><span class="header-section-number">5.7.3</span> Converting to binary</h3>
+<p>Recall that <code>True/False</code> is the same as <code>1/0</code> for computers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb239"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_single_fam"</span>] <span class="op">=</span> df[<span class="st">"is_single_fam"</span>].astype(<span class="st">"int"</span>)</span>
+<span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_single_fam"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>is_single_fam
+1    2425
+0     505
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>We call this a <strong>dummy variable</strong> or a <strong>one-hot-encoding</strong>.</p>
+</section>
+<section id="now-we-can-do-math" class="level3" data-number="5.7.4">
+<h3 data-number="5.7.4" class="anchored" data-anchor-id="now-we-can-do-math"><span class="header-section-number">5.7.4</span> Now we can do math!</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb241"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>df_orig <span class="op">=</span> df[[<span class="st">'Gr Liv Area'</span>, <span class="st">'Bedroom AbvGr'</span>, <span class="st">'is_single_fam'</span>]]</span>
+<span id="cb241-2"><a href="#cb241-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(df_orig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>StandardScaler()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>df_scaled <span class="op">=</span> scaler.transform(df_orig)</span>
+<span id="cb242-2"><a href="#cb242-2" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> pairwise_distances(df_scaled[[<span class="dv">1707</span>]], df_scaled)</span>
+<span id="cb242-3"><a href="#cb242-3" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> dists.argsort().flatten()[<span class="dv">1</span>:<span class="dv">10</span>]</span>
+<span id="cb242-4"><a href="#cb242-4" aria-hidden="true" tabindex="-1"></a>df_orig.iloc[best]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Gr Liv Area  Bedroom AbvGr  is_single_fam
+160          2978              5              1
+909          3082              5              1
+1288         2792              5              1
+2350         2784              5              1
+253          3222              5              1
+585          2640              5              1
+2027         2526              5              1
+2330         3390              5              1
+2501         2520              5              1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="takeaways-5" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="takeaways-5"><span class="header-section-number">5.8</span> Takeaways</h2>
+<section id="takeaways-6" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="takeaways-6"><span class="header-section-number">5.8.1</span> Takeaways</h3>
+<ul>
+<li><p>We measure similarity between <strong>observations</strong> by calculating <strong>distances</strong>.</p></li>
+<li><p>It is important that all our <strong>features</strong> be on the same <strong>scale</strong> for distances to be meaningful.</p></li>
+<li><p>We can use <code>scikit-learn</code> functions to <strong>fit</strong> and <strong>transform</strong> data, and to compute pairwise distances.</p></li>
+<li><p>There are many options of ways to <em>scale</em> data; most common is <strong>standardizing</strong></p></li>
+<li><p>There are many options of ways to <em>measure distances</em>; most common is <strong>Euclidean distance</strong>.</p></li>
+<li><p>Convert categorical variables to <strong>dummy variables</strong>, aka <strong>one-hot-encoded columns</strong> to make them numeric.</p></li>
 </ul>
 </section>
 </section>
