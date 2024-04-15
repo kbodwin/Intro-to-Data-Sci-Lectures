@@ -214,11 +214,11 @@ What are some pros and cons of the stacked barplot?
 
 -   We can still see the total counts in each class
 
--   We can easily compare the `female` counts in each class
+-   We can easily compare the `male` counts in each class, since those bars are on the bottom.
 
 -   Cons:
 
--   It is hard to compare the `male` counts.
+-   It is hard to compare the `female` counts, since those bars are stacked on top.
 
 -   It is hard to estimate the *distributions*.
 

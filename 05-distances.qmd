@@ -1,0 +1,383 @@
+---
+title: "Multivariate summaries"
+format:
+  revealjs: 
+    theme: [default, spring.scss]
+    incremental: true 
+    output-file: slides-05-distances.html
+    shift-heading-level-by: -1
+execute:
+  echo: true
+---
+
+```{python}
+
+```
+
+```{r}
+#| include: false
+library(reticulate)
+use_python("/usr/local/bin/python3")
+```
+
+```{python}
+#| include: false
+import numpy as np
+import pandas as pd
+from plotnine import *
+```
+
+## The story so far
+
+### Summarizing
+
+* **One categorical variable:** marginal distribution
+
+* **Two categorical variables:** joint and conditional distributions
+
+* **One quantitative variable:** mean, median, variance, standard deviation.
+
+* **One quantitative, one categorical:** mean, median, and std dev across groups (`groupby()`, *split-apply-combine*)
+
+* **Two quantitative variables:** z-scores, correlation
+
+### Visualizing
+
+* **One categorical variable:** bar plot or column plot
+
+* **Two categorical variables:** stacked bar plot, side-by-side bar plot, or stacked percentage bar plot
+
+* **One quantitative variable:** histogram, density, or boxplot
+
+* **One quantitative, one categorical:** overlapping densities, side-by-side boxplots, or facetting
+
+* **Two quantitative variables:** scatter plot
+
+## Today's data: House prices
+
+### Ames house prices
+
+*(Notice: `read_table` not `read_csv`)*
+
+``` {python}
+df = pd.read_table("https://datasci112.stanford.edu/data/housing.tsv")
+df.head()
+```
+
+### How does size relate to number of bedrooms?
+
+What plot would you make?
+
+. . .
+
+```{python}
+(ggplot(df, aes(x = "Gr Liv Area", y = "Bedroom AbvGr")) 
++ geom_point())
+```
+
+### How does size relate to number of bedrooms?
+
+What *statistic* would you calculate?
+
+. . .
+
+```{python}
+df[["Gr Liv Area", "Bedroom AbvGr"]].corr()
+```
+
+## Measuring similarity with distance
+
+### Similarity
+
+How might we answer the question, "Are these two houses similar?"
+
+```{python}
+df.loc[1707, ["Gr Liv Area", "Bedroom AbvGr"]]
+df.loc[290, ["Gr Liv Area", "Bedroom AbvGr"]]
+```
+### Distance
+
+The **distance** between the **two observations** is:
+
+$$ \sqrt{ (2956 - 2650)^2 + (5 - 6)^2} = 306 $$
+
+. . .
+
+... what does this number mean?  Not much!  But we can use it to **compare** sets of houses and find the **most similar**.
+
+### Distance
+
+Consider House 1707 and another one:
+
+```{python}
+df.loc[1707, ["Gr Liv Area", "Bedroom AbvGr"]]
+df.loc[291, ["Gr Liv Area", "Bedroom AbvGr"]]
+```
+$$ \sqrt{ (2956 - 1666)^2 + (5 - 3)^2} = 1290 $$
+House 1707 is **more similar** to House 290 than to House 291.
+
+### (Lecture Activity Part 1)
+
+```{r}
+#| echo: false
+library(countdown)
+countdown(minutes = 10, left = "0")
+```
+
+## Scaling/Standardizing
+
+### House 160 seems more similar...
+
+```{python}
+#| code-fold: true
+(
+ggplot(df, aes(x = "Gr Liv Area", y = "Bedroom AbvGr")) 
++ geom_point(color = "lightgrey")
++ geom_point(df.loc[[1707]], color = "red", size = 5)
++ geom_point(df.loc[[160]], color = "blue", size = 2)
++ geom_point(df.loc[[2336]], color = "green", size = 2)
++ theme_classic() 
+)
+```
+
+### ... even if we zoom in...
+
+```{python}
+#| code-fold: true
+(
+ggplot(df, aes(x = "Gr Liv Area", y = "Bedroom AbvGr")) 
++ geom_point(color = "lightgrey")
++ geom_point(df.loc[[1707]], color = "red", size = 5)
++ geom_point(df.loc[[160]], color = "blue", size = 2)
++ geom_point(df.loc[[2336]], color = "green", size = 2)
++ theme_classic() 
++ scale_x_continuous(limits=(2500, 3500))
+)
+```
+
+### ... but not if we put the axes on the same **scale**!
+
+```{python}
+#| code-fold: true
+(
+ggplot(df, aes(x = "Gr Liv Area", y = "Bedroom AbvGr")) 
++ geom_point(color = "lightgrey")
++ geom_point(df.loc[[1707]], color = "red", size = 5)
++ geom_point(df.loc[[160]], color = "blue", size = 2)
++ geom_point(df.loc[[2336]], color = "green", size = 2)
++ theme_classic() 
++ scale_x_continuous(limits=(2900, 3000))
++ scale_y_continuous(limits=(0, 100))
+)
+```
+
+### Scaling
+
+* We need to make sure our features are on the same **scale** before we can use **distances** to measure **similarity**.
+
+* Recall:  **standardizing** = subtract the mean, divide by the standard deviation.
+
+* In this case, the **mean** doesn't really  matter. (why?)
+
+
+### Scaling
+
+```{python}
+df['size_scaled'] = (df['Gr Liv Area'] - df['Gr Liv Area'].mean())/df['Gr Liv Area'].std()
+df['bdrm_scaled'] = (df['Bedroom AbvGr'] - df['Bedroom AbvGr'].mean())/df['Bedroom AbvGr'].std()
+```
+
+```{python}
+#| code-fold: true
+(
+ggplot(df, aes(x = "size_scaled", y = "bdrm_scaled")) 
++ geom_point(color = "lightgrey")
++ geom_point(df.loc[[1707]], color = "red", size = 5)
++ geom_point(df.loc[[160]], color = "blue", size = 2)
++ geom_point(df.loc[[2336]], color = "green", size = 2)
++ theme_classic() 
+)
+```
+
+### (Lecture Activity Part 2)
+
+
+```{r}
+#| echo: false
+library(countdown)
+countdown(minutes = 10, left = "0")
+```
+
+## Scikit-learn
+
+### Scikit-learn
+
+* `scikit-learn` is a library for **machine learning** and **modeling**
+
+* We will use it a lot in this class!
+
+* For now, we will use it as a shortcut for *scaling* and for *computing distances*
+
+* The philosophy of `sklearn` is:
+    + **specify** your analysis
+    + **fit** on the data to prepare the analysis
+    + **transform** the data
+
+### Specify
+
+No calculations have happened yet!
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler
+```
+
+### Fit
+
+The `scaler` object "learns" the means and standard deviations.
+
+We still have not altered the data at all! 
+
+```{python}
+df_orig = df[['Gr Liv Area', 'Bedroom AbvGr']]
+scaler.fit(df_orig)
+scaler.mean_
+scaler.scale_
+```
+
+
+### Transform
+
+```{python}
+df_scaled = scaler.transform(df_orig)
+df_scaled
+```
+
+### sklearn, numpy, and pandas
+
+* By default, `sklearn` functions return `numpy` objects.
+
+* This is sometimes annoying; e.g. if we want to plot things after scaling.
+
+* Solution: remake it, with the original column names.
+
+```{python}
+pd.DataFrame(df_scaled, columns = df_orig.columns)
+```
+### Distances with sklearn
+
+```{python}
+from sklearn.metrics import pairwise_distances
+
+pairwise_distances(df_scaled[[1707]], df_scaled)
+```
+
+
+### Finding the most similar
+
+```{python}
+dists = pairwise_distances(df_scaled[[1707]], df_scaled)
+dists.argsort()
+```
+
+### Finding the most similar
+
+```{python}
+best = dists.argsort().flatten()[1:10]
+df_orig.iloc[best]
+```
+
+
+### (Lecture Activity Part 3)
+
+```{r}
+#| echo: false
+library(countdown)
+countdown(minutes = 10, left = "0")
+```
+
+## Alternatives
+
+### Other scaling
+
+-   Standardization
+    $$x_i \leftarrow \frac{x_i - \bar{X}}{\text{sd}(X)}$$
+
+-   Min-Max Scaling
+    $$x_i \leftarrow \frac{x_i - \text{min}(X)}{\text{max}(X) - \text{min}(X)}$$
+
+### Other distances
+
+-   Euclidean ($\ell_2$)
+
+    $$\sqrt{\sum_{j=1}^m (x_j - x'_j)^2}$$
+
+-   Manhattan ($\ell_1$)
+
+    $$\sum_{j=1}^m |x_j - x'_j|$$
+    
+    
+### (Lecture Activity Part 3)
+
+```{r}
+#| echo: false
+library(countdown)
+countdown(minutes = 10, left = "0")
+```
+
+## Distances and Categorical Variables
+
+### What about categorical variables?
+
+Suppose we want to include the variable `Bldg Type` in our distance calculation...
+
+```{python}
+df["Bldg Type"].value_counts()
+```
+What is "single family minus townhouse squared"?
+
+### Converting to binary
+
+Let's instead think about "Single family, or not"
+
+```{python}
+df["is_single_fam"] = df["Bldg Type"] == "1Fam"
+df["is_single_fam"].value_counts()
+```
+### Converting to binary
+
+Recall that `True/False` is the same as `1/0` for computers:
+
+```{python}
+df["is_single_fam"] = df["is_single_fam"].astype("int")
+df["is_single_fam"].value_counts()
+```
+We call this a **dummy variable** or a **one-hot-encoding**.
+
+### Now we can do math!
+
+```{python}
+df_orig = df[['Gr Liv Area', 'Bedroom AbvGr', 'is_single_fam']]
+scaler.fit(df_orig)
+df_scaled = scaler.transform(df_orig)
+dists = pairwise_distances(df_scaled[[1707]], df_scaled)
+best = dists.argsort().flatten()[1:10]
+df_orig.iloc[best]
+```
+
+## Takeaways
+
+### Takeaways
+
+* We measure similarity between **observations** by calculating **distances**.
+
+* It is important that all our **features** be on the same **scale** for distances to be meaningful.
+
+* We can use `scikit-learn` functions to **fit** and **transform** data, and to compute pairwise distances.
+
+* There are many options of ways to *scale* data; most common is **standardizing**
+
+* There are many options of ways to *measure distances*; most common is **Euclidean distance**.
+
+* Convert categorical variables to **dummy variables**, aka **one-hot-encoded columns** to make them numeric.

@@ -46,3 +46,13 @@ editor: visual
 :::
 
 {{< include 04-group_by.qmd >}}
+
+
+
+:::{.lectitle} 
+# Distances
+
+[Slides](slides-05-distances.html)
+:::
+
+{{< include 05-distances.qmd >}}
