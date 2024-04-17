@@ -56,3 +56,11 @@ editor: visual
 :::
 
 {{< include 05-distances.qmd >}}
+
+:::{.lectitle} 
+# Dummy Variables and Bag-of-Words
+
+[Slides](slides-06-text_data.html)
+:::
+
+{{< include 06-text_data.qmd >}}

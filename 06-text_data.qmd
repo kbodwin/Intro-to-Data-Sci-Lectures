@@ -1,0 +1,561 @@
+---
+title: "Dummy variables and bag-of-words"
+format:
+  revealjs: 
+    theme: [default, spring.scss]
+    incremental: true 
+    output-file: slides-06-text_data.html
+    shift-heading-level-by: -1
+execute:
+  echo: true
+---
+
+```{python}
+
+```
+
+```{r}
+#| include: false
+library(reticulate)
+use_python("/usr/local/bin/python3")
+```
+
+```{python}
+#| include: false
+import numpy as np
+import pandas as pd
+from plotnine import *
+```
+
+## The story this week
+
+### Distances
+
+
+* We measure similarity between **observations** by calculating **distances**.
+
+* **Euclidean distance**: sum of squared differences, then square root
+
+* **Manhattan distance**: sum of absolute differences
+
+* In **scikit-learn**, use the `pairwise_distances` function to get back a *2D numpy array* of distances.
+
+### Scaling
+
+* It is important that all our **features** be on the same **scale** for distances to be meaningful.
+
+* **Standardize:**  Subtract the *mean* (of the column) and divide by the *standard deviation* (of the column).
+
+* **MinMax:** Subtract the *minimum* value, divide by the *range*.
+
+* In `scikit-learn`, use the `StandardScaler()` or `MinMaxScaler()` functions.
+
+* Follow the **specify** - **fit** - **transform** code structure.
+
+### Recall: AMES Housing data
+
+
+``` {python}
+df = pd.read_table("https://datasci112.stanford.edu/data/housing.tsv")
+features = ["Gr Liv Area", "Bedroom AbvGr", "Full Bath", "Half Bath", "Bldg Type", "Neighborhood"]
+df[features].head()
+```
+
+## Distances and Categorical Variables
+
+### What about categorical variables?
+
+Suppose we want to include the variable `Bldg Type` in our distance calculation...
+
+```{python}
+df["Bldg Type"].value_counts()
+```
+What is "single family minus townhouse squared"?
+
+### Converting to binary
+
+Let's instead think about "Single family, or not"
+
+```{python}
+df["is_single_fam"] = df["Bldg Type"] == "1Fam"
+df["is_single_fam"].value_counts()
+```
+### Converting to binary
+
+Recall that `True/False` is the same as `1/0` for computers:
+
+```{python}
+df["is_single_fam"] = df["is_single_fam"].astype("int")
+df["is_single_fam"].value_counts()
+```
+We call this a **dummy variable** or a **one-hot-encoding**.
+
+### Now we can do math!
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import pairwise_distances
+scaler = StandardScaler()
+
+df_orig = df[['Gr Liv Area', 'Bedroom AbvGr', 'is_single_fam']]
+scaler.fit(df_orig)
+
+df_scaled = scaler.transform(df_orig)
+
+dists = pairwise_distances(df_scaled[[1707]], df_scaled)
+best = dists.argsort().flatten()[1:10]
+df_orig.iloc[best]
+```
+
+### Quick look back
+
+#### Where have you seen some one-hot-encoded variables already?
+
+
+### Let's reset the dataset now...
+
+```{python}
+df = pd.read_table("https://datasci112.stanford.edu/data/housing.tsv")
+```
+
+
+## Dummifying Variables
+
+### Dummifying Variables
+
+* What if we don't just want to study `is_single_fam`, but rather, *all* categories of the `Bldg Type` variable?
+
+* In principle, we just make **dummy variables** for **each category**:  `is_single_fam`, `is_twnhse`, etc.
+
+* Each **category** becomes one **column**, with 0's and 1's to show if the *observation in that row* matches that *category*.
+
+* This is called **dummifying** or **one-hot-encoding** a **categorical variable**
+
+* Luckily, we have shortcuts in both `pandas` *and* `sklearn`...
+
+### Dummifying in Pandas
+
+```{python}
+pd.get_dummies(df[["Bldg Type"]])
+```
+
+### Dummifying in Pandas
+
+Some things to notice here...
+
+1.  What is the **naming convention** for the new columns?
+
+2. Does this change the original dataframe `df`?  If not, what would you need to do to add this information back in?
+
+3. What happens if you put the whole dataframe into the `get_dummies` function?  What problems might arise from this?
+
+### Dummifying in sklearn
+
+```{python}
+from sklearn.preprocessing import OneHotEncoder
+
+encoder = OneHotEncoder()
+
+encoder.fit(df[["Bldg Type"]])
+
+df_bldg = encoder.transform(df[["Bldg Type"]])
+
+df_bldg
+```
+
+
+### Dummifying in sklearn
+
+```{python}
+df_bldg.todense()
+```
+
+### Dummifying in sklearn
+
+Things to notice:
+
+1. What **object type** was the result?
+
+2. Does this change the original dataframe `df`?  If not, what would you need to do to add this information back in?
+
+3. What happens if you fit the whole dataframe with the OneHotEncoder?  What problems might arise from this?
+
+4. What pros and cons do you see for the `pandas` approach vs the `sklearn` approach?
+
+
+## Column Transformers
+
+### Preprocessing
+
+* We have now seen two **preprocessing** steps that might need to happen to do an analysis of distances:
+    + **Scaling** the quantitative variables
+    + **Dummifying** the categorical variables
+    
+* **Preprocessing** steps are things you do *only to make the following analysis/visualization better*.
+    
+* This is not the same as **data cleaning**, which are changes you make to *fix* the data.
+
+* This is not the same as **data wrangling**, which are changes you make to *restructure* the data; i.e., adding or deleting rows or columns to reflect what you are trying to study.
+
+### Quick quiz
+
+Identify the following as *cleaning*, *wrangling*, or *preprocessing*:
+
+1. Removing the `$` symbol from a column and converting it to numeric.
+
+2. Narrowing your data down to only first class Titanic passengers, because you are not studying the others.
+
+3. Converting a `Zip Code` variable from numeric to categorical using `.astype()`.
+
+4. Creating a new column called `n_investment` that counts the number of people who invested in a project.
+
+5. Log-transforming a column because it is very skewed.
+
+### Preprocessing in `sklearn`
+
+* Unlike **cleaning** and **wrangling**, the **preprocessing** steps are "temporary" changes to the dataframe.
+
+* It would be nice if we could trigger these changes as part of our analysis, instead of doing them "by hand".
+
+* This is why the **specify** - **fit** - **transform** process is useful!
+
+* We will first specify **all** our preprocessing steps.
+
+* Then we will **fit** the whole preprocess
+
+* Then we will save the **transform** step for only when we need it.
+
+### Column Transformers
+
+```{python}
+from sklearn.compose import make_column_transformer
+
+preproc = make_column_transformer(
+    (OneHotEncoder(), ["Bldg Type", "Neighborhood"]),
+    remainder="passthrough")
+    
+preproc.fit(df[features])
+
+preproc.transform(df[features])
+```
+
+### Column Transformers
+
+Things to notice...
+
+1. What submodule did we import `make_column_transformer` from?
+
+2. What are the **two** arguments to the `make_column_transformer` function?  What **object structures** are they?
+
+3. What happens if you **fit** and **transform** on the whole dataset, not just `df[features]`?  Why might this be useful?
+
+
+### Column Transformers
+
+Try the following:
+
+1. What happens if you change `remainder = "passthrough"` to `remainder = "drop"`? 
+
+2. What happens if you add the argument `sparse_output=False` to the `OneHotEncoder()` function?
+
+3. What happens if you add this line before the *transform* step: *(keep the `sparse_output=False` when you try this)* 
+```
+preproc.set_output(transform = "pandas")
+```
+
+4. Look at the `preproc` object.  What does it show you?
+
+### Multiple preprocessing steps
+
+Why are **column transformers** so useful?  
+
+Well, now we can do **multiple preprocessing steps** at once!
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+
+preproc = make_column_transformer(
+        (StandardScaler(), ["Gr Liv Area"]),
+        (OneHotEncoder(sparse_output=False), ["Bldg Type",
+                                          "Neighborhood"]),
+    remainder="passthrough")
+    
+preproc.fit(df[features])
+
+preproc.set_output(transform = "pandas")
+
+df_transformed = preproc.transform(df[features])
+df_transformed
+```
+
+### Finding all variables
+
+What if we just want to say "Please dummify **all** categorical variables?"
+
+Use a `selector` instead of exact column names.
+
+```{python}
+from sklearn.compose import make_column_selector
+
+preproc = make_column_transformer(
+    (StandardScaler(),  make_column_selector(dtype_include=np.number)),
+    (OneHotEncoder(sparse_output=False), make_column_selector(dtype_include=object)),
+    remainder="passthrough")
+    
+preproc.fit(df[features])
+
+preproc.set_output(transform = "pandas")
+
+df_transformed = preproc.transform(df[features])
+df_transformed
+
+```
+
+
+### Think about it
+
+* What are the *advantages* of using a selector?
+
+* What are the possible *disadvantages* of using a selector?
+
+* Does the *order* matter when using selectors?  Try switching the steps and see what happens!
+
+## Bag of Words
+
+### Text data
+
+
+A textual data set consists of multiple texts. Each text is called a
+**document**. The collection of texts is called a **corpus**.
+
+Example Corpus:
+
+0.  `"I am Sam\n\nI am Sam\nSam I..."`
+
+1.  `"The sun did not shine.\nIt was..."`
+
+2.  `"Fox\nSocks\nBox\nKnox\n\nKnox..."`
+
+3.  `"Every Who\nDown in Whoville\n..."`
+
+4.  `"UP PUP Pup is up.\nCUP PUP..."`
+
+5.  `"On the fifteenth of May, in the..."`
+
+6.  `"Congratulations!\nToday is your..."`
+
+7.  `"One fish, two fish, red fish..."`
+
+### Reading Text Data
+
+Reading in Textual Data
+
+Documents are usually stored in different files.
+
+``` {python}
+seuss_dir = "http://dlsun.github.io/pods/data/drseuss/"
+seuss_files = [
+    "green_eggs_and_ham.txt", "cat_in_the_hat.txt",
+    "fox_in_socks.txt", "how_the_grinch_stole_christmas.txt",
+    "hop_on_pop.txt", "horton_hears_a_who.txt",
+    "oh_the_places_youll_go.txt", "one_fish_two_fish.txt"]
+```
+
+We have to read them in one by one.
+
+``` {python}
+import requests
+
+docs = {}
+for filename in seuss_files:
+    response = requests.get(seuss_dir + filename, "r")
+    docs[filename] = response.text
+```
+
+### Reading Text Data
+
+```{python}
+docs
+```
+
+### Bag-of-Words Representation
+
+In the **bag-of-words** representation in this data, each column represents a word, and the
+values in the column are the word counts for that document.
+
+First, we need to count the words in each document.
+
+``` {python}
+from collections import Counter
+Counter(docs["hop_on_pop.txt"].split())
+```
+
+### Bag-of-Words Representation
+
+... then, we put these counts into a `Series` and stack them into a
+`DataFrame`.
+
+This is called the **term-frequency matrix**.
+
+``` {python}
+pd.DataFrame(
+    [pd.Series(Counter(doc.split())) for doc in docs.values()],
+    index=docs.keys())
+```
+
+### Bag-of-Words in Scikit-Learn
+
+Alternatively, we can use `CountVectorizer` in `scikit-learn` to
+produce a term-frequency matrix.
+
+``` {python}
+from sklearn.feature_extraction.text import CountVectorizer
+
+vec = CountVectorizer()
+
+vec.fit(docs.values())
+
+vec.transform(docs.values())
+```
+
+### Vocabulary
+
+The set of words across a corpus is called the **vocabulary**. We can
+view the vocabulary in a fitted `CountVectorizer` as follows:
+
+``` {python}
+vec.vocabulary_
+```
+
+### Text Normalizing
+
+What's wrong with the way we counted words originally?
+
+    Counter({'UP': 1, 'PUP': 3, 'Pup': 4, 'is': 10, 'up.': 2, ...})
+
+* It's usually good to **normalize** for punctuation and capitalization.
+
+* Normalization options are specified when you initialize the
+`CountVectorizer`. 
+
+* By default, Scikit-Learn strips punctuation
+and converts all characters to lowercase.
+
+* If you don't want Scikit-Learn to normalize for punctuation and
+capitalization, you can do the following:
+
+``` {python}
+vec = CountVectorizer(lowercase=False, token_pattern=r"[\S]+")
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+## N-grams
+
+### The Shortcomings of Bag-of-Words
+
+Bag-of-words is easy to understand and easy to implement.
+
+What are its disadvantages?
+
+Consider the following documents:
+
+1.  "The dog bit her owner."
+
+2.  "Her dog bit the owner."
+
+Both documents have the same exact bag-of-words representation, but they mean something quite different!
+
+### N-grams
+
+
+* An **n-gram** is a sequence of $n$ words.
+
+* N-grams allow us to capture more of the meaning.
+
+* For example, if we count **bigrams** (2-grams) instead of words, we can distinguish the two documents from before:
+
+1.  "The dog bit her owner."
+
+2.  "Her dog bit the owner."
+
+$$\begin{array}{l|ccccccc}
+& \text{the,dog} & \text{her,dog} & \text{dog,bit} & \text{bit,the} & \text{bit,her} & \text{the,owner} & \text{her,owner} \\
+\hline
+\text{1} & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+\text{2} & 0 & 1 & 1 & 1 & 0 & 1 & 0 \\
+\end{array}$$
+
+### N-grams in Scikit-Learn
+
+Scikit-Learn can create n-grams.
+
+Pass in `ngram_range=` to the `CountVectorizer`.
+
+To get bigrams, we set the range to `(2, 2)` ...
+
+``` {python}
+vec = CountVectorizer(ngram_range=(2, 2))
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+### N-grams in Scikit-learn
+
+... or we can also get individual words (unigrams) alongside the bigrams:
+
+```{python}
+vec = CountVectorizer(ngram_range=(1, 2))
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+## Text Data and Distances
+
+### Similar documents
+
+Now, we can use this **bag-of-words** data to measure **similarities** between documents!
+
+``` {python}
+vec = CountVectorizer(ngram_range=(1, 2))
+vec.fit(docs.values())
+dat = vec.transform(docs.values())
+
+dists = pairwise_distances(dat)
+dists
+```
+
+### Similar documents
+
+```{python}
+dists[0].argsort()
+docs.keys()
+```
+* This is how data scientists do **authorship identification**!
+
+### Similar documents
+
+**BUT WAIT!**
+
+* Wouldn't a *longer document* have *more words*, and thus be able to match other documents?
+
+* Next class: **preprocessing** bag-of-words data with tf-idf.
+
+* Recall that there are many **distance metrics** out there.
+
+* Next class: A better distance metric for text data.
+
+## Takeaways
+
+### Takeaways
+
+* We **dummify** or **one-hot-encode** categorical variables to make them numbers.
+
+* We can do this with `pd.get_dummies()` or with `OneHotEncoder()`
+
+* **Column Transformers** let us apply multiple preprocessing steps all together.
+    + Think about *which variables* you want to apply the steps to
+    + Think about *options* for the steps, like sparseness
+    + Think about `passthrough` in your transformer
+    
+* We represent text data with **bag-of-words** matrices.

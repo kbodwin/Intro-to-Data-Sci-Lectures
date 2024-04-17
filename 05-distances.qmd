@@ -318,52 +318,12 @@ countdown(minutes = 10, left = "0")
     $$\sum_{j=1}^m |x_j - x'_j|$$
     
     
-### (Lecture Activity Part 3)
+### (Lecture Activity Part 4)
 
 ```{r}
 #| echo: false
 library(countdown)
 countdown(minutes = 10, left = "0")
-```
-
-## Distances and Categorical Variables
-
-### What about categorical variables?
-
-Suppose we want to include the variable `Bldg Type` in our distance calculation...
-
-```{python}
-df["Bldg Type"].value_counts()
-```
-What is "single family minus townhouse squared"?
-
-### Converting to binary
-
-Let's instead think about "Single family, or not"
-
-```{python}
-df["is_single_fam"] = df["Bldg Type"] == "1Fam"
-df["is_single_fam"].value_counts()
-```
-### Converting to binary
-
-Recall that `True/False` is the same as `1/0` for computers:
-
-```{python}
-df["is_single_fam"] = df["is_single_fam"].astype("int")
-df["is_single_fam"].value_counts()
-```
-We call this a **dummy variable** or a **one-hot-encoding**.
-
-### Now we can do math!
-
-```{python}
-df_orig = df[['Gr Liv Area', 'Bedroom AbvGr', 'is_single_fam']]
-scaler.fit(df_orig)
-df_scaled = scaler.transform(df_orig)
-dists = pairwise_distances(df_scaled[[1707]], df_scaled)
-best = dists.argsort().flatten()[1:10]
-df_orig.iloc[best]
 ```
 
 ## Takeaways
@@ -379,5 +339,3 @@ df_orig.iloc[best]
 * There are many options of ways to *scale* data; most common is **standardizing**
 
 * There are many options of ways to *measure distances*; most common is **Euclidean distance**.
-
-* Convert categorical variables to **dummy variables**, aka **one-hot-encoded columns** to make them numeric.
