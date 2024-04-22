@@ -58,9 +58,17 @@ editor: visual
 {{< include 05-distances.qmd >}}
 
 :::{.lectitle} 
-# Dummy Variables and Bag-of-Words
+# Dummy Variables and Column Tranformers
 
-[Slides](slides-06-text_data.html)
+[Slides](slides-06-preprocessing.html)
 :::
 
-{{< include 06-text_data.qmd >}}
+{{< include 06-preprocessing.qmd >}}
+
+:::{.lectitle} 
+# Text Data and TF-IDF
+
+[Slides](slides-07-text_data.html)
+:::
+
+{{< include 07-text_data.qmd >}}

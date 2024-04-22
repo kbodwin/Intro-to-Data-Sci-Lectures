@@ -1,0 +1,499 @@
+---
+title: "Bag-of-words and TF-IDF"
+format:
+  revealjs: 
+    theme: [default, spring.scss]
+    incremental: true 
+    output-file: slides-07-text_data.html
+    shift-heading-level-by: -1
+execute:
+  echo: true
+---
+
+```{python}
+
+```
+
+```{r}
+#| include: false
+library(reticulate)
+use_python("/usr/local/bin/python3")
+```
+
+```{python}
+#| include: false
+import numpy as np
+import pandas as pd
+from plotnine import *
+```
+
+## The story this week
+
+### Distances
+
+
+* We measure similarity between **observations** by calculating **distances**.
+
+* **Euclidean distance**: sum of squared differences, then square root
+
+* **Manhattan distance**: sum of absolute differences
+
+* In **scikit-learn**, use the `pairwise_distances` function to get back a *2D numpy array* of distances.
+
+### Scaling
+
+* It is important that all our **features** be on the same **scale** for distances to be meaningful.
+
+* **Standardize:**  Subtract the *mean* (of the column) and divide by the *standard deviation* (of the column).
+
+* **MinMax:** Subtract the *minimum* value, divide by the *range*.
+
+* In `scikit-learn`, use the `StandardScaler()` or `MinMaxScaler()` functions.
+
+* Follow the **specify** - **fit** - **transform** code structure.
+
+## Bag of Words
+
+### Text data
+
+
+A textual data set consists of multiple texts. Each text is called a
+**document**. The collection of texts is called a **corpus**.
+
+Example Corpus:
+
+0.  `"I am Sam\n\nI am Sam\nSam I..."`
+
+1.  `"The sun did not shine.\nIt was..."`
+
+2.  `"Fox\nSocks\nBox\nKnox\n\nKnox..."`
+
+3.  `"Every Who\nDown in Whoville\n..."`
+
+4.  `"UP PUP Pup is up.\nCUP PUP..."`
+
+5.  `"On the fifteenth of May, in the..."`
+
+6.  `"Congratulations!\nToday is your..."`
+
+7.  `"One fish, two fish, red fish..."`
+
+### Reading Text Data
+
+Reading in Textual Data
+
+Documents are usually stored in different files.
+
+``` {python}
+seuss_dir = "http://dlsun.github.io/pods/data/drseuss/"
+seuss_files = [
+    "green_eggs_and_ham.txt", "cat_in_the_hat.txt",
+    "fox_in_socks.txt", "how_the_grinch_stole_christmas.txt",
+    "hop_on_pop.txt", "horton_hears_a_who.txt",
+    "oh_the_places_youll_go.txt", "one_fish_two_fish.txt"]
+```
+
+We have to read them in one by one.
+
+``` {python}
+import requests
+
+docs = {}
+for filename in seuss_files:
+    response = requests.get(seuss_dir + filename, "r")
+    docs[filename] = response.text
+```
+
+### Reading Text Data
+
+```{python}
+docs.keys()
+```
+
+### Bag-of-Words Representation
+
+In the **bag-of-words** representation in this data, each column represents a word, and the
+values in the column are the word counts for that document.
+
+First, we need to count the words in each document.
+
+``` {python}
+from collections import Counter
+Counter(docs["hop_on_pop.txt"].split())
+```
+
+### Bag-of-Words Representation
+
+... then, we put these counts into a `Series` and stack them into a
+`DataFrame`.
+
+This is called **bag of words** data.
+
+``` {python}
+pd.DataFrame(
+    [pd.Series(Counter(doc.split())) for doc in docs.values()],
+    index=docs.keys())
+```
+
+### Bag-of-Words in Scikit-Learn
+
+Alternatively, we can use `CountVectorizer` in `scikit-learn` to
+produce a bag-of-words matrix.
+
+``` {python}
+from sklearn.feature_extraction.text import CountVectorizer
+
+vec = CountVectorizer()
+
+vec.fit(docs.values())
+
+vec.transform(docs.values())
+```
+
+### Vocabulary
+
+The set of words across a corpus is called the **vocabulary**. We can
+view the vocabulary in a fitted `CountVectorizer` as follows:
+
+``` {python}
+vec.vocabulary_["fish"]
+vec.vocabulary_["pop"]
+vec.vocabulary_["eggs"]
+```
+
+### Text Normalizing
+
+What's wrong with the way we counted words originally?
+
+    Counter({'UP': 1, 'PUP': 3, 'Pup': 4, 'is': 10, 'up.': 2, ...})
+
+* It's usually good to **normalize** for punctuation and capitalization.
+
+* Normalization options are specified when you initialize the
+`CountVectorizer`. 
+
+* By default, Scikit-Learn strips punctuation
+and converts all characters to lowercase.
+
+### Text Normalizing in sklearn
+
+* If you don't want Scikit-Learn to normalize for punctuation and
+capitalization, you can do the following:
+
+``` {python}
+vec = CountVectorizer(lowercase=False, token_pattern=r"[\S]+")
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+## N-grams
+
+### The Shortcomings of Bag-of-Words
+
+Bag-of-words is easy to understand and easy to implement.
+
+What are its disadvantages?
+
+Consider the following documents:
+
+1.  "The dog bit her owner."
+
+2.  "Her dog bit the owner."
+
+Both documents have the same exact bag-of-words representation, but they mean something quite different!
+
+### N-grams{.smaller}
+
+* An **n-gram** is a sequence of $n$ words.
+
+* N-grams allow us to capture more of the meaning.
+
+* For example, if we count **bigrams** (2-grams) instead of words, we can distinguish the two documents from before:
+
+1.  "The dog bit her owner."
+
+2.  "Her dog bit the owner."
+
+$$\begin{array}{l|ccccccc}
+& \text{the,dog} & \text{her,dog} & \text{dog,bit} & \text{bit,the} & \text{bit,her} & \text{the,owner} & \text{her,owner} \\
+\hline
+\text{1} & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+\text{2} & 0 & 1 & 1 & 1 & 0 & 1 & 0 \\
+\end{array}$$
+
+### N-grams in Scikit-Learn
+
+Scikit-Learn can create n-grams.
+
+Pass in `ngram_range=` to the `CountVectorizer`.
+
+To get bigrams, we set the range to `(2, 2)` ...
+
+``` {python}
+vec = CountVectorizer(ngram_range=(2, 2))
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+### N-grams in Scikit-learn
+
+... or we can also get individual words (unigrams) alongside the bigrams:
+
+```{python}
+vec = CountVectorizer(ngram_range=(1, 2))
+vec.fit(docs.values())
+vec.transform(docs.values())
+```
+
+
+## Text Data and Distances
+
+### Similar documents
+
+Now, we can use this **bag-of-words** data to measure **similarities** between documents!
+
+``` {python}
+from sklearn.metrics import pairwise_distances
+
+vec = CountVectorizer(ngram_range=(1, 2))
+vec.fit(docs.values())
+dat = vec.transform(docs.values())
+
+dists = pairwise_distances(dat)
+dists
+```
+
+### Similar documents
+
+```{python}
+dists[0].argsort()
+docs.keys()
+```
+* This is how data scientists do **authorship identification**!
+
+
+## Activity
+
+### Activity 1
+
+Using bi-grams, unigrams, and tri-grams, which Dr. Seuss document is closest to "One Fish Two Fish"?
+
+```{python}
+#| include: false
+
+vec = CountVectorizer(ngram_range=(1,3))
+vec.fit(docs.values())
+bow_seuss = vec.transform(docs.values())
+pairwise_distances(bow_seuss)[7]
+```
+
+## Motivating example
+
+### Issues with the distance approach
+
+**BUT WAIT!**
+
+* Don't we care more about *word choice* than *total words used*?
+
+* Wouldn't a *longer document* have *more words*, and thus be able to "match" other documents?
+
+* Wouldn't *more common words* appear in more documents, and thus cause them to "match"?
+
+* Recall: We have many options for **scaling**
+
+* Recall: We have many options for **distance metrics**.
+
+### Example{.smaller}
+
+**Document A:**
+
+> "Whoever has hate for his brother is in the darkness and walks in the darkness."
+
+**Document B:**
+
+> "Hello darkness, my old friend, I've come to talk with you again."
+
+**Document C:**
+
+> "Returning hate for hate multiplies hate, adding deeper darkness to
+a night already devoid of stars. Darkness cannot drive out darkness; only light can do that."
+
+**Document D:**
+
+> "Happiness can be found in the darkest of times, if only one remembers to turn on the light."
+
+### Example
+
+```{python}
+#| code-fold: true
+documents = [
+    "whoever has hate for his brother is in the darkness and walks in the darkness",
+    "hello darkness my old friend",
+    "returning hate for hate multiplies hate adding deeper darkness to a night already devoid of stars darkness cannot drive out darkness only light can do that",
+    "happiness can be found in the darkest of times if only one remembers to turn on the light"
+]
+```
+
+```{python}
+#| code-fold: true
+from sklearn.feature_extraction.text import CountVectorizer
+
+vec = CountVectorizer(token_pattern=r"\w+")
+vec.fit(documents)
+bow_matrix = vec.transform(documents)
+bow_matrix
+```
+
+### Example
+
+```{python}
+#| warning: false
+bow_dataframe = pd.DataFrame(bow_matrix.todense(), columns=vec.get_feature_names_out())
+bow_dataframe[["darkness", "light"]]
+```
+
+### Measuring similarity
+
+```{python}
+#| code-fold: true
+from sklearn.metrics import pairwise_distances
+
+pairwise_distances(bow_matrix)
+```
+
+## Cosine Distance
+
+### Choosing your distance metric
+
+Is **euclidean distance** really the best choice?!
+
+> My name is James Bond, James Bond is my name.
+
+> My name is James Bond.
+
+> My name is James.
+
+* If we count words the second two will be the most similar.
+
+* The first document is longer, so it has "double" counts.
+
+* But, it has the exact same words as the first document!
+
+* Solution: **cosine distance** (on the board)
+
+### Cosine Distance
+
+As a rule, **cosine distance** is a better choice for bag-of-words data!
+
+```{python}
+from sklearn.metrics.pairwise import cosine_distances
+cosine_distances(bow_matrix)
+```
+
+## TF-IDF
+
+
+### Scaling terms
+
+Which of these seems most important for measuring similarity?
+
+* Document B, C, D all have the word "to"
+
+* Documents A, B, and C all have the word **darkness**.
+
+* Document A and Document C both have the word "hate"
+
+* Document C and Document D both have the word "light"
+
+* We would like to **scale** our **word counts** by the **document length** (TF).
+
+* We would also like to **scale** our **word counts** by the **number of documents they appear in**. (IDF)
+
+
+### Term Frequencies (TF)
+
+* If a document is longer, it is more likely to share words.
+
+* Let's use *frequencies* instead of *counts*
+
+
+```{python}
+bow_totals = bow_dataframe.sum(axis = 1)
+bow_totals
+bow_tf = bow_dataframe.divide(bow_totals, axis = 0)
+bow_tf
+```
+
+### Term Frequencies (TF)
+
+```{python}
+cosine_distances(bow_tf)
+```
+
+
+### Inverse Document Frequency (IDF)
+
+* In principle, if two documents **share rarer words** they are **more similar**.
+
+* What matters is not *overall word frequency* but **how many of the documents** have that word.
+
+* Compute document frequency:
+
+```{python}
+has_word = (bow_dataframe > 0)
+has_word[["darkness", "light"]]
+```
+
+### IDF
+
+```{python}
+bow_df = has_word.sum(axis = 0)/4
+bow_df
+```
+
+### IDF
+
+Adjust for inverse document frequencies:
+
+```{python}
+bow_log_idf = np.log(1/bow_df)
+bow_tf_idf = bow_tf.multiply(bow_log_idf, axis = 1)
+bow_tf_idf[["darkness", "light"]]
+```
+### TF-IDF
+
+```{python}
+cosine_distances(bow_tf_idf).round(decimals = 2)
+```
+
+### TF-IDF in Sklearn
+
+```{python}
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# The options ensure that the numbers match our example above.
+vec = TfidfVectorizer(smooth_idf=False, norm=None)
+vec.fit(documents)
+tfidf_matrix = vec.transform(documents)
+
+cosine_distances(tfidf_matrix)
+```
+
+
+## Activity 2
+
+### Activity
+
+
+Using bi-grams, unigrams, and tri-grams, which Dr. Seuss document is closest to "One Fish Two Fish"?
+
+```{python}
+#| include: false
+from sklearn.metrics import pairwise_distances
+
+vec = TfidfVectorizer(smooth_idf=False, norm=None, ngram_range=(1,3))
+vec.fit(docs.values())
+bow_seuss = vec.transform(docs.values())
+cosine_distances(bow_seuss)[7]
+```
+
