@@ -410,6 +410,11 @@
 <li class="fragment">Are there <em>categorical</em> variables that python thinks are <em>quantitative</em>?</li>
 <li class="fragment">Are there any <em>anomalies</em> in the data that concern you?</li>
 </ul></li>
+</ul>
+</section>
+<section id="steps-for-data-analysis-contd" class="slide level2">
+<h2>Steps for data analysis (cont’d)</h2>
+<ul>
 <li class="fragment"><strong>Explore</strong> the data by <strong>visualizing</strong> and <strong>summarizing</strong>.
 <ul>
 <li class="fragment">Different approaches for different combos of <em>quantitative</em> and <em>categorical</em> variables</li>
@@ -417,7 +422,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="steps-for-data-analysis-contd" class="slide level2">
+<section id="steps-for-data-analysis-contd-1" class="slide level2">
 <h2>Steps for data analysis (cont’d)</h2>
 <ul>
 <li class="fragment"><p>Identify a <strong>research question</strong> of interest.</p></li>
@@ -714,9 +719,9 @@
 <p>If <span class="math inline">\(k = 1\)</span> …</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
-<span id="cb33-2"><a href="#cb33-2"></a>ranked_train.loc[<span class="dv">0</span>][<span class="st">'price'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-2"><a href="#cb33-2"></a>ranked_train.iloc[<span class="dv">0</span>][<span class="st">'price'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>37.0</code></pre>
+<pre><code>16.0</code></pre>
 </div>
 </div>
 </section>
@@ -725,9 +730,9 @@
 <p>If <span class="math inline">\(k = 100\)</span> …</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
-<span id="cb35-2"><a href="#cb35-2"></a>ranked_train.iloc[<span class="dv">1</span>:<span class="dv">100</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2"></a>ranked_train.iloc[<span class="dv">0</span>:<span class="dv">99</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>29.307692307692307</code></pre>
+<pre><code>28.814814814814813</code></pre>
 </div>
 </div>
 </section>
@@ -736,9 +741,9 @@
 <p>If <span class="math inline">\(k = 5\)</span> …</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
-<span id="cb37-2"><a href="#cb37-2"></a>ranked_train.iloc[<span class="dv">1</span>:<span class="dv">5</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-2"><a href="#cb37-2"></a>ranked_train.iloc[<span class="dv">0</span>:<span class="dv">4</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>28.25</code></pre>
+<pre><code>25.5</code></pre>
 </div>
 </div>
 </section></section>

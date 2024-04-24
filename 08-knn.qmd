@@ -36,6 +36,8 @@ from plotnine import *
   + Are there *quantitative* variables that python thinks are *categorical*?
   + Are there *categorical* variables that python thinks are *quantitative*?
   + Are there any *anomalies* in the data that concern you?
+  
+### Steps for data analysis (cont'd)
 
 * **Explore** the data by **visualizing** and **summarizing**.
   + Different approaches for different combos of *quantitative* and *categorical* variables
@@ -213,7 +215,7 @@ If $k = 1$ ...
 
 ```{python}
 ranked_train = df_train.loc[dists[0].argsort()]
-ranked_train.loc[0]['price']
+ranked_train.iloc[0]['price']
 ```
 
 
@@ -223,7 +225,7 @@ If $k = 100$ ...
 
 ```{python}
 ranked_train = df_train.loc[dists[0].argsort()]
-ranked_train.iloc[1:100]['price'].mean()
+ranked_train.iloc[0:99]['price'].mean()
 ```
 
 
@@ -233,7 +235,7 @@ If $k = 5$ ...
 
 ```{python}
 ranked_train = df_train.loc[dists[0].argsort()]
-ranked_train.iloc[1:5]['price'].mean()
+ranked_train.iloc[0:4]['price'].mean()
 ```
 
 
