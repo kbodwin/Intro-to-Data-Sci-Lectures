@@ -27,7 +27,7 @@ import pandas as pd
 from plotnine import *
 ```
 
-## The story this week
+## The story so far
 
 ### Distances
 
@@ -497,3 +497,14 @@ bow_seuss = vec.transform(docs.values())
 cosine_distances(bow_seuss)[7]
 ```
 
+## Takeaways
+
+### Takeaways
+
+* We represent **text data** as a **bag-of-words** or **bag-of-n-grams** matrix.
+
+* Each row is a **document** in the **corpus**.
+
+* We typically use **cosine distance** to measure similarity, because it captures **patterns of word choice**
+
+* We apply **TF-IDF** transformations to **scale** the bag-of-words data, so that words that **appear in fewer documents** are **more important**

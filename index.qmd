@@ -72,3 +72,11 @@ editor: visual
 :::
 
 {{< include 07-text_data.qmd >}}
+
+:::{.lectitle} 
+# K Nearest Neighbors
+
+[Slides](slides-08-knn.html)
+:::
+
+{{< include 08-knn.qmd >}}
