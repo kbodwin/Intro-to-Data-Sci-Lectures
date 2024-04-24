@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bag-of-words and TF-IDF</title>
+<title>K-Nearest-Neighbors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,6 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#distances" id="toc-distances" class="nav-link" data-scroll-target="#distances"><span class="header-section-number">5</span> Distances</a></li>
   <li><a href="#dummy-variables-and-column-tranformers" id="toc-dummy-variables-and-column-tranformers" class="nav-link" data-scroll-target="#dummy-variables-and-column-tranformers"><span class="header-section-number">6</span> Dummy Variables and Column Tranformers</a></li>
   <li><a href="#text-data-and-tf-idf" id="toc-text-data-and-tf-idf" class="nav-link" data-scroll-target="#text-data-and-tf-idf"><span class="header-section-number">7</span> Text Data and TF-IDF</a></li>
+  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">8</span> K Nearest Neighbors</a></li>
   </ul>
 </nav>
 </div>
@@ -98,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bag-of-words and TF-IDF</h1>
+<h1 class="title">K-Nearest-Neighbors</h1>
 </div>
 
 
@@ -21796,7 +21797,7 @@ Name: proportion, dtype: float64</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_570e2957" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_6aa52390" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23393,7 +23394,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.3.4" class="anchored" data-anchor-id="lecture-activity-part-1"><span class="header-section-number">5.3.4</span> (Lecture Activity Part 1)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c130138c" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_0df6e070" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23514,7 +23515,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.4.6" class="anchored" data-anchor-id="lecture-activity-part-2"><span class="header-section-number">5.4.6</span> (Lecture Activity Part 2)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_65608c45" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_7edaa9d8" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23658,7 +23659,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.5.9" class="anchored" data-anchor-id="lecture-activity-part-3"><span class="header-section-number">5.5.9</span> (Lecture Activity Part 3)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_7c579f45" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_b3aa2168" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23688,7 +23689,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.6.3" class="anchored" data-anchor-id="lecture-activity-part-4"><span class="header-section-number">5.6.3</span> (Lecture Activity Part 4)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_6ab41670" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_d0c30e95" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -24092,29 +24093,29 @@ Name: count, dtype: int64</code></pre>
 <div class="cell-output-display">
 <style>#sk-container-id-8 {color: black;}#sk-container-id-8 pre{padding: 0;}#sk-container-id-8 div.sk-toggleable {background-color: white;}#sk-container-id-8 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-8 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-8 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-8 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-8 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-8 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-8 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-8 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-8 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-8 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-8 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-8 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-8 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-8 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-8 div.sk-item {position: relative;z-index: 1;}#sk-container-id-8 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-8 div.sk-item::before, #sk-container-id-8 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-8 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-8 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-8 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-8 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-8 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-8 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-8 div.sk-label-container {text-align: center;}#sk-container-id-8 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-8 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-8" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb263"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>preproc.set_output(transform <span class="op">=</span> <span class="st">"pandas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <style>#sk-container-id-9 {color: black;}#sk-container-id-9 pre{padding: 0;}#sk-container-id-9 div.sk-toggleable {background-color: white;}#sk-container-id-9 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-9 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-9 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-9 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-9 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-9 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-9 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-9 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-9 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-9 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-9 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-9 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-9 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-9 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-9 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-9 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-9 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-9 div.sk-item {position: relative;z-index: 1;}#sk-container-id-9 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-9 div.sk-item::before, #sk-container-id-9 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-9 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-9 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-9 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-9 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-9 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-9 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-9 div.sk-label-container {text-align: center;}#sk-container-id-9 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-9 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-9" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f04f80&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x333f73470&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x33090fd10&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x330c1e240&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb264"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>df_transformed <span class="op">=</span> preproc.transform(df[features])</span>
 <span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a>df_transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -24165,8 +24166,8 @@ Name: count, dtype: int64</code></pre>
 <h1 data-number="7"><span class="header-section-number">7</span> Text Data and TF-IDF</h1>
 <p><a href="slides-07-text_data.html">Slides</a></p>
 </section>
-<section id="the-story-this-week-1" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="the-story-this-week-1"><span class="header-section-number">7.1</span> The story this week</h2>
+<section id="the-story-so-far-4" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-story-so-far-4"><span class="header-section-number">7.1</span> The story so far</h2>
 <section id="distances-2" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="distances-2"><span class="header-section-number">7.1.1</span> Distances</h3>
 <ul>
@@ -24783,6 +24784,519 @@ dtype: float64</code></pre>
 <section id="activity-4" class="level3" data-number="7.9.1">
 <h3 data-number="7.9.1" class="anchored" data-anchor-id="activity-4"><span class="header-section-number">7.9.1</span> Activity</h3>
 <p>Using bi-grams, unigrams, and tri-grams, which Dr.&nbsp;Seuss document is closest to “One Fish Two Fish”?</p>
+</section>
+</section>
+<section id="takeaways-9" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="takeaways-9"><span class="header-section-number">7.10</span> Takeaways</h2>
+<section id="takeaways-10" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="takeaways-10"><span class="header-section-number">7.10.1</span> Takeaways</h3>
+<ul>
+<li><p>We represent <strong>text data</strong> as a <strong>bag-of-words</strong> or <strong>bag-of-n-grams</strong> matrix.</p></li>
+<li><p>Each row is a <strong>document</strong> in the <strong>corpus</strong>.</p></li>
+<li><p>We typically use <strong>cosine distance</strong> to measure similarity, because it captures <strong>patterns of word choice</strong></p></li>
+<li><p>We apply <strong>TF-IDF</strong> transformations to <strong>scale</strong> the bag-of-words data, so that words that <strong>appear in fewer documents</strong> are <strong>more important</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="k-nearest-neighbors" class="level1 lectitle" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> K Nearest Neighbors</h1>
+<p><a href="slides-08-knn.html">Slides</a></p>
+</section>
+<section id="the-story-so-far-5" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="the-story-so-far-5"><span class="header-section-number">8.1</span> The story so far</h2>
+<section id="steps-for-data-analysis" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="steps-for-data-analysis"><span class="header-section-number">8.1.1</span> Steps for data analysis</h3>
+<ul>
+<li><strong>Read</strong> and then <strong>clean</strong> the data
+<ul>
+<li>Are there missing values? Will we drop those rows, or replace the missing values with something?</li>
+<li>Are there <em>quantitative</em> variables that python thinks are <em>categorical</em>?</li>
+<li>Are there <em>categorical</em> variables that python thinks are <em>quantitative</em>?</li>
+<li>Are there any <em>anomalies</em> in the data that concern you?</li>
+</ul></li>
+<li><strong>Explore</strong> the data by <strong>visualizing</strong> and <strong>summarizing</strong>.
+<ul>
+<li>Different approaches for different combos of <em>quantitative</em> and <em>categorical</em> variables</li>
+<li>Think about <em>conditional</em> calculations (split-apply-combine)</li>
+</ul></li>
+</ul>
+</section>
+<section id="steps-for-data-analysis-contd" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="steps-for-data-analysis-contd"><span class="header-section-number">8.1.2</span> Steps for data analysis (cont’d)</h3>
+<ul>
+<li><p>Identify a <strong>research question</strong> of interest.</p></li>
+<li><p>Perform <strong>preprocessing</strong> steps</p>
+<ul>
+<li>Should we <em>scale</em> the quantitative variables?</li>
+<li>Should we <em>one-hot-encode</em> the categorical variables?</li>
+<li>Should we <em>log-transform</em> any variables?</li>
+</ul></li>
+<li><p>Measure similarity between <strong>observations</strong> by calculating <strong>distances</strong>.</p>
+<ul>
+<li>Which <em>features</em> should be included?</li>
+<li>Which <em>distance metric</em> should we use?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="predicting-wine-prices" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="predicting-wine-prices"><span class="header-section-number">8.2</span> Predicting wine prices</h2>
+<section id="data-wine-qualities" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="data-wine-qualities"><span class="header-section-number">8.2.1</span> Data: Wine qualities</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb327"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb327-1"><a href="#cb327-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://dlsun.github.io/pods/data/bordeaux.csv"</span>)</span>
+<span id="cb327-2"><a href="#cb327-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    year  price  summer  har   sep  win  age
+0   1952   37.0    17.1  160  14.3  600   40
+1   1953   63.0    16.7   80  17.3  690   39
+2   1955   45.0    17.1  130  16.8  502   37
+3   1957   22.0    16.1  110  16.2  420   35
+4   1958   18.0    16.4  187  19.1  582   34
+5   1959   66.0    17.5  187  18.7  485   33
+6   1960   14.0    16.4  290  15.8  763   32
+7   1961  100.0    17.3   38  20.4  830   31
+8   1962   33.0    16.3   52  17.2  697   30
+9   1963   17.0    15.7  155  16.2  608   29
+10  1964   31.0    17.3   96  18.8  402   28
+11  1965   11.0    15.4  267  14.8  602   27
+12  1966   47.0    16.5   86  18.4  819   26
+13  1967   19.0    16.2  118  16.5  714   25
+14  1968   11.0    16.2  292  16.4  610   24
+15  1969   12.0    16.5  244  16.6  575   23
+16  1970   40.0    16.7   89  18.0  622   22
+17  1971   27.0    16.8  112  16.9  551   21
+18  1972   10.0    15.0  158  14.6  536   20
+19  1973   16.0    17.1  123  17.9  376   19
+20  1974   11.0    16.3  184  16.2  574   18
+21  1975   30.0    16.9  171  17.2  572   17
+22  1976   25.0    17.6  247  16.1  418   16
+23  1977   11.0    15.6   87  16.8  821   15
+24  1978   27.0    15.8   51  17.4  763   14
+25  1979   21.0    16.2  122  17.3  717   13
+26  1980   14.0    16.0   74  18.4  578   12
+27  1981    NaN    17.0  111  18.0  535   11
+28  1982    NaN    17.4  162  18.5  712   10
+29  1983    NaN    17.4  119  17.9  845    9
+30  1984    NaN    16.5  119  16.0  591    8
+31  1985    NaN    16.8   38  18.9  744    7
+32  1986    NaN    16.3  171  17.5  563    6
+33  1987    NaN    17.0  115  18.9  452    5
+34  1988    NaN    17.1   59  16.8  808    4
+35  1989    NaN    18.6   82  18.4  443    3
+36  1990    NaN    18.7   80  19.3  468    2
+37  1991    NaN    17.7  183  20.4  570    1</code></pre>
+</div>
+</div>
+</section>
+<section id="data-wine-qualities-1" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="data-wine-qualities-1"><span class="header-section-number">8.2.2</span> Data: Wine qualities</h3>
+<ul>
+<li><p>Our goal is to <strong>predict</strong> what will be the quality (price) of wines in a <strong>future year</strong>.</p></li>
+<li><p>Idea: Wines with similar <strong>features</strong> probably have similar <strong>quality</strong>.</p></li>
+<li><p><strong>Inputs</strong>: Summer temperature, harvest rainfall, september temperature, winter rainfall, age of wine.</p></li>
+<li><p><strong>Output:</strong> Price in 1992.</p></li>
+<li><p>“Inputs” = “Features” = “Predictors” = “Independent variables”</p></li>
+<li><p>“Output” = “Target” = “Dependent variable”</p></li>
+</ul>
+</section>
+<section id="similar-wines" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="similar-wines"><span class="header-section-number">8.2.3</span> Similar wines</h3>
+<p>Which wines have similar summer temps and winter rainfall to the 1989 vintage?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb329"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb329-1"><a href="#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb329-2"><a href="#cb329-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-3"><a href="#cb329-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">"summer"</span>, y <span class="op">=</span> <span class="st">"win"</span>))</span>
+<span id="cb329-4"><a href="#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> <span class="st">"white"</span>)</span>
+<span id="cb329-5"><a href="#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_text(aes(label <span class="op">=</span> <span class="st">"year"</span>))</span>
+<span id="cb329-6"><a href="#cb329-6" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (1280 x 960)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-175-1.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="predicting-1989" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="predicting-1989"><span class="header-section-number">8.2.4</span> Predicting 1989</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb331"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb331-1"><a href="#cb331-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">1990</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    year  price  summer  har   sep  win  age
+36  1990    NaN    18.7   80  19.3  468    2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb333"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb333-1"><a href="#cb333-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">1976</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    year  price  summer  har   sep  win  age
+22  1976   25.0    17.6  247  16.1  418   16</code></pre>
+</div>
+</div>
+</section>
+<section id="training-and-test-data" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="training-and-test-data"><span class="header-section-number">8.2.5</span> Training and test data</h3>
+<ul>
+<li><p>The data for which we <strong>know the target</strong> is called the <strong>training data</strong>.</p></li>
+<li><p>The data for which we <strong>don’t know the target</strong> (and want to predict it) is calledthe <strong>test data</strong>.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb335"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb335-1"><a href="#cb335-1" aria-hidden="true" tabindex="-1"></a>known_prices <span class="op">=</span> df[<span class="st">'year'</span>] <span class="op">&lt;</span> <span class="dv">1981</span></span>
+<span id="cb335-2"><a href="#cb335-2" aria-hidden="true" tabindex="-1"></a>to_predict <span class="op">=</span> df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">1989</span></span>
+<span id="cb335-3"><a href="#cb335-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-4"><a href="#cb335-4" aria-hidden="true" tabindex="-1"></a>df_train <span class="op">=</span> df[known_prices].copy()</span>
+<span id="cb335-5"><a href="#cb335-5" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> df[to_predict].copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="specify-steps" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="specify-steps"><span class="header-section-number">8.2.6</span> Specify steps</h3>
+<p>First we make a column transformer…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb336"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb336-1"><a href="#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> make_column_transformer</span>
+<span id="cb336-2"><a href="#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
+<span id="cb336-3"><a href="#cb336-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb336-4"><a href="#cb336-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-5"><a href="#cb336-5" aria-hidden="true" tabindex="-1"></a>preproc <span class="op">=</span> make_column_transformer(</span>
+<span id="cb336-6"><a href="#cb336-6" aria-hidden="true" tabindex="-1"></a>  (StandardScaler(), [<span class="st">'summer'</span>, <span class="st">'har'</span>, <span class="st">'sep'</span>, <span class="st">'win'</span>,<span class="st">'age'</span>]),</span>
+<span id="cb336-7"><a href="#cb336-7" aria-hidden="true" tabindex="-1"></a>  remainder <span class="op">=</span> <span class="st">"drop"</span></span>
+<span id="cb336-8"><a href="#cb336-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fit-the-preprocesser" class="level3" data-number="8.2.7">
+<h3 data-number="8.2.7" class="anchored" data-anchor-id="fit-the-preprocesser"><span class="header-section-number">8.2.7</span> Fit the preprocesser</h3>
+<p>Then we <strong>fit</strong> it on the <strong>training data</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb337"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb337-1"><a href="#cb337-1" aria-hidden="true" tabindex="-1"></a>preproc.fit(df_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-19 {color: black;}#sk-container-id-19 pre{padding: 0;}#sk-container-id-19 div.sk-toggleable {background-color: white;}#sk-container-id-19 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-19 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-19 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-19 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-19 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-19 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-19 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-19 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-19 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-19 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-19 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-19 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-19 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-19 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-19 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-19 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-19 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-19 div.sk-item {position: relative;z-index: 1;}#sk-container-id-19 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-19 div.sk-item::before, #sk-container-id-19 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-19 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-19 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-19 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-19 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-19 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-19 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-19 div.sk-label-container {text-align: center;}#sk-container-id-19 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-19 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-19" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-47" type="checkbox"><label for="sk-estimator-id-47" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-48" type="checkbox"><label for="sk-estimator-id-48" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['summer', 'har', 'sep', 'win', 'age']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-49" type="checkbox"><label for="sk-estimator-id-49" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb338"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb338-1"><a href="#cb338-1" aria-hidden="true" tabindex="-1"></a>preproc.named_transformers_[<span class="st">'standardscaler'</span>].mean_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([ 16.47037037, 144.81481481,  17.04814815, 608.40740741,
+        25.18518519])</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb340"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb340-1"><a href="#cb340-1" aria-hidden="true" tabindex="-1"></a>preproc.named_transformers_[<span class="st">'standardscaler'</span>].var_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([4.09492455e-01, 5.14089163e+03, 1.89286694e+00, 1.60333525e+04,
+       6.54842250e+01])</code></pre>
+</div>
+</div>
+</section>
+<section id="prep-the-data" class="level3" data-number="8.2.8">
+<h3 data-number="8.2.8" class="anchored" data-anchor-id="prep-the-data"><span class="header-section-number">8.2.8</span> Prep the data</h3>
+<p>Then we <strong>tranform</strong> the <strong>training data</strong> AND the <strong>test data</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb342"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb342-1"><a href="#cb342-1" aria-hidden="true" tabindex="-1"></a>train_new <span class="op">=</span> preproc.transform(df_train)</span>
+<span id="cb342-2"><a href="#cb342-2" aria-hidden="true" tabindex="-1"></a>test_new <span class="op">=</span> preproc.transform(df_test)</span>
+<span id="cb342-3"><a href="#cb342-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-4"><a href="#cb342-4" aria-hidden="true" tabindex="-1"></a>test_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 3.32798322, -0.87607817,  0.98258257, -1.30629957, -2.74154079]])</code></pre>
+</div>
+</div>
+</section>
+<section id="fitting-vs-transforming" class="level3" data-number="8.2.9">
+<h3 data-number="8.2.9" class="anchored" data-anchor-id="fitting-vs-transforming"><span class="header-section-number">8.2.9</span> Fitting vs transforming</h3>
+<p>What if we had fit on the test data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb344"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb344-1"><a href="#cb344-1" aria-hidden="true" tabindex="-1"></a>preproc.fit(df_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-20 {color: black;}#sk-container-id-20 pre{padding: 0;}#sk-container-id-20 div.sk-toggleable {background-color: white;}#sk-container-id-20 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-20 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-20 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-20 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-20 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-20 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-20 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-20 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-20 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-20 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-20 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-20 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-20 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-20 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-20 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-20 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-20 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-20 div.sk-item {position: relative;z-index: 1;}#sk-container-id-20 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-20 div.sk-item::before, #sk-container-id-20 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-20 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-20 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-20 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-20 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-20 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-20 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-20 div.sk-label-container {text-align: center;}#sk-container-id-20 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-20 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-20" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-50" type="checkbox"><label for="sk-estimator-id-50" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-51" type="checkbox"><label for="sk-estimator-id-51" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['summer', 'har', 'sep', 'win', 'age']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-52" type="checkbox"><label for="sk-estimator-id-52" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb345"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb345-1"><a href="#cb345-1" aria-hidden="true" tabindex="-1"></a>preproc.named_transformers_[<span class="st">'standardscaler'</span>].mean_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([ 18.6,  82. ,  18.4, 443. ,   3. ])</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb347"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb347-1"><a href="#cb347-1" aria-hidden="true" tabindex="-1"></a>preproc.named_transformers_[<span class="st">'standardscaler'</span>].var_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0., 0., 0., 0., 0.])</code></pre>
+</div>
+</div>
+</section>
+<section id="fitting-vs-transforming-1" class="level3" data-number="8.2.10">
+<h3 data-number="8.2.10" class="anchored" data-anchor-id="fitting-vs-transforming-1"><span class="header-section-number">8.2.10</span> Fitting vs transforming</h3>
+<p>What if we had fit on the test data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb349"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb349-1"><a href="#cb349-1" aria-hidden="true" tabindex="-1"></a>preproc.transform(df_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[0., 0., 0., 0., 0.]])</code></pre>
+</div>
+</div>
+</section>
+<section id="all-together" class="level3" data-number="8.2.11">
+<h3 data-number="8.2.11" class="anchored" data-anchor-id="all-together"><span class="header-section-number">8.2.11</span> All together:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb351"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb351-1"><a href="#cb351-1" aria-hidden="true" tabindex="-1"></a>preproc <span class="op">=</span> make_column_transformer(</span>
+<span id="cb351-2"><a href="#cb351-2" aria-hidden="true" tabindex="-1"></a>  (StandardScaler(), [<span class="st">'summer'</span>, <span class="st">'har'</span>, <span class="st">'sep'</span>, <span class="st">'win'</span>,<span class="st">'age'</span>]),</span>
+<span id="cb351-3"><a href="#cb351-3" aria-hidden="true" tabindex="-1"></a>  remainder <span class="op">=</span> <span class="st">"drop"</span></span>
+<span id="cb351-4"><a href="#cb351-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb351-5"><a href="#cb351-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb351-6"><a href="#cb351-6" aria-hidden="true" tabindex="-1"></a>preproc.fit(df_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-21 {color: black;}#sk-container-id-21 pre{padding: 0;}#sk-container-id-21 div.sk-toggleable {background-color: white;}#sk-container-id-21 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-21 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-21 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-21 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-21 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-21 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-21 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-21 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-21 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-21 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-21 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-21 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-21 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-21 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-21 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-21 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-21 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-21 div.sk-item {position: relative;z-index: 1;}#sk-container-id-21 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-21 div.sk-item::before, #sk-container-id-21 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-21 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-21 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-21 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-21 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-21 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-21 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-21 div.sk-label-container {text-align: center;}#sk-container-id-21 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-21 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-21" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-53" type="checkbox"><label for="sk-estimator-id-53" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-54" type="checkbox"><label for="sk-estimator-id-54" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['summer', 'har', 'sep', 'win', 'age']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-55" type="checkbox"><label for="sk-estimator-id-55" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb352"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb352-1"><a href="#cb352-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-2"><a href="#cb352-2" aria-hidden="true" tabindex="-1"></a>train_new <span class="op">=</span> preproc.transform(df_train)</span>
+<span id="cb352-3"><a href="#cb352-3" aria-hidden="true" tabindex="-1"></a>test_new <span class="op">=</span> preproc.transform(df_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="find-the-closest-k" class="level3" data-number="8.2.12">
+<h3 data-number="8.2.12" class="anchored" data-anchor-id="find-the-closest-k"><span class="header-section-number">8.2.12</span> Find the closest <em>k</em></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb353"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb353-1"><a href="#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> pairwise_distances</span>
+<span id="cb353-2"><a href="#cb353-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb353-3"><a href="#cb353-3" aria-hidden="true" tabindex="-1"></a>pairwise_distances(test_new, train_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[6.16457005, 5.74908409, 5.01651675, 5.8002254 , 5.48664619,
+        4.35898872, 6.56017889, 5.28491106, 5.38614546, 6.01267804,
+        3.72811494, 6.99167472, 5.26008007, 5.3100901 , 5.76468136,
+        4.97806644, 4.05228644, 3.86667994, 6.7345252 , 3.18480532,
+        4.69099623, 3.65924   , 3.62660714, 5.86910657, 5.30050409,
+        4.60719435, 4.34675994]])</code></pre>
+</div>
+</div>
+</section>
+<section id="find-the-closest-k-1" class="level3" data-number="8.2.13">
+<h3 data-number="8.2.13" class="anchored" data-anchor-id="find-the-closest-k-1"><span class="header-section-number">8.2.13</span> Find the closest <em>k</em></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb355"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb355-1"><a href="#cb355-1" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> pairwise_distances(test_new, train_new)</span>
+<span id="cb355-2"><a href="#cb355-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-3"><a href="#cb355-3" aria-hidden="true" tabindex="-1"></a>dists[<span class="dv">0</span>].argsort()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([19, 22, 21, 10, 17, 16, 26,  5, 25, 20, 15,  2, 12,  7, 24, 13,  8,
+        4,  1, 14,  3, 23,  9,  0,  6, 18, 11])</code></pre>
+</div>
+</div>
+</section>
+<section id="find-the-closest-k-2" class="level3" data-number="8.2.14">
+<h3 data-number="8.2.14" class="anchored" data-anchor-id="find-the-closest-k-2"><span class="header-section-number">8.2.14</span> Find the closest <em>k</em></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb357"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb357-1"><a href="#cb357-1" aria-hidden="true" tabindex="-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
+<span id="cb357-2"><a href="#cb357-2" aria-hidden="true" tabindex="-1"></a>ranked_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    year  price  summer  har   sep  win  age
+19  1973   16.0    17.1  123  17.9  376   19
+22  1976   25.0    17.6  247  16.1  418   16
+21  1975   30.0    16.9  171  17.2  572   17
+10  1964   31.0    17.3   96  18.8  402   28
+17  1971   27.0    16.8  112  16.9  551   21
+16  1970   40.0    16.7   89  18.0  622   22
+26  1980   14.0    16.0   74  18.4  578   12
+5   1959   66.0    17.5  187  18.7  485   33
+25  1979   21.0    16.2  122  17.3  717   13
+20  1974   11.0    16.3  184  16.2  574   18
+15  1969   12.0    16.5  244  16.6  575   23
+2   1955   45.0    17.1  130  16.8  502   37
+12  1966   47.0    16.5   86  18.4  819   26
+7   1961  100.0    17.3   38  20.4  830   31
+24  1978   27.0    15.8   51  17.4  763   14
+13  1967   19.0    16.2  118  16.5  714   25
+8   1962   33.0    16.3   52  17.2  697   30
+4   1958   18.0    16.4  187  19.1  582   34
+1   1953   63.0    16.7   80  17.3  690   39
+14  1968   11.0    16.2  292  16.4  610   24
+3   1957   22.0    16.1  110  16.2  420   35
+23  1977   11.0    15.6   87  16.8  821   15
+9   1963   17.0    15.7  155  16.2  608   29
+0   1952   37.0    17.1  160  14.3  600   40
+6   1960   14.0    16.4  290  15.8  763   32
+18  1972   10.0    15.0  158  14.6  536   20
+11  1965   11.0    15.4  267  14.8  602   27</code></pre>
+</div>
+</div>
+</section>
+<section id="predict-from-the-closest-k" class="level3" data-number="8.2.15">
+<h3 data-number="8.2.15" class="anchored" data-anchor-id="predict-from-the-closest-k"><span class="header-section-number">8.2.15</span> Predict from the closest <em>k</em></h3>
+<p>If <span class="math inline">\(k = 1\)</span> …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb359"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb359-1"><a href="#cb359-1" aria-hidden="true" tabindex="-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
+<span id="cb359-2"><a href="#cb359-2" aria-hidden="true" tabindex="-1"></a>ranked_train.loc[<span class="dv">0</span>][<span class="st">'price'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>37.0</code></pre>
+</div>
+</div>
+</section>
+<section id="predict-from-the-closest-k-1" class="level3" data-number="8.2.16">
+<h3 data-number="8.2.16" class="anchored" data-anchor-id="predict-from-the-closest-k-1"><span class="header-section-number">8.2.16</span> Predict from the closest <em>k</em></h3>
+<p>If <span class="math inline">\(k = 100\)</span> …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb361"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb361-1"><a href="#cb361-1" aria-hidden="true" tabindex="-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
+<span id="cb361-2"><a href="#cb361-2" aria-hidden="true" tabindex="-1"></a>ranked_train.iloc[<span class="dv">1</span>:<span class="dv">100</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>29.307692307692307</code></pre>
+</div>
+</div>
+</section>
+<section id="predict-from-the-closest-k-2" class="level3" data-number="8.2.17">
+<h3 data-number="8.2.17" class="anchored" data-anchor-id="predict-from-the-closest-k-2"><span class="header-section-number">8.2.17</span> Predict from the closest <em>k</em></h3>
+<p>If <span class="math inline">\(k = 5\)</span> …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb363"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb363-1"><a href="#cb363-1" aria-hidden="true" tabindex="-1"></a>ranked_train <span class="op">=</span> df_train.loc[dists[<span class="dv">0</span>].argsort()]</span>
+<span id="cb363-2"><a href="#cb363-2" aria-hidden="true" tabindex="-1"></a>ranked_train.iloc[<span class="dv">1</span>:<span class="dv">5</span>][<span class="st">'price'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>28.25</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="activity-5" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="activity-5"><span class="header-section-number">8.3</span> Activity</h2>
+<section id="activity-1-2" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="activity-1-2"><span class="header-section-number">8.3.1</span> Activity 1</h3>
+<p>Find the predicted 1992 price for <em>all</em> the unknown wines, with</p>
+<ul>
+<li><p><span class="math inline">\(k = 1\)</span></p></li>
+<li><p><span class="math inline">\(k = 5\)</span></p></li>
+<li><p><span class="math inline">\(k = 10\)</span></p></li>
+</ul>
+<p>How close was each prediction to the right answer?</p>
+<p><em>(Optional hint: Write a function to help you!)</em></p>
+</section>
+<section id="activity-2-together" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="activity-2-together"><span class="header-section-number">8.3.2</span> Activity 2 (together)</h3>
+<p>Find the predicted 1992 price for all the <em>training data</em>, with</p>
+<ul>
+<li><p><span class="math inline">\(k = 1\)</span></p></li>
+<li><p><span class="math inline">\(k = 5\)</span></p></li>
+<li><p><span class="math inline">\(k = 10\)</span></p></li>
+</ul>
+<p>How close was each prediction to the right answer?</p>
+<p><em>(Optional hint: Write a function to help you!)</em></p>
+</section>
+</section>
+<section id="k-nearest-neighbors-1" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="k-nearest-neighbors-1"><span class="header-section-number">8.4</span> K-Nearest-Neighbors</h2>
+<section id="knn" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="knn"><span class="header-section-number">8.4.1</span> KNN</h3>
+<p>We have existing observations</p>
+<p><span class="math display">\[(x_1, y_1), ... (x_n, y_n)\]</span></p>
+<p>–</p>
+<p>Given a new observation <span class="math inline">\(x_{new}\)</span>, how do we predict <span class="math inline">\(y_{new}\)</span>?</p>
+<p>–</p>
+<ol type="1">
+<li>Find the 5 values in <span class="math inline">\((x_1, ..., x_n)\)</span> that are closest to <span class="math inline">\(x_{new}\)</span></li>
+</ol>
+<p>–</p>
+<ol start="2" type="1">
+<li>Take the average of the corresponding <span class="math inline">\(y_i\)</span>’s to our five closest <span class="math inline">\(x_i\)</span>’s.</li>
+</ol>
+<p>–</p>
+<ol start="3" type="1">
+<li>Predict <span class="math inline">\(\hat{y}_{new}\)</span> = average of these 5 <span class="math inline">\(y_i\)</span>’s</li>
+</ol>
+</section>
+<section id="knn-1" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="knn-1"><span class="header-section-number">8.4.2</span> KNN</h3>
+<p>To perform <strong>K-Nearest-Neighbors</strong>, we choose the <strong>K</strong> closest observations to our <em>target</em>, and we average their <em>response</em> values.</p>
+<p>–</p>
+<p>.large[The Big Questions:]</p>
+<ul>
+<li><p>What is our definition of <strong>closest</strong>?</p></li>
+<li><p>What number should we use for <strong>K</strong>?</p></li>
+</ul>
+</section>
+<section id="knn-in-sklearn" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="knn-in-sklearn"><span class="header-section-number">8.4.3</span> KNN in sklearn</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb365"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb365-1"><a href="#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
+<span id="cb365-2"><a href="#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb365-3"><a href="#cb365-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb365-4"><a href="#cb365-4" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> make_pipeline(</span>
+<span id="cb365-5"><a href="#cb365-5" aria-hidden="true" tabindex="-1"></a>  preproc,</span>
+<span id="cb365-6"><a href="#cb365-6" aria-hidden="true" tabindex="-1"></a>  KNeighborsRegressor(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb365-7"><a href="#cb365-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb365-8"><a href="#cb365-8" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb365-9"><a href="#cb365-9" aria-hidden="true" tabindex="-1"></a>pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-22 {color: black;}#sk-container-id-22 pre{padding: 0;}#sk-container-id-22 div.sk-toggleable {background-color: white;}#sk-container-id-22 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-22 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-22 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-22 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-22 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-22 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-22 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-22 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-22 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-22 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-22 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-22 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-22 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-22 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-22 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-22 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-22 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-22 div.sk-item {position: relative;z-index: 1;}#sk-container-id-22 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-22 div.sk-item::before, #sk-container-id-22 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-22 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-22 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-22 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-22 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-22 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-22 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-22 div.sk-label-container {text-align: center;}#sk-container-id-22 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-22 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-22" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('columntransformer',
+                 ColumnTransformer(transformers=[('standardscaler',
+                                                  StandardScaler(),
+                                                  ['summer', 'har', 'sep',
+                                                   'win', 'age'])])),
+                ('kneighborsregressor', KNeighborsRegressor())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-56" type="checkbox"><label for="sk-estimator-id-56" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('columntransformer',
+                 ColumnTransformer(transformers=[('standardscaler',
+                                                  StandardScaler(),
+                                                  ['summer', 'har', 'sep',
+                                                   'win', 'age'])])),
+                ('kneighborsregressor', KNeighborsRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-57" type="checkbox"><label for="sk-estimator-id-57" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-58" type="checkbox"><label for="sk-estimator-id-58" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['summer', 'har', 'sep', 'win', 'age']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-59" type="checkbox"><label for="sk-estimator-id-59" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-60" type="checkbox"><label for="sk-estimator-id-60" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor()</pre></div></div></div></div></div></div></div>
+</div>
+</div>
+</section>
+<section id="knn-in-sklearn-1" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="knn-in-sklearn-1"><span class="header-section-number">8.4.4</span> KNN in sklearn</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb366"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb366-1"><a href="#cb366-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(y <span class="op">=</span> df_train[<span class="st">'price'</span>], X <span class="op">=</span> df_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-23 {color: black;}#sk-container-id-23 pre{padding: 0;}#sk-container-id-23 div.sk-toggleable {background-color: white;}#sk-container-id-23 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-23 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-23 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-23 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-23 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-23 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-23 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-23 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-23 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-23 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-23 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-23 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-23 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-23 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-23 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-23 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-23 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-23 div.sk-item {position: relative;z-index: 1;}#sk-container-id-23 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-23 div.sk-item::before, #sk-container-id-23 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-23 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-23 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-23 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-23 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-23 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-23 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-23 div.sk-label-container {text-align: center;}#sk-container-id-23 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-23 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-23" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('columntransformer',
+                 ColumnTransformer(transformers=[('standardscaler',
+                                                  StandardScaler(),
+                                                  ['summer', 'har', 'sep',
+                                                   'win', 'age'])])),
+                ('kneighborsregressor', KNeighborsRegressor())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-61" type="checkbox"><label for="sk-estimator-id-61" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('columntransformer',
+                 ColumnTransformer(transformers=[('standardscaler',
+                                                  StandardScaler(),
+                                                  ['summer', 'har', 'sep',
+                                                   'win', 'age'])])),
+                ('kneighborsregressor', KNeighborsRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-62" type="checkbox"><label for="sk-estimator-id-62" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 ['summer', 'har', 'sep', 'win', 'age'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-63" type="checkbox"><label for="sk-estimator-id-63" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['summer', 'har', 'sep', 'win', 'age']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-64" type="checkbox"><label for="sk-estimator-id-64" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-65" type="checkbox"><label for="sk-estimator-id-65" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor()</pre></div></div></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb367"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb367-1"><a href="#cb367-1" aria-hidden="true" tabindex="-1"></a>pipeline.predict(X<span class="op">=</span>df_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([25.8])</code></pre>
+</div>
+</div>
+</section>
+<section id="activity-2-2" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="activity-2-2"><span class="header-section-number">8.4.5</span> Activity 2</h3>
+<p>Find the predicted 1992 price for <em>all wines</em>, with</p>
+<ul>
+<li><p><span class="math inline">\(k = 1\)</span></p></li>
+<li><p><span class="math inline">\(k = 5\)</span></p></li>
+<li><p><span class="math inline">\(k = 10\)</span></p></li>
+</ul>
+<p>How close was each prediction to the right answer?</p>
+</section>
+</section>
+<section id="machine-learning-and-statistical-modeling" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="machine-learning-and-statistical-modeling"><span class="header-section-number">8.5</span> Machine Learning and Statistical Modeling</h2>
+<section id="modeling" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="modeling"><span class="header-section-number">8.5.1</span> Modeling</h3>
+<p>Every analysis we will do assumes a structure like:</p>
+<p>.center[.huge[ (<strong>output</strong>) = .blue<a href="**input**">f</a> + (noise)]]</p>
+<p>–</p>
+<p>… or, if you prefer…</p>
+<p>–</p>
+<p>.center[.large[ (<strong>response variables</strong>) = .blue<a href="**explanatory%20variables**">f</a> + (noise)]]</p>
+<p>–</p>
+<p>.center[.large[ (<strong>dependent variables</strong>) = .blue<a href="**independent%20variables**">f</a> + (noise)]]</p>
+<p>–</p>
+<p>.center[.large[ (<strong>target</strong>) = .blue<a href="**predictors**">f</a> + (noise)]]</p>
+</section>
+<section id="modeling-1" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="modeling-1"><span class="header-section-number">8.5.2</span> Modeling</h3>
+<p>In any case: we are trying to reconstruct information in <strong>data</strong>, and we are hindered by <strong>random noise</strong>.</p>
+<p>The function .large[.blue[f]] might be very simple…</p>
+<p>.center[.large[ Y = .blue[X] + <span class="math inline">\(\epsilon\)</span>]]</p>
+<p>– … or very complex!</p>
+</section>
+<section id="modeling-2" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="modeling-2"><span class="header-section-number">8.5.3</span> Modeling</h3>
+<p>We apply the process:</p>
+<ul>
+<li><p>Establish a <strong>pipeline</strong> with <strong>transformers</strong> and a <strong>model</strong>.</p></li>
+<li><p><strong>Fit</strong> the pipeline on the <strong>training data</strong></p></li>
+<li><p><strong>Predict</strong> with the fitted pipeline on <strong>any data</strong></p></li>
+<li><p><strong>Evaluate</strong> our success</p></li>
+</ul>
 </section>
 </section>
 
