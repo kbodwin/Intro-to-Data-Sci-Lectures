@@ -80,3 +80,12 @@ editor: visual
 :::
 
 {{< include 08-knn.qmd >}}
+
+
+:::{.lectitle} 
+# Modeling and Machine Learning
+
+[Slides](slides-09-modeling.html)
+:::
+
+{{< include 09-modeling.qmd >}}

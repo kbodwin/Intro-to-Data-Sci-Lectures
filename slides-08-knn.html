@@ -779,33 +779,25 @@
 <h1>K-Nearest-Neighbors</h1>
 
 </section>
-<section id="knn" class="slide level2">
+<section id="knn" class="slide level2 smaller">
 <h2>KNN</h2>
 <p>We have existing observations</p>
-<p><span class="math display">\[(x_1, y_1), ... (x_n, y_n)\]</span></p>
-<p>–</p>
-<p>Given a new observation <span class="math inline">\(x_{new}\)</span>, how do we predict <span class="math inline">\(y_{new}\)</span>?</p>
-<p>–</p>
+<p><span class="math display">\[(X_1, y_1), ... (X_n, y_n)\]</span> Where <span class="math inline">\(X_i\)</span> is a set of features, and <span class="math inline">\(y_i\)</span> is a target value.</p>
+<p>Given a new observation <span class="math inline">\(X_{new}\)</span>, how do we predict <span class="math inline">\(y_{new}\)</span>?</p>
 <ol type="1">
-<li class="fragment">Find the 5 values in <span class="math inline">\((x_1, ..., x_n)\)</span> that are closest to <span class="math inline">\(x_{new}\)</span></li>
-</ol>
-<p>–</p>
-<ol start="2" type="1">
-<li class="fragment">Take the average of the corresponding <span class="math inline">\(y_i\)</span>’s to our five closest <span class="math inline">\(x_i\)</span>’s.</li>
-</ol>
-<p>–</p>
-<ol start="3" type="1">
-<li class="fragment">Predict <span class="math inline">\(\hat{y}_{new}\)</span> = average of these 5 <span class="math inline">\(y_i\)</span>’s</li>
+<li class="fragment"><p>Find the <span class="math inline">\(k\)</span> values in <span class="math inline">\((X_1, ..., X_n)\)</span> that are closest to <span class="math inline">\(X_{new}\)</span></p></li>
+<li class="fragment"><p>Take the average of the corresponding <span class="math inline">\(y_i\)</span>’s to our five closest <span class="math inline">\(X_i\)</span>’s.</p></li>
+<li class="fragment"><p>Predict <span class="math inline">\(\hat{y}_{new}\)</span> = average of these <span class="math inline">\(y_i\)</span>’s</p></li>
 </ol>
 </section>
 <section id="knn-1" class="slide level2">
 <h2>KNN</h2>
 <p>To perform <strong>K-Nearest-Neighbors</strong>, we choose the <strong>K</strong> closest observations to our <em>target</em>, and we average their <em>response</em> values.</p>
-<p>–</p>
-<p>.large[The Big Questions:]</p>
+<p>The Big Questions:</p>
 <ul>
 <li class="fragment"><p>What is our definition of <strong>closest</strong>?</p></li>
 <li class="fragment"><p>What number should we use for <strong>K</strong>?</p></li>
+<li class="fragment"><p>How do we evaluate the <strong>success</strong> of this approach?</p></li>
 </ul>
 </section>
 <section id="knn-in-sklearn" class="slide level2">
@@ -869,41 +861,6 @@
 <li class="fragment"><p><span class="math inline">\(k = 10\)</span></p></li>
 </ul>
 <p>How close was each prediction to the right answer?</p>
-</section></section>
-<section>
-<section id="machine-learning-and-statistical-modeling" class="title-slide slide level1 center">
-<h1>Machine Learning and Statistical Modeling</h1>
-
-</section>
-<section id="modeling" class="slide level2">
-<h2>Modeling</h2>
-<p>Every analysis we will do assumes a structure like:</p>
-<p>.center[.huge[ (<strong>output</strong>) = .blue<a href="**input**">f</a> + (noise)]]</p>
-<p>–</p>
-<p>… or, if you prefer…</p>
-<p>–</p>
-<p>.center[.large[ (<strong>response variables</strong>) = .blue<a href="**explanatory%20variables**">f</a> + (noise)]]</p>
-<p>–</p>
-<p>.center[.large[ (<strong>dependent variables</strong>) = .blue<a href="**independent%20variables**">f</a> + (noise)]]</p>
-<p>–</p>
-<p>.center[.large[ (<strong>target</strong>) = .blue<a href="**predictors**">f</a> + (noise)]]</p>
-</section>
-<section id="modeling-1" class="slide level2">
-<h2>Modeling</h2>
-<p>In any case: we are trying to reconstruct information in <strong>data</strong>, and we are hindered by <strong>random noise</strong>.</p>
-<p>The function .large[.blue[f]] might be very simple…</p>
-<p>.center[.large[ Y = .blue[X] + <span class="math inline">\(\epsilon\)</span>]]</p>
-<p>– … or very complex!</p>
-</section>
-<section id="modeling-2" class="slide level2">
-<h2>Modeling</h2>
-<p>We apply the process:</p>
-<ul>
-<li class="fragment"><p>Establish a <strong>pipeline</strong> with <strong>transformers</strong> and a <strong>model</strong>.</p></li>
-<li class="fragment"><p><strong>Fit</strong> the pipeline on the <strong>training data</strong></p></li>
-<li class="fragment"><p><strong>Predict</strong> with the fitted pipeline on <strong>any data</strong></p></li>
-<li class="fragment"><p><strong>Evaluate</strong> our success</p></li>
-</ul>
 <div class="footer footer-default">
 
 </div>

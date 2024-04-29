@@ -272,39 +272,32 @@ How close was each prediction to the right answer?
 
 ## K-Nearest-Neighbors
 
-### KNN
+### KNN{.smaller}
 
 We have existing observations
 
-$$(x_1, y_1), ... (x_n, y_n)$$
+$$(X_1, y_1), ... (X_n, y_n)$$
+Where $X_i$ is a set of features, and $y_i$ is a target value.
 
---
+Given a new observation $X_{new}$, how do we predict $y_{new}$?
 
-Given a new observation $x_{new}$, how do we predict $y_{new}$?
+1.  Find the $k$ values in $(X_1, ..., X_n)$ that are closest to $X_{new}$
 
---
+2.  Take the average of the corresponding $y_i$'s to our five closest $X_i$'s.
 
-1.  Find the 5 values in $(x_1, ..., x_n)$ that are closest to $x_{new}$
-
---
-
-2.  Take the average of the corresponding $y_i$'s to our five closest $x_i$'s.
-
---
-
-3. Predict $\hat{y}_{new}$ = average of these 5 $y_i$'s
+3. Predict $\hat{y}_{new}$ = average of these $y_i$'s
 
 ### KNN
 
 To perform **K-Nearest-Neighbors**, we choose the **K** closest observations to our *target*, and we average their *response* values.
 
---
-
-.large[The Big Questions:]
+The Big Questions:
 
 * What is our definition of **closest**?
 
 * What number should we use for **K**?
+
+* How do we evaluate the **success** of this approach?
 
 
 ### KNN in sklearn
@@ -341,61 +334,3 @@ Find the predicted 1992 price for *all wines*, with
 
 How close was each prediction to the right answer?
 
-
-
-## Machine Learning and Statistical Modeling
-
-### Modeling
-
-Every analysis we will do assumes a structure like:
-
-.center[.huge[
-(**output**) = .blue[f](**input**) + (noise)
-]]
-
---
-
-... or, if you prefer...
-
---
-
-.center[.large[
-(**response variables**) = .blue[f](**explanatory variables**) + (noise)
-]]
-
---
-
-.center[.large[
-(**dependent variables**) = .blue[f](**independent variables**) + (noise)
-]]
-
---
-
-.center[.large[
-(**target**) = .blue[f](**predictors**) + (noise)
-]]
-
-### Modeling
-
-In any case: we are trying to reconstruct information in **data**, and we are hindered by **random noise**.
-
-The function .large[.blue[f]] might be very simple...
-
-.center[.large[
-Y = .blue[X] + $\epsilon$
-]]
-
---
-... or very complex!
-
-### Modeling
-
-We apply the process:
-
-* Establish a **pipeline** with **transformers** and a **model**.
-
-* **Fit** the pipeline on the **training data**
-
-* **Predict** with the fitted pipeline on **any data**
-
-* **Evaluate** our success
