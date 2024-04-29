@@ -53,9 +53,19 @@ Some good places to find datasets are:
 
 * [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday)
 
-* State or federal government websites
+* [Google Data Set Search](https://toolbox.google.com/datasetsearch)
+
+* [Reddit Datasets](https://www.reddit.com/r/datasets/)
+
+* [List of JSON APIs](https://github.com/toddmotto/public-apis)
+
+* [Project Gutenberg (good source of textual data)](https://www.gutenberg.org/)
+
+* State or federal government websites, such as the [U.S. Government's Open Data](https://www.data.gov/)
 
 # Final Poster
+
+[Here](https://slidesgo.com/research-poster?format=4%3A3) are some templates that you can (but are not required to) use. Your poster will need to be printed on 24" x 36" paper. You may select all the most basic printing options (e.g., matte paper, no lamination, not mounted); or, you may upload your poster the day before your presentation to have us print it for you.
 
 Your posters will be graded on:
 
@@ -65,13 +75,16 @@ Your posters will be graded on:
     + Were the presenters able to describe the project and answer questions.
 
 * **Correctness:**
-    + Were the analyses correctly applied and interpreted?
+    + Were the correct summaries and analyses chosen for the data?
+    + Were the results correctly interpreted and described?
     + Was the choice of analysis reasonable for the research question?
 
 * **Complexity:**
+    + Did the project address multiple rich aspects of the dataset(s)?
     + Did the project use skills from across the quarter to answer questions?
-    + Did the project incorporate something from Week 9 or 10?  (Webscraping, chloropleths...) or from beyond the course?
+    + Did the project incorporate something from Week 9 or 10?  (Webscraping, APIs, data joining, chloropleths...) or from beyond the course?
 
 * **Data insight:**
     + Were the research questions interesting and insightful?
     + Did the project make clear and relevant data conclusions?
+    + Does the project tell a story with real-world impact?
