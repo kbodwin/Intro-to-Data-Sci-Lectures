@@ -8,6 +8,7 @@ format:
     shift-heading-level-by: -1
 execute:
   echo: true
+  eval: false
 ---
 
 ```{python}
