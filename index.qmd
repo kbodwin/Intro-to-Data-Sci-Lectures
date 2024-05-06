@@ -11,8 +11,7 @@ editor: visual
 ---
 
 
-
-:::{.lectitle} 
+::: lectitle
 # Tabular Data Summaries
 
 [Slides](slides-01-tabular-data-summaries.html)
@@ -20,8 +19,7 @@ editor: visual
 
 {{< include 01-tabular-data-summaries.qmd >}}
 
-
-:::{.lectitle} 
+::: lectitle
 # Visualization and Conditional Distributions
 
 [Slides](slides-02-conditional_distributions.html)
@@ -29,8 +27,7 @@ editor: visual
 
 {{< include 02-conditional_distributions.qmd >}}
 
-
-:::{.lectitle} 
+::: lectitle
 # Visualizing and Summarizing Quantitative Variables
 
 [Slides](slides-03-quantitative_variables.html)
@@ -38,8 +35,7 @@ editor: visual
 
 {{< include 03-quantitative_variables.qmd >}}
 
-
-:::{.lectitle} 
+::: lectitle
 # Multivariate Summaries
 
 [Slides](slides-04-group_by.html)
@@ -47,9 +43,7 @@ editor: visual
 
 {{< include 04-group_by.qmd >}}
 
-
-
-:::{.lectitle} 
+::: lectitle
 # Distances
 
 [Slides](slides-05-distances.html)
@@ -57,7 +51,7 @@ editor: visual
 
 {{< include 05-distances.qmd >}}
 
-:::{.lectitle} 
+::: lectitle
 # Dummy Variables and Column Tranformers
 
 [Slides](slides-06-preprocessing.html)
@@ -65,7 +59,7 @@ editor: visual
 
 {{< include 06-preprocessing.qmd >}}
 
-:::{.lectitle} 
+::: lectitle
 # Text Data and TF-IDF
 
 [Slides](slides-07-text_data.html)
@@ -73,7 +67,7 @@ editor: visual
 
 {{< include 07-text_data.qmd >}}
 
-:::{.lectitle} 
+::: lectitle
 # K Nearest Neighbors
 
 [Slides](slides-08-knn.html)
@@ -81,11 +75,19 @@ editor: visual
 
 {{< include 08-knn.qmd >}}
 
-
-:::{.lectitle} 
+::: lectitle
 # Modeling and Machine Learning
 
 [Slides](slides-09-modeling.html)
 :::
 
 {{< include 09-modeling.qmd >}}
+
+
+::: lectitle
+# Regression and Cross-Validation
+
+[Slides](slides-10-cross_val.html)
+:::
+
+{{< include 10-cross_val.qmd >}}

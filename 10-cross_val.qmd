@@ -8,7 +8,6 @@ format:
     shift-heading-level-by: -1
 execute:
   echo: true
-  eval: false
 ---
 
 ```{python}
@@ -19,7 +18,6 @@ execute:
 #| include: false
 library(reticulate)
 use_python("/usr/local/bin/python3")
-py_discover_config()
 ```
 
 ```{python}
@@ -42,7 +40,7 @@ We assume some process $f$ is *generating* our target variable:
 Our goal is to come up with an approximation of $f$.
 
 
-### Test error vs training error
+### Test error vs training error{.smaller}
 
 * We don't need to know how well our model does on *training data*.
 
@@ -117,8 +115,9 @@ df = pd.read_csv("https://dlsun.github.io/pods/data/bordeaux.csv",
 df_known = df.loc[:1980].copy()
 df_unknown = df.loc[1981:].copy()
 
-(ggplot(df_known, aes(x = "age", y = "price")) +
-geom_point())
+(ggplot(df_known, aes(x = "age", y = "price")) 
++ geom_point())
+
 ```
 
 ### "Candidate" lines
@@ -129,6 +128,9 @@ $$\text{price} = 25 + 0*\text{age}$$
 $$\text{price} = 0 + 10*\text{age}$$
 $$\text{price} = 20 + 1*\text{age}$$
 $$\text{price} = -40 + 3*\text{age}$$
+
+Which one do you think will be "closest" to the points on the scatterplot?
+
 ### "Candidate" lines
 
 ```{python}
@@ -154,6 +156,7 @@ $$\text{price} = -40 + 3*\text{age}$$
 
 ```{python}
 from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
 
 
 pipeline = make_pipeline(
@@ -181,7 +184,7 @@ To **predict** from a linear regression, we just plug in the values to the equat
 ```{python}
 pipeline.predict(df_unknown[['age']])
 ```
-### Questions to ask yourself
+### Questions to ask yourself{.smaller}
 
 * **Q:** Is there only one "best" regression line?
 
@@ -209,12 +212,11 @@ pipeline.predict(df_unknown[['age']])
 
 ### Resampling method example
 
-Re-load our wine data:
+Import all our functions:
 
 ```{python}
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.pipeline import make_pipeline
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
@@ -285,9 +287,9 @@ from sklearn.model_selection import cross_val_score
 cross_val_score(pipeline, X = df_known, y = df_known['price'], cv = 10)
 ```
 
-* `sklearn` chooses a **default metric** for you.
+* `sklearn` chooses a **default metric** for you based on the model.
 
-* In this case: *negative root mean squared error*.
+* In this case: *r-squared* for Linear Regression; *negative root mean square error* for KNN.
 
 * (Why negative?  So that we want to *maximize* this score)
 
@@ -295,15 +297,12 @@ cross_val_score(pipeline, X = df_known, y = df_known['price'], cv = 10)
 
 * What if you want **MSE**?
 
-* `rmse` is MSE -> take square root -> negative
-
 ```{python}
-cv_scores = cross_val_score(pipeline, X = df_known, y = df_known['price'], cv = 10)
-
-(-cv_scores)**2
+cv_scores = cross_val_score(pipeline, X = df_known, y = df_known['price'], cv = 10, scoring = "neg_mean_squared_error")
+cv_scores
 ```
 
-### Cross-Validation: FAQ
+### Cross-Validation: FAQ{.smaller}
 
 * **Q:** How many cross validations should we do?
 
