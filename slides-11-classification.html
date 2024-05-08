@@ -421,20 +421,20 @@
 <div class="center">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="breast_diagram.png"></p>
+<p><img data-src="./images/breast_diagram.png"></p>
 <figcaption>image</figcaption>
 </figure>
 </div>
 </div>
 <p>The goal is to determine whether a sample of breast tissue is:</p>
-<ol type="1">
-<li class="fragment"><p>connective tissue</p></li>
-<li class="fragment"><p>adipose tissue</p></li>
-<li class="fragment"><p>glandular tissue</p></li>
-<li class="fragment"><p>carcinoma</p></li>
-<li class="fragment"><p>fibro-adenoma</p></li>
-<li class="fragment"><p>mastopathy</p></li>
+<p>::::{.columns} :::{.column} 1. connective tissue 2. adipose tissue 3. glandular tissue :::</p>
+<div class="column">
+<ol start="4" type="1">
+<li class="fragment">carcinoma</li>
+<li class="fragment">fibro-adenoma</li>
+<li class="fragment">mastopathy</li>
 </ol>
+</div>
 </section>
 <section id="reading-in-the-data" class="slide level2">
 <h2>Reading in the Data</h2>
@@ -532,7 +532,233 @@
 <span id="cb9-6"><a href="#cb9-6"></a>    StandardScaler(),</span>
 <span id="cb9-7"><a href="#cb9-7"></a>    KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>, metric<span class="op">=</span><span class="st">"euclidean"</span>))</span>
 <span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a>pipeline.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9"></a>pipeline <span class="op">=</span> pipeline.fit(X_train, y_train)</span>
+<span id="cb9-10"><a href="#cb9-10"></a>pipeline.predict(X_unknown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array(['car'], dtype=object)</code></pre>
+</div>
+</div>
+</section>
+<section id="probabilities" class="slide level2">
+<h2>Probabilities</h2>
+<p>Which of these two unknown points would we be <strong>more sure</strong> about in our guess?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>X_unknown <span class="op">=</span> pd.DataFrame({<span class="st">"I0"</span>: [<span class="dv">400</span>, <span class="dv">2200</span>], <span class="st">"PA500"</span>: [<span class="fl">.18</span>, <span class="fl">0.05</span>]})</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>(ggplot()</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="op">+</span> geom_point(df, aes(x <span class="op">=</span> <span class="st">"I0"</span>, y <span class="op">=</span> <span class="st">"PA500"</span>, fill <span class="op">=</span> <span class="st">"Class"</span>))</span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="op">+</span> geom_point(X_unknown, aes(x <span class="op">=</span> <span class="st">"I0"</span>, y <span class="op">=</span> <span class="st">"PA500"</span>), size <span class="op">=</span> <span class="dv">4</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+
+</div>
+<img data-src="11-classification_files/figure-revealjs/unnamed-chunk-9-5.png" width="614" class="r-stretch"></section>
+<section id="probabilities-1" class="slide level2">
+<h2>Probabilities</h2>
+<p>Instead of returning a single predicted class, we can ask it to return the predicted probabilities for each class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>pipeline.predict_proba(X_unknown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[0. , 0.6, 0. , 0.2, 0. , 0.2],
+       [1. , 0. , 0. , 0. , 0. , 0. ]])</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>pipeline.classes_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array(['adi', 'car', 'con', 'fad', 'gla', 'mas'], dtype=object)</code></pre>
+</div>
+</div>
+<p>How did Scikit-Learn calculate these predicted probabilities?</p>
+</section>
+<section id="cross-validation-for-classification" class="slide level2">
+<h2>Cross-Validation for Classification</h2>
+<p>We need a different <strong>scoring method</strong> for classification. A simple one is <strong>accuracy</strong>:</p>
+<p><span class="math display">\[\text{accuracy} = \frac{\text{# correct predictions}}{\text{# predictions}}.\]</span></p>
+</section>
+<section id="cross-validation-for-classification-1" class="slide level2">
+<h2>Cross-Validation for Classification</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>scores <span class="op">=</span> cross_val_score(</span>
+<span id="cb17-4"><a href="#cb17-4"></a>    pipeline, X_train, y_train,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>    scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    cv<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a>    </span>
+<span id="cb17-8"><a href="#cb17-8"></a>scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0.63636364, 0.81818182, 0.45454545, 0.54545455, 0.63636364,
+       0.54545455, 0.5       , 0.6       , 0.4       , 0.7       ])</code></pre>
+</div>
+</div>
+<pre><code>array([0.63636364, 0.81818182, 0.45454545, 0.54545455, 0.63636364,
+       0.54545455, 0.5       , 0.6       , 0.4       , 0.7       ])</code></pre>
+</section>
+<section id="cross-validation-for-classification-2" class="slide level2">
+<h2>Cross-Validation for Classification</h2>
+<p>As before, we can get an overall estimate of test accuracy by averaging the cross-validation accuracies:</p>
+<div class="sourceCode" id="cb20" data-bgcolor="gray"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>scores.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But! Accuracy is not always the best measure of a classification model!</p>
+</section>
+<section id="confusion-matrix" class="slide level2">
+<h2>Confusion matrix</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb21-2"><a href="#cb21-2"></a>pipeline <span class="op">=</span> pipeline.fit(X_train, y_train)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>y_train_predicted <span class="op">=</span> pipeline.predict(X_train)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>confusion_matrix(y_train, y_train_predicted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[20,  0,  2,  0,  0,  0],
+       [ 0, 20,  0,  0,  0,  1],
+       [ 2,  0, 11,  1,  0,  0],
+       [ 0,  0,  0, 13,  1,  1],
+       [ 0,  0,  0,  3, 12,  1],
+       [ 0,  2,  0,  8,  3,  5]])</code></pre>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-1" class="slide level2">
+<h2>Confusion matrix</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>pd.DataFrame(confusion_matrix(y_train, y_train_predicted), columns <span class="op">=</span> pipeline.classes_, index <span class="op">=</span> pipeline.classes_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     adi  car  con  fad  gla  mas
+adi   20    0    2    0    0    0
+car    0   20    0    0    0    1
+con    2    0   11    1    0    0
+fad    0    0    0   13    1    1
+gla    0    0    0    3   12    1
+mas    0    2    0    8    3    5</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="activity" class="title-slide slide level1 center">
+<h1>Activity</h1>
+
+</section>
+<section id="activity-1" class="slide level2">
+<h2>Activity</h2>
+<p>Use a <strong>grid search</strong> and the <strong>accuracy</strong> score to find the <em>best</em> k-value for this modeling problem.</p>
+</section></section>
+<section>
+<section id="classification-metrics" class="title-slide slide level1 center">
+<h1>Classification Metrics</h1>
+
+</section>
+<section id="case-study-credit-card-fraud" class="slide level2">
+<h2>Case Study: Credit Card Fraud</h2>
+<p>Data set of credit card transactions from Vesta.</p>
+<p>Goal: Predict <code>isFraud</code>, where 1 indicates a fraudulent transaction.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df_fraud <span class="op">=</span> pd.read_csv(<span class="st">"https://datasci112.stanford.edu/data/fraud.csv"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>df_fraud</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            card4   card6 P_emaildomain  ...    C13    C14  isFraud
+0            visa   debit     gmail.com  ...  637.0  114.0        0
+1            visa   debit                ...    3.0    1.0        0
+2            visa   debit     yahoo.com  ...    4.0    1.0        1
+3            visa   debit   hotmail.com  ...    0.0    0.0        0
+4            visa   debit     gmail.com  ...   20.0    1.0        0
+...           ...     ...           ...  ...    ...    ...      ...
+59049  mastercard   debit     gmail.com  ...    1.0    1.0        0
+59050  mastercard  credit     yahoo.com  ...    1.0    1.0        0
+59051  mastercard   debit    icloud.com  ...   15.0    2.0        0
+59052        visa   debit     gmail.com  ...    1.0    1.0        1
+59053  mastercard   debit                ...   84.0   17.0        0
+
+[59054 rows x 19 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="classification-model" class="slide level2">
+<h2>Classification Model</h2>
+<p>We can use <span class="math inline">\(k\)</span>-nearest neighbors for classification:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, StandardScaler</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> make_column_transformer</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>pipeline <span class="op">=</span> make_pipeline(</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    make_column_transformer(</span>
+<span id="cb27-8"><a href="#cb27-8"></a>        (OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>, sparse_output<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb27-9"><a href="#cb27-9"></a>         [<span class="st">"card4"</span>, <span class="st">"card6"</span>, <span class="st">"P_emaildomain"</span>]),</span>
+<span id="cb27-10"><a href="#cb27-10"></a>        remainder<span class="op">=</span><span class="st">"passthrough"</span>),</span>
+<span id="cb27-11"><a href="#cb27-11"></a>    StandardScaler(),</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="training-a-classifier" class="slide level2">
+<h2>Training a Classifier</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>X_train <span class="op">=</span> df_fraud.drop(<span class="st">"isFraud"</span>, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>y_train <span class="op">=</span> df_fraud[<span class="st">"isFraud"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>cross_val_score(</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    pipeline,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    X<span class="op">=</span>X_train, y<span class="op">=</span>y_train,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    cv<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9681816479631644</code></pre>
+</div>
+</div>
+<p>How is the accuracy so high?</p>
+</section>
+<section id="a-closer-look" class="slide level2">
+<h2>A Closer Look</h2>
+<p>Let’s take a closer look at the labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>y_train.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>isFraud
+0    56935
+1     2119
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p>The vast majority of transactions are normal (0)!</p>
+</section>
+<section id="imbalanced-data" class="slide level2">
+<h2>Imbalanced data</h2>
+<p>If we just predicted that every transaction is normal, the accuracy would be <span class="math inline">\(1 - \frac{2119}{59054} = .964\)</span>.</p>
+<p>Even though such predictions would be accurate <em>overall</em>, it is inaccurate for fraudulent transactions. A good model is “accurate for every class”.</p>
+</section></section>
+<section>
+<section id="precision-and-recall" class="title-slide slide level1 center">
+<h1>Precision and Recall</h1>
+<ul>
+<li class="fragment"><p>We need a score that measures “accuracy for class <span class="math inline">\(c\)</span>”.</p></li>
+<li class="fragment"><p>There are at least two reasonable definitions:</p></li>
+<li class="fragment"><p><strong>precision</strong>: <span class="math inline">\(P(\text{correct} | \text{predicted class } c)\)</span></p>
+<p>Among the observations that were predicted to be in class <span class="math inline">\(c\)</span>, what proportion actually were?</p></li>
+<li class="fragment"><p><strong>recall</strong>: <span class="math inline">\(P(\text{correct} | \text{actual class} c)\)</span>.</p>
+<p>Among the observations that were actually in class <span class="math inline">\(c\)</span>, what proportion were predicted to be?</p></li>
+</ul>
+</section>
+<section id="precision-and-recall-by-hand" class="slide level2">
+<h2>Precision and Recall by Hand</h2>
+<p>To check our understanding of these definitions, let’s calculate a few precisions and recalls by hand.</p>
+<p>First, summarize the results by the <strong>confusion matrix</strong>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb33-2"><a href="#cb33-2"></a>pipeline.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
@@ -938,1058 +1164,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kneighborsclassifier',
-                 KNeighborsClassifier(metric='euclidean'))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kneighborsclassifier',
-                 KNeighborsClassifier(metric='euclidean'))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KNeighborsClassifier<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">?<span>Documentation for KNeighborsClassifier</span></a></label><div class="sk-toggleable__content fitted"><pre>KNeighborsClassifier(metric='euclidean')</pre></div> </div></div></div></div></div></div>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>pipeline.predict(X_unknown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array(['car'], dtype=object)</code></pre>
-</div>
-</div>
-</section>
-<section id="probabilities" class="slide level2">
-<h2>Probabilities</h2>
-<p>Which of these two unknown points would we be <strong>more sure</strong> about in our guess?</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>X_unknown <span class="op">=</span> pd.DataFrame({<span class="st">"I0"</span>: [<span class="dv">400</span>, <span class="dv">2200</span>], <span class="st">"PA500"</span>: [<span class="fl">.18</span>, <span class="fl">0.05</span>]})</span>
-<span id="cb12-4"><a href="#cb12-4"></a></span>
-<span id="cb12-5"><a href="#cb12-5"></a>(ggplot()</span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="op">+</span> geom_point(df, aes(x <span class="op">=</span> <span class="st">"I0"</span>, y <span class="op">=</span> <span class="st">"PA500"</span>, fill <span class="op">=</span> <span class="st">"Class"</span>))</span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="op">+</span> geom_point(X_unknown, aes(x <span class="op">=</span> <span class="st">"I0"</span>, y <span class="op">=</span> <span class="st">"PA500"</span>), size <span class="op">=</span> <span class="dv">4</span>)</span>
-<span id="cb12-8"><a href="#cb12-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;Figure Size: (640 x 480)&gt;</code></pre>
-</div>
-
-</div>
-<img data-src="11-classification_files/figure-revealjs/unnamed-chunk-9-5.png" width="614" class="r-stretch"></section>
-<section id="probabilities-1" class="slide level2">
-<h2>Probabilities</h2>
-<p>Instead of returning a single predicted class, we can ask it to return the predicted probabilities for each class.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>pipeline.predict_proba(X_unknown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array([[0. , 0.6, 0. , 0.2, 0. , 0.2],
-       [1. , 0. , 0. , 0. , 0. , 0. ]])</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>pipeline.classes_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array(['adi', 'car', 'con', 'fad', 'gla', 'mas'], dtype=object)</code></pre>
-</div>
-</div>
-<p>How did Scikit-Learn calculate these predicted probabilities?</p>
-</section>
-<section id="cross-validation-for-classification" class="slide level2">
-<h2>Cross-Validation for Classification</h2>
-<p>We need a different <strong>scoring method</strong> for classification. A simple one is <strong>accuracy</strong>:</p>
-<p><span class="math display">\[\text{accuracy} = \frac{\text{# correct predictions}}{\text{# predictions}}.\]</span></p>
-</section>
-<section id="cross-validation-for-classification-1" class="slide level2">
-<h2>Cross-Validation for Classification</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>scores <span class="op">=</span> cross_val_score(</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    pipeline, X_train, y_train,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6"></a>    cv<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb18-7"><a href="#cb18-7"></a>    </span>
-<span id="cb18-8"><a href="#cb18-8"></a>scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array([0.63636364, 0.81818182, 0.45454545, 0.54545455, 0.63636364,
-       0.54545455, 0.5       , 0.6       , 0.4       , 0.7       ])</code></pre>
-</div>
-</div>
-<pre><code>array([0.63636364, 0.81818182, 0.45454545, 0.54545455, 0.63636364,
-       0.54545455, 0.5       , 0.6       , 0.4       , 0.7       ])</code></pre>
-</section>
-<section id="cross-validation-for-classification-2" class="slide level2">
-<h2>Cross-Validation for Classification</h2>
-<p>As before, we can get an overall estimate of test accuracy by averaging the cross-validation accuracies:</p>
-<div class="sourceCode" id="cb21" data-bgcolor="gray"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>scores.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>But! Accuracy is not always the best measure of a classification model!</p>
-</section>
-<section id="confusion-matrix" class="slide level2">
-<h2>Confusion matrix</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb22-2"><a href="#cb22-2"></a>pipeline.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<style>#sk-container-id-2 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-2 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-2 pre {
-  padding: 0;
-}
-
-#sk-container-id-2 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-2 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-2 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-2 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-2 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-2 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-2 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-2 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-2 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-2 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-2 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-2 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-2 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-2 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kneighborsclassifier',
-                 KNeighborsClassifier(metric='euclidean'))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kneighborsclassifier',
-                 KNeighborsClassifier(metric='euclidean'))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KNeighborsClassifier<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">?<span>Documentation for KNeighborsClassifier</span></a></label><div class="sk-toggleable__content fitted"><pre>KNeighborsClassifier(metric='euclidean')</pre></div> </div></div></div></div></div></div>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>y_train_predicted <span class="op">=</span> pipeline.predict(X_train)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>confusion_matrix(y_train, y_train_predicted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>array([[20,  0,  2,  0,  0,  0],
-       [ 0, 20,  0,  0,  0,  1],
-       [ 2,  0, 11,  1,  0,  0],
-       [ 0,  0,  0, 13,  1,  1],
-       [ 0,  0,  0,  3, 12,  1],
-       [ 0,  2,  0,  8,  3,  5]])</code></pre>
-</div>
-</div>
-</section>
-<section id="confusion-matrix-1" class="slide level2">
-<h2>Confusion matrix</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>pd.DataFrame(confusion_matrix(y_train, y_train_predicted), columns <span class="op">=</span> pipeline.classes_, index <span class="op">=</span> pipeline.classes_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     adi  car  con  fad  gla  mas
-adi   20    0    2    0    0    0
-car    0   20    0    0    0    1
-con    2    0   11    1    0    0
-fad    0    0    0   13    1    1
-gla    0    0    0    3   12    1
-mas    0    2    0    8    3    5</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="activity" class="title-slide slide level1 center">
-<h1>Activity</h1>
-
-</section>
-<section id="activity-1" class="slide level2">
-<h2>Activity</h2>
-<p>Use a <strong>grid search</strong> and the <strong>accuracy</strong> score to find the <em>best</em> k-value for this modeling problem.</p>
-</section></section>
-<section>
-<section id="classification-metrics" class="title-slide slide level1 center">
-<h1>Classification Metrics</h1>
-
-</section>
-<section id="case-study-credit-card-fraud" class="slide level2">
-<h2>Case Study: Credit Card Fraud</h2>
-<p>Data set of credit card transactions from Vesta.</p>
-<p>Goal: Predict <code>isFraud</code>, where 1 indicates a fraudulent transaction.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df_fraud <span class="op">=</span> pd.read_csv(<span class="st">"https://datasci112.stanford.edu/data/fraud.csv"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>df_fraud</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            card4   card6 P_emaildomain  ...    C13    C14  isFraud
-0            visa   debit     gmail.com  ...  637.0  114.0        0
-1            visa   debit                ...    3.0    1.0        0
-2            visa   debit     yahoo.com  ...    4.0    1.0        1
-3            visa   debit   hotmail.com  ...    0.0    0.0        0
-4            visa   debit     gmail.com  ...   20.0    1.0        0
-...           ...     ...           ...  ...    ...    ...      ...
-59049  mastercard   debit     gmail.com  ...    1.0    1.0        0
-59050  mastercard  credit     yahoo.com  ...    1.0    1.0        0
-59051  mastercard   debit    icloud.com  ...   15.0    2.0        0
-59052        visa   debit     gmail.com  ...    1.0    1.0        1
-59053  mastercard   debit                ...   84.0   17.0        0
-
-[59054 rows x 19 columns]</code></pre>
-</div>
-</div>
-</section>
-<section id="classification-model" class="slide level2">
-<h2>Classification Model</h2>
-<p>We can use <span class="math inline">\(k\)</span>-nearest neighbors for classification:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, StandardScaler</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> make_column_transformer</span>
-<span id="cb29-5"><a href="#cb29-5"></a></span>
-<span id="cb29-6"><a href="#cb29-6"></a>pipeline <span class="op">=</span> make_pipeline(</span>
-<span id="cb29-7"><a href="#cb29-7"></a>    make_column_transformer(</span>
-<span id="cb29-8"><a href="#cb29-8"></a>        (OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>, sparse_output<span class="op">=</span><span class="va">False</span>),</span>
-<span id="cb29-9"><a href="#cb29-9"></a>         [<span class="st">"card4"</span>, <span class="st">"card6"</span>, <span class="st">"P_emaildomain"</span>]),</span>
-<span id="cb29-10"><a href="#cb29-10"></a>        remainder<span class="op">=</span><span class="st">"passthrough"</span>),</span>
-<span id="cb29-11"><a href="#cb29-11"></a>    StandardScaler(),</span>
-<span id="cb29-12"><a href="#cb29-12"></a>    KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="training-a-classifier" class="slide level2">
-<h2>Training a Classifier</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>X_train <span class="op">=</span> df_fraud.drop(<span class="st">"isFraud"</span>, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2"></a>y_train <span class="op">=</span> df_fraud[<span class="st">"isFraud"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb31-2"><a href="#cb31-2"></a></span>
-<span id="cb31-3"><a href="#cb31-3"></a>cross_val_score(</span>
-<span id="cb31-4"><a href="#cb31-4"></a>    pipeline,</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    X<span class="op">=</span>X_train, y<span class="op">=</span>y_train,</span>
-<span id="cb31-6"><a href="#cb31-6"></a>    scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
-<span id="cb31-7"><a href="#cb31-7"></a>    cv<span class="op">=</span><span class="dv">10</span></span>
-<span id="cb31-8"><a href="#cb31-8"></a>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0.9681816479631644</code></pre>
-</div>
-</div>
-<p>How is the accuracy so high?</p>
-</section>
-<section id="a-closer-look" class="slide level2">
-<h2>A Closer Look</h2>
-<p>Let’s take a closer look at the labels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>y_train.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>isFraud
-0    56935
-1     2119
-Name: count, dtype: int64</code></pre>
-</div>
-</div>
-<p>The vast majority of transactions are normal (0)!</p>
-</section>
-<section id="imbalanced-data" class="slide level2">
-<h2>Imbalanced data</h2>
-<p>If we just predicted that every transaction is normal, the accuracy would be <span class="math inline">\(1 - \frac{2119}{59054} = .964\)</span>.</p>
-<p>Even though such predictions would be accurate <em>overall</em>, it is inaccurate for fraudulent transactions. A good model is “accurate for every class”.</p>
-</section></section>
-<section>
-<section id="precision-and-recall" class="title-slide slide level1 center">
-<h1>Precision and Recall</h1>
-<ul>
-<li class="fragment"><p>We need a score that measures “accuracy for class <span class="math inline">\(c\)</span>”.</p></li>
-<li class="fragment"><p>There are at least two reasonable definitions:</p></li>
-<li class="fragment"><p><strong>precision</strong>: $P( | )$</p>
-<p>Among the observations that were predicted to be in class <span class="math inline">\(c\)</span>, what proportion actually were?</p></li>
-<li class="fragment"><p><strong>recall</strong>: $P( | )$.</p>
-<p>Among the observations that were actually in class <span class="math inline">\(c\)</span>, what proportion were predicted to be?</p></li>
-</ul>
-</section>
-<section id="a-geometric-look-at-precision-and-recall" class="slide level2">
-<h2>A Geometric Look at Precision and Recall</h2>
-<p><span class="math display">\[\begin{aligned}
-\text{{\bf precision}} &amp;= \frac{\onslide&lt;8-&gt;{\text{TP}}}{\onslide&lt;7-&gt;{\text{TP} + \text{FP}}} &amp; \onslide&lt;9-&gt;{\text{{\bf recall}} &amp;= \frac{\onslide&lt;11-&gt;{\text{TP}}}{\onslide&lt;10-&gt;{\text{TP} + \text{FN}}}}
-\end{aligned}\]</span></p>
-</section>
-<section id="precision-and-recall-by-hand" class="slide level2">
-<h2>Precision and Recall by Hand</h2>
-<p>To check our understanding of these definitions, let’s calculate a few precisions and recalls by hand.</p>
-<p>First, summarize the results by the <strong>confusion matrix</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb35-2"><a href="#cb35-2"></a>pipeline.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<style>#sk-container-id-3 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-3 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-3 pre {
-  padding: 0;
-}
-
-#sk-container-id-3 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-3 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-3 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-3 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-3 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-3 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-3 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-3 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-3 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-3 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-3 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-3 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-3 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-3 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-3 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-3 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-3 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-3 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-3 div.sk-label label.sk-toggleable__label,
-#sk-container-id-3 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-3 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-3 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-3 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-3 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-3 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-3 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-3 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-3 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-3 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-3 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('columntransformer',
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('columntransformer',
                  ColumnTransformer(remainder='passthrough',
                                    transformers=[('onehotencoder',
                                                   OneHotEncoder(handle_unknown='ignore',
@@ -1997,7 +1172,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                   ['card4', 'card6',
                                                    'P_emaildomain'])])),
                 ('standardscaler', StandardScaler()),
-                ('kneighborsclassifier', KNeighborsClassifier())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('columntransformer',
+                ('kneighborsclassifier', KNeighborsClassifier())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('columntransformer',
                  ColumnTransformer(remainder='passthrough',
                                    transformers=[('onehotencoder',
                                                   OneHotEncoder(handle_unknown='ignore',
@@ -2005,14 +1180,17 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                   ['card4', 'card6',
                                                    'P_emaildomain'])])),
                 ('standardscaler', StandardScaler()),
-                ('kneighborsclassifier', KNeighborsClassifier())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;columntransformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for columntransformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
+                ('kneighborsclassifier', KNeighborsClassifier())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;columntransformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for columntransformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('onehotencoder',
                                  OneHotEncoder(handle_unknown='ignore',
                                                sparse_output=False),
-                                 ['card4', 'card6', 'P_emaildomain'])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>['card4', 'card6', 'P_emaildomain']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown='ignore', sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>['TransactionAmt', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KNeighborsClassifier<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">?<span>Documentation for KNeighborsClassifier</span></a></label><div class="sk-toggleable__content fitted"><pre>KNeighborsClassifier()</pre></div> </div></div></div></div></div></div>
+                                 ['card4', 'card6', 'P_emaildomain'])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>['card4', 'card6', 'P_emaildomain']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown='ignore', sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>['TransactionAmt', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KNeighborsClassifier<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">?<span>Documentation for KNeighborsClassifier</span></a></label><div class="sk-toggleable__content fitted"><pre>KNeighborsClassifier()</pre></div> </div></div></div></div></div></div>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>y_train_ <span class="op">=</span> pipeline.predict(X_train)</span>
-<span id="cb36-2"><a href="#cb36-2"></a>confusion_matrix(y_train, y_train_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>y_train_ <span class="op">=</span> pipeline.predict(X_train)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>confusion_matrix(y_train, y_train_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[56817,   118],
        [ 1524,   595]])</code></pre>
@@ -2039,33 +1217,34 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="f1-score" class="slide level2">
 <h2>F1 Score</h2>
 <p>The <strong>F1 score</strong> combines precision and recall into a single score:</p>
-<p><span class="math display">\[\begin{aligned}
-\text{F1 score} &amp;= \text{harmonic mean of precision and recall} \\
-\onslide&lt;6-&gt;{&amp;= 1 \Big/ \frac{1}{2} \big( \frac{1}{\text{precision}} + \frac{1}{\text{recall}}\big)}
-\end{aligned}\]</span></p>
-<p>To achieve a high F1 score, both precision and recall have to be high. If either is low, then the harmonic mean will be low.</p>
+<p><span class="math display">\[\text{F1 score} = \text{harmonic mean of precision and recall}\]</span> <span class="math display">\[= \frac{2} {\left( \frac{1}{\text{precision}} + \frac{1}{\text{recall}}\right)}\]</span></p>
+<ul>
+<li class="fragment"><p>To achieve a high F1 score, both precision and recall have to be high.</p></li>
+<li class="fragment"><p>If either is low, then the harmonic mean will be low.</p></li>
+</ul>
 </section>
 <section id="estimating-test-precision-recall-and-f1" class="slide level2">
 <h2>Estimating Test Precision, Recall, and F1</h2>
-<p>Remember that each class has its own precision, recall, and F1.</p>
-<p>But Scikit-Learn requires that the <code>scoring=</code> parameter be a single number.</p>
-<p>For this, we can use</p>
 <ul>
-<li class="fragment"><p><code>"precision_macro"</code></p></li>
-<li class="fragment"><p><code>"recall_macro"</code></p></li>
-<li class="fragment"><p><code>"f1_macro"</code></p></li>
+<li class="fragment"><p>Remember that each class has its own precision, recall, and F1.</p></li>
+<li class="fragment"><p>But Scikit-Learn requires that the <code>scoring=</code> parameter be a single number.</p></li>
+<li class="fragment"><p>For this, we can average the score over the classes:</p>
+<ul>
+<li class="fragment"><code>"precision_macro"</code></li>
+<li class="fragment"><code>"recall_macro"</code></li>
+<li class="fragment"><code>"f1_macro"</code></li>
+</ul></li>
 </ul>
-<p>which average the score over the classes.</p>
 </section>
 <section id="f1-score-1" class="slide level2">
 <h2>F1 Score</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>cross_val_score(</span>
-<span id="cb38-2"><a href="#cb38-2"></a>    pipeline,</span>
-<span id="cb38-3"><a href="#cb38-3"></a>    X<span class="op">=</span>X_train, y<span class="op">=</span>y_train,</span>
-<span id="cb38-4"><a href="#cb38-4"></a>    scoring<span class="op">=</span><span class="st">"f1_macro"</span>,</span>
-<span id="cb38-5"><a href="#cb38-5"></a>    cv<span class="op">=</span><span class="dv">10</span></span>
-<span id="cb38-6"><a href="#cb38-6"></a>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>cross_val_score(</span>
+<span id="cb36-2"><a href="#cb36-2"></a>    pipeline,</span>
+<span id="cb36-3"><a href="#cb36-3"></a>    X<span class="op">=</span>X_train, y<span class="op">=</span>y_train,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>    scoring<span class="op">=</span><span class="st">"f1_macro"</span>,</span>
+<span id="cb36-5"><a href="#cb36-5"></a>    cv<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.647618677299677</code></pre>
 </div>
@@ -2076,8 +1255,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>Another way to illustrate the tradeoff between precision and recall is to graph the <strong>precision-recall curve</strong>.</p>
 <p>First, we need the predicted probabilities.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>y_train_probs_ <span class="op">=</span> pipeline.predict_proba(X_train)</span>
-<span id="cb40-2"><a href="#cb40-2"></a>y_train_probs_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>y_train_probs_ <span class="op">=</span> pipeline.predict_proba(X_train)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>y_train_probs_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[1. , 0. ],
        [1. , 0. ],

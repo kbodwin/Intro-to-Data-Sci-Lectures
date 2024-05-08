@@ -53,13 +53,19 @@ Electrical signals can be used to detect whether tissue is cancerous.
 
 The goal is to determine whether a sample of breast tissue is:
 
+::::{.columns}
+:::{.column}
 1. connective tissue
 2. adipose tissue
 3. glandular tissue
+:::
+
+:::{.column}
 
 4. carcinoma
 5. fibro-adenoma
 6. mastopathy
+:::
 
 
 
@@ -128,7 +134,7 @@ pipeline = make_pipeline(
     StandardScaler(),
     KNeighborsClassifier(n_neighbors=5, metric="euclidean"))
 
-pipeline.fit(X_train, y_train)
+pipeline = pipeline.fit(X_train, y_train)
 pipeline.predict(X_unknown)
 ```
 
@@ -203,7 +209,7 @@ But!  Accuracy is not always the best measure of a classification model!
 
 ```{python}
 from sklearn.metrics import confusion_matrix
-pipeline.fit(X_train, y_train)
+pipeline = pipeline.fit(X_train, y_train)
 y_train_predicted = pipeline.predict(X_train)
 confusion_matrix(y_train, y_train_predicted)
 ```
@@ -318,6 +324,7 @@ precisions and recalls by hand.
 First, summarize the results by the **confusion matrix**.
 
 ```{python}
+#| code-fold: true
 from sklearn.metrics import confusion_matrix
 pipeline.fit(X_train, y_train)
 y_train_ = pipeline.predict(X_train)
@@ -352,30 +359,26 @@ other has higher recall?
 
 The **F1 score** combines precision and recall into a single score:
 
-$$\begin{aligned}
-\text{F1 score} &= \text{harmonic mean of precision and recall} \\
-\onslide<6->{&= 1 \Big/ \frac{1}{2} \big( \frac{1}{\text{precision}} + \frac{1}{\text{recall}}\big)}
-\end{aligned}$$
+$$\text{F1 score} = \text{harmonic mean of precision and recall}$$
+$$= \frac{2} {\left( \frac{1}{\text{precision}} + \frac{1}{\text{recall}}\right)}$$
 
-To achieve a high F1 score, both precision and recall have to be high.
-If either is low, then the harmonic mean will be low.
+* To achieve a high F1 score, both precision and recall have to be high.
+
+* If either is low, then the harmonic mean will be low.
 
 ### Estimating Test Precision, Recall, and F1
 
-Remember that each class has its own precision, recall, and F1.
+* Remember that each class has its own precision, recall, and F1.
 
-But Scikit-Learn requires that the `scoring=` parameter be a
+* But Scikit-Learn requires that the `scoring=` parameter be a
 single number.
 
-For this, we can use
+* For this, we can average the score over the classes:
+    + `"precision_macro"`
+    + `"recall_macro"`
+    + `"f1_macro"`
 
--   `"precision_macro"`
 
--   `"recall_macro"`
-
--   `"f1_macro"`
-
-which average the score over the classes.
 
 ### F1 Score
 
