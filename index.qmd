@@ -91,3 +91,11 @@ editor: visual
 :::
 
 {{< include 10-cross_val.qmd >}}
+
+::: lectitle
+# Classification
+
+[Slides](slides-11-classification.html)
+:::
+
+{{< include 11-classification.qmd >}}
