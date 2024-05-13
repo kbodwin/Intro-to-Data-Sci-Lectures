@@ -48,20 +48,21 @@ from plotnine import *
 Electrical signals can be used to detect whether tissue is cancerous.
 
 ::: center
-![image](./images/breast_diagram){width=".4\\textwidth"}
+![image](./images/breast_diagram.jpeg){width=".4\\textwidth"}
 :::
 
 The goal is to determine whether a sample of breast tissue is:
 
 ::::{.columns}
 :::{.column}
+**Not cancerous**
 1. connective tissue
 2. adipose tissue
 3. glandular tissue
 :::
 
 :::{.column}
-
+**Cancerous**
 4. carcinoma
 5. fibro-adenoma
 6. mastopathy

@@ -93,9 +93,18 @@ editor: visual
 {{< include 10-cross_val.qmd >}}
 
 ::: lectitle
-# Classification
+# Classification with KNN
 
 [Slides](slides-11-classification.html)
 :::
 
 {{< include 11-classification.qmd >}}
+
+
+::: lectitle
+# Logistic Regression
+
+[Slides](slides-12-logistic.html)
+:::
+
+{{< include 12-logistic.qmd >}}
