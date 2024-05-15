@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Logistic Regression</title>
+<title>Unsupervised Learning with K-Means</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#modeling-and-machine-learning" id="toc-modeling-and-machine-learning" class="nav-link" data-scroll-target="#modeling-and-machine-learning"><span class="header-section-number">9</span> Modeling and Machine Learning</a></li>
   <li><a href="#regression-and-cross-validation" id="toc-regression-and-cross-validation" class="nav-link" data-scroll-target="#regression-and-cross-validation"><span class="header-section-number">10</span> Regression and Cross-Validation</a></li>
   <li><a href="#classification-with-knn" id="toc-classification-with-knn" class="nav-link" data-scroll-target="#classification-with-knn"><span class="header-section-number">11</span> Classification with KNN</a></li>
+  <li><a href="#clustering-with-k-means" id="toc-clustering-with-k-means" class="nav-link" data-scroll-target="#clustering-with-k-means"><span class="header-section-number">13</span> Clustering with K-Means</a></li>
   </ul>
 </nav>
 </div>
@@ -102,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Logistic Regression</h1>
+<h1 class="title">Unsupervised Learning with K-Means</h1>
 </div>
 
 
@@ -21805,7 +21806,7 @@ Name: proportion, dtype: float64</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_e449fc34" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_db8d1b63" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23416,7 +23417,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.3.4" class="anchored" data-anchor-id="lecture-activity-part-1"><span class="header-section-number">5.3.4</span> (Lecture Activity Part 1)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_1444c0cf" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_17463238" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23539,7 +23540,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.4.6" class="anchored" data-anchor-id="lecture-activity-part-2"><span class="header-section-number">5.4.6</span> (Lecture Activity Part 2)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_d2ee42a9" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_8cc6aa69" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -24491,7 +24492,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <h3 data-number="5.5.9" class="anchored" data-anchor-id="lecture-activity-part-3"><span class="header-section-number">5.5.9</span> (Lecture Activity Part 3)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_865a8fba" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_703c8844" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -24521,7 +24522,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <h3 data-number="5.6.3" class="anchored" data-anchor-id="lecture-activity-part-4"><span class="header-section-number">5.6.3</span> (Lecture Activity Part 4)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_f499dd53" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_c26c333e" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -27349,15 +27350,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-8" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb263"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>preproc.set_output(transform <span class="op">=</span> <span class="st">"pandas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -27767,15 +27768,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-9" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b680&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331a4b3e0&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb264"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>df_transformed <span class="op">=</span> preproc.transform(df[features])</span>
 <span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a>df_transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -35264,7 +35265,7 @@ Name: age, dtype: float64</code></pre>
 <span id="cb402-15"><a href="#cb402-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb402-16"><a href="#cb402-16" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_test, pred_y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>56.9969853839899</code></pre>
+<pre><code>110.24346713205892</code></pre>
 </div>
 </div>
 </section>
@@ -35285,7 +35286,7 @@ Name: age, dtype: float64</code></pre>
 <span id="cb404-12"><a href="#cb404-12" aria-hidden="true" tabindex="-1"></a>pred_y_test <span class="op">=</span> pipeline.predict(X<span class="op">=</span>X_test)</span>
 <span id="cb404-13"><a href="#cb404-13" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_test, pred_y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>253.62467477399687</code></pre>
+<pre><code>256.33997456530943</code></pre>
 </div>
 </div>
 </section>
@@ -35849,18 +35850,18 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="sourceCode cell-code" id="cb411"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb411-1"><a href="#cb411-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(grid_cv.cv_results_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    mean_fit_time  std_fit_time  ...  std_test_score  rank_test_score
-0        0.001271      0.000181  ...      219.338831               12
-1        0.001134      0.000010  ...      209.511631                9
-2        0.001131      0.000008  ...      178.819362                6
-3        0.001134      0.000025  ...      217.989122               11
-4        0.001130      0.000007  ...      212.797774                7
-5        0.001201      0.000060  ...      205.240907                3
-6        0.001153      0.000022  ...      227.978005               10
-7        0.001133      0.000015  ...      175.175403                2
-8        0.001136      0.000021  ...      174.981203                5
-9        0.001118      0.000005  ...      175.186322                1
-10       0.001127      0.000017  ...      200.091917                4
-11       0.001120      0.000011  ...      232.710455                8
+0        0.001231      0.000163  ...      219.338831               12
+1        0.001187      0.000085  ...      209.511631                9
+2        0.001214      0.000042  ...      178.819362                6
+3        0.001131      0.000018  ...      217.989122               11
+4        0.001133      0.000044  ...      212.797774                7
+5        0.001124      0.000012  ...      205.240907                3
+6        0.001141      0.000045  ...      227.978005               10
+7        0.001117      0.000015  ...      175.175403                2
+8        0.001134      0.000035  ...      174.981203                5
+9        0.001112      0.000008  ...      175.186322                1
+10       0.001109      0.000007  ...      200.091917                4
+11       0.001122      0.000021  ...      232.710455                8
 
 [12 rows x 15 columns]</code></pre>
 </div>
@@ -37876,6 +37877,1181 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <li><p>Coefficients are interpreted as “One unit increase in predictor is associated with a [something] increase in the log-odds of Category 1”</p></li>
 <li><p>We still use <strong>cross-validated metrics</strong> to decide between KNN and Logistic regression, and between different feature sets.</p></li>
 <li><p>We still report <strong>confusion matrices</strong> and sometimes <strong>precision-recall curves</strong> of our final model.</p></li>
+</ul>
+</section>
+</section>
+<section id="clustering-with-k-means" class="level1 lectitle" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Clustering with K-Means</h1>
+<p><a href="slides-13-kmeans.html">Slides</a></p>
+</section>
+<section id="the-story-so-far-10" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="the-story-so-far-10"><span class="header-section-number">13.1</span> The story so far</h2>
+<section id="predictive-modeling" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="predictive-modeling"><span class="header-section-number">13.1.1</span> Predictive modeling</h3>
+<ul>
+<li><p>In <strong>predictive modeling</strong>, a.k.a. <strong>supervised machine learning</strong>, we have a <strong>target variable</strong> we want to predict.</p></li>
+<li><p>We expect to have observations where we know the <em>predictors</em> but not the <em>target</em>.</p></li>
+<li><p>Our goal is to choose a <strong>modeling procedure</strong> to guess targets from predictors.</p></li>
+<li><p>We use <strong>cross-validation</strong> to estimate the <strong>test error</strong> of various procedure options.</p></li>
+<li><p>We might compare different:</p>
+<ul>
+<li>feature sets</li>
+<li>preprocessing choices</li>
+<li>model specifications/algorithms</li>
+<li>tuning parameters</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="unsupervised-learning" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="unsupervised-learning"><span class="header-section-number">13.2</span> Unsupervised Learning</h2>
+<section id="unsupervised-learning-1" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="unsupervised-learning-1"><span class="header-section-number">13.2.1</span> Unsupervised Learning</h3>
+<ul>
+<li><p>In <strong>unsupervised</strong> situations, we do not have a target variable <span class="math inline">\(y\)</span></p></li>
+<li><p>We <em>do</em> still have <strong>features</strong> that we observe.</p></li>
+<li><p>Our goal: Automatically find <em>interesting structure</em> in the features.</p></li>
+<li><p>(Think of children playing with Legos. They might be <em>supervised</em> by parents who help them follow instructions, or they might be left alone to build whatever they want!)</p></li>
+</ul>
+</section>
+<section id="clustering" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="clustering"><span class="header-section-number">13.2.2</span> Clustering</h3>
+<ul>
+<li><p>Nearly all unsupervised learning algorithms can be called <strong>clustering</strong>.</p></li>
+<li><p>The goal is to use the <strong>observed features</strong> (columns) to sort the <strong>observations</strong> (rows) into similar <strong>clusters</strong> (groups).</p></li>
+<li><p>For example: Suppose I take all of your grades in the gradebook as <em>features</em> and then use these to find <em>clusters</em> of students. These clusters might represent…</p>
+<ul>
+<li>people who studied together</li>
+<li>people who are in the same section</li>
+<li>people who have the same major or background</li>
+<li>… or none of the above!</li>
+</ul></li>
+</ul>
+</section>
+<section id="uses-of-clustering" class="level3" data-number="13.2.3">
+<h3 data-number="13.2.3" class="anchored" data-anchor-id="uses-of-clustering"><span class="header-section-number">13.2.3</span> Uses of clustering</h3>
+<ul>
+<li><p><strong>Ecology:</strong> An ecologist wants to group organisms into types to define different species. <em>(rows = organisms; features = habitat, size, etc.)</em></p></li>
+<li><p><strong>Biology:</strong> A geneticist wants to know which groups of genes tend to be activated at the same time. <em>(rows = genes; features = activation at certain times)</em></p></li>
+<li><p><strong>Market Segmentation:</strong> A business wants to group their customers into types. <em>(rows = customers, features = age, location, etc.)</em></p></li>
+<li><p><strong>Language:</strong> A linguist might want to identify different uses of ambiguous words like “set” or “run”. <em>(rows = words; features = other words they are used with)</em></p></li>
+<li><p><strong>Documents:</strong> A historian might want to find groups of articles that are on similar topics. <em>(rows = articles; features = tf-idf transformed n-grams)</em></p></li>
+</ul>
+</section>
+</section>
+<section id="k-means" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="k-means"><span class="header-section-number">13.3</span> K-Means</h2>
+<section id="the-k-means-algorithm" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="the-k-means-algorithm"><span class="header-section-number">13.3.1</span> The K-Means Algorithm</h3>
+<ul>
+<li><p><strong>Idea:</strong> Two observations are <em>similar</em> if they are <em>close</em> in distance.</p></li>
+<li><p>(Just like with K-Nearest-Neighbors!)</p></li>
+<li><p>We should look for groups of observations that are close to the same <strong>centroid</strong>.</p></li>
+</ul>
+</section>
+<section id="the-k-means-algorithm-1" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="the-k-means-algorithm-1"><span class="header-section-number">13.3.2</span> The K-Means Algorithm</h3>
+<p><a href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">Demo</a></p>
+<p>Procedure (3-means):</p>
+<ol type="1">
+<li><p>Choose 3 random observations to be the <strong>initial centroids</strong>.</p></li>
+<li><p>For each observation, determine which is the <strong>closest centroid</strong>.</p></li>
+<li><p>Create 3 <strong>clusters</strong> by closest centroid.</p></li>
+<li><p>Find the <strong>new centroid</strong> of each cluster.</p></li>
+<li><p>Repeat until the clusters don’t change.</p></li>
+</ol>
+</section>
+<section id="example-penguins-data" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="example-penguins-data"><span class="header-section-number">13.3.3</span> Example: Penguins data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb503"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb503-1"><a href="#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb503-2"><a href="#cb503-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb503-3"><a href="#cb503-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb503-4"><a href="#cb503-4" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">"https://dlsun.github.io/stats112/data/"</span></span>
+<span id="cb503-5"><a href="#cb503-5" aria-hidden="true" tabindex="-1"></a>df_penguins <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"penguins.csv"</span>).dropna()</span>
+<span id="cb503-6"><a href="#cb503-6" aria-hidden="true" tabindex="-1"></a>df_penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       species     island  bill_length_mm  ...  body_mass_g     sex  year
+0       Adelie  Torgersen            39.1  ...       3750.0    male  2007
+1       Adelie  Torgersen            39.5  ...       3800.0  female  2007
+2       Adelie  Torgersen            40.3  ...       3250.0  female  2007
+4       Adelie  Torgersen            36.7  ...       3450.0  female  2007
+5       Adelie  Torgersen            39.3  ...       3650.0    male  2007
+..         ...        ...             ...  ...          ...     ...   ...
+339  Chinstrap      Dream            55.8  ...       4000.0    male  2009
+340  Chinstrap      Dream            43.5  ...       3400.0  female  2009
+341  Chinstrap      Dream            49.6  ...       3775.0    male  2009
+342  Chinstrap      Dream            50.8  ...       4100.0    male  2009
+343  Chinstrap      Dream            50.2  ...       3775.0  female  2009
+
+[333 rows x 8 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="example-penguins-data-1" class="level3" data-number="13.3.4">
+<h3 data-number="13.3.4" class="anchored" data-anchor-id="example-penguins-data-1"><span class="header-section-number">13.3.4</span> Example: Penguins data</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb505"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb505-1"><a href="#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb505-2"><a href="#cb505-2" aria-hidden="true" tabindex="-1"></a>(ggplot(df_penguins, aes(x <span class="op">=</span> <span class="st">"bill_length_mm"</span>, y <span class="op">=</span> <span class="st">"flipper_length_mm"</span>))</span>
+<span id="cb505-3"><a href="#cb505-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:1: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-273-1.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="step-0-standardize-the-data" class="level3" data-number="13.3.5">
+<h3 data-number="13.3.5" class="anchored" data-anchor-id="step-0-standardize-the-data"><span class="header-section-number">13.3.5</span> Step 0: Standardize the data</h3>
+<p><strong>Why is this important?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb507"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb507-1"><a href="#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb507-2"><a href="#cb507-2" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler().set_output(transform <span class="op">=</span> <span class="st">"pandas"</span>)</span>
+<span id="cb507-3"><a href="#cb507-3" aria-hidden="true" tabindex="-1"></a>df_scaled <span class="op">=</span> scaler.fit_transform(df_penguins[[<span class="st">"bill_length_mm"</span>, <span class="st">"flipper_length_mm"</span>]]).dropna()</span>
+<span id="cb507-4"><a href="#cb507-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-5"><a href="#cb507-5" aria-hidden="true" tabindex="-1"></a>df_scaled.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   bill_length_mm  flipper_length_mm
+0       -0.896042          -1.426752
+1       -0.822788          -1.069474
+2       -0.676280          -0.426373
+4       -1.335566          -0.569284
+5       -0.859415          -0.783651</code></pre>
+</div>
+</div>
+</section>
+<section id="step-1-choose-3-random-points-to-be-centroids" class="level3" data-number="13.3.6">
+<h3 data-number="13.3.6" class="anchored" data-anchor-id="step-1-choose-3-random-points-to-be-centroids"><span class="header-section-number">13.3.6</span> Step 1: Choose 3 random points to be centroids</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb509"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb509-1"><a href="#cb509-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> df_scaled.sample(<span class="dv">3</span>)</span>
+<span id="cb509-2"><a href="#cb509-2" aria-hidden="true" tabindex="-1"></a>centroids.index <span class="op">=</span> [<span class="st">"orange"</span>, <span class="st">"purple"</span>, <span class="st">"green"</span>]</span>
+<span id="cb509-3"><a href="#cb509-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb509-4"><a href="#cb509-4" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        bill_length_mm  flipper_length_mm
+orange        1.741103           0.288183
+purple        0.221082           0.788372
+green        -1.170744          -1.426752</code></pre>
+</div>
+</div>
+</section>
+<section id="step-1-choose-3-random-points-to-be-centroids-1" class="level3" data-number="13.3.7">
+<h3 data-number="13.3.7" class="anchored" data-anchor-id="step-1-choose-3-random-points-to-be-centroids-1"><span class="header-section-number">13.3.7</span> Step 1: Choose 3 random points to be centroids</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb511"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb511-1"><a href="#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb511-2"><a href="#cb511-2" aria-hidden="true" tabindex="-1"></a>(ggplot(df_scaled, aes(x <span class="op">=</span> <span class="st">"bill_length_mm"</span>, y <span class="op">=</span> <span class="st">"flipper_length_mm"</span>))</span>
+<span id="cb511-3"><a href="#cb511-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
+<span id="cb511-4"><a href="#cb511-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(centroids, color <span class="op">=</span> centroids.index, size <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb511-5"><a href="#cb511-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:1: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-276-3.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="step-2-assign-each-point-to-nearest-centroid" class="level3" data-number="13.3.8">
+<h3 data-number="13.3.8" class="anchored" data-anchor-id="step-2-assign-each-point-to-nearest-centroid"><span class="header-section-number">13.3.8</span> Step 2: Assign each point to nearest centroid</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb513"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb513-1"><a href="#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> pairwise_distances</span>
+<span id="cb513-2"><a href="#cb513-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb513-3"><a href="#cb513-3" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> pairwise_distances(df_scaled, centroids)</span>
+<span id="cb513-4"><a href="#cb513-4" aria-hidden="true" tabindex="-1"></a>dists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[3.14571656, 2.48087444, 0.27470259],
+       [2.90116647, 2.13102189, 0.49871973],
+       [2.52077957, 1.51025296, 1.11590868],
+       [3.19392265, 2.06552264, 0.87316442],
+       [2.81274261, 1.9075456 , 0.71449578],
+       [3.1764848 , 2.4975815 , 0.23807557],
+       [2.71456585, 1.63798352, 1.04240842],
+       [2.80319361, 2.27136382, 0.64494334],
+       [2.90630831, 1.92682066, 0.7376508 ],
+       [3.49720727, 2.1838354 , 1.33321111],
+       [3.40899949, 2.49052337, 0.3394597 ],
+       [2.8030077 , 1.70076609, 1.0204599 ],
+       [2.09402248, 1.18039119, 1.45339919],
+       [3.80616141, 2.8133525 , 0.62400869],
+       [1.58251445, 1.29451806, 1.79704494],
+       [3.62955434, 3.03471394, 0.50152842],
+       [3.40054812, 2.66739235, 0.07376508],
+       [3.41993876, 2.36680437, 0.6509254 ],
+       [3.14537384, 2.31637366, 0.30621607],
+       [3.2308687 , 2.56947058, 0.23108715],
+       [3.57261646, 2.545249  , 0.60102486],
+       [2.83767337, 2.23690357, 0.56768799],
+       [2.70597678, 1.9829406 , 0.68254732],
+       [3.70435485, 3.15542516, 0.64544292],
+       [2.97643864, 2.44321684, 0.5358771 ],
+       [3.2086974 , 2.64425557, 0.40868928],
+       [3.55429789, 2.83705552, 0.22653758],
+       [2.83710097, 2.00765138, 0.60931357],
+       [2.75250199, 2.15015197, 0.64123852],
+       [3.21209717, 2.01812372, 1.02423252],
+       [2.69663783, 1.58571599, 1.11116448],
+       [2.89761136, 1.96086504, 0.67961274],
+       [2.73380937, 2.35165691, 0.84544633],
+       [3.37932763, 2.61609502, 0.        ],
+       [2.92344566, 2.23181736, 0.45637618],
+       [3.52045938, 2.67092446, 0.21374617],
+       [2.4331064 , 1.45770717, 1.15939235],
+       [3.48057192, 2.50804395, 0.46206709],
+       [1.83767121, 1.16090162, 1.60182007],
+       [3.34263426, 2.44485751, 0.30621607],
+       [2.76202677, 1.87697165, 0.74008912],
+       [2.80319361, 2.27136382, 0.64494334],
+       [3.37934582, 2.30433313, 0.70670824],
+       [2.28206485, 1.59177931, 1.11868431],
+       [2.88499473, 2.12211118, 0.51166528],
+       [2.73820558, 1.95277621, 0.67808888],
+       [3.55350001, 2.44143341, 0.80018624],
+       [2.13614313, 1.03859698, 1.57877648],
+       [3.70967554, 2.65160444, 0.711419  ],
+       [2.43127976, 1.65408531, 0.99743945],
+       [2.98239665, 2.17733968, 0.43975325],
+       [2.51324159, 1.59778108, 1.01837911],
+       [3.55437923, 2.72860725, 0.20144856],
+       [3.01606856, 1.89512354, 0.92892278],
+       [3.55930938, 2.59789299, 0.45029795],
+       [2.34573081, 1.40915778, 1.2082625 ],
+       [3.24364245, 2.37894593, 0.28582239],
+       [2.45352185, 1.61435508, 1.01422887],
+       [3.47256115, 2.56909421, 0.30699917],
+       [2.36902455, 1.57385492, 1.07444376],
+       [3.37298797, 2.15203125, 1.07175625],
+       [2.57535974, 1.87210608, 0.81304073],
+       [3.39671873, 2.31775695, 0.71449578],
+       [2.20028806, 1.1783299 , 1.43778443],
+       [3.81630814, 2.65750544, 0.98861491],
+       [2.74515762, 1.86702836, 0.74932147],
+       [2.62555554, 1.53586354, 1.13268789],
+       [1.52160193, 1.07745158, 1.88738877],
+       [3.46630721, 2.37210655, 0.74932147],
+       [2.085763  , 1.2918155 , 1.38117217],
+       [2.51501911, 1.69464714, 0.93585467],
+       [3.3410378 , 2.47981619, 0.22653758],
+       [3.41936177, 2.43059735, 0.49954765],
+       [2.20663706, 1.34086178, 1.29611361],
+       [3.64518594, 2.54350203, 0.792858  ],
+       [2.04498368, 1.21841267, 1.44600246],
+       [3.33469704, 2.36946028, 0.45932411],
+       [3.47707166, 2.29444721, 0.9720418 ],
+       [3.13090842, 2.08442741, 0.71666499],
+       [2.36847567, 1.47120095, 1.1497995 ],
+       [3.32728762, 2.26447287, 0.68575366],
+       [3.2479172 , 2.2386349 , 0.58584264],
+       [3.00929134, 2.07311071, 0.58584264],
+       [2.88060478, 1.94997381, 0.68575366],
+       [3.26684487, 1.88080709, 1.54038203],
+       [2.27087471, 0.90220317, 1.8308047 ],
+       [3.84647324, 2.81589524, 0.71857689],
+       [2.88499473, 2.12211118, 0.51166528],
+       [3.41936177, 2.43059735, 0.49954765],
+       [2.33567327, 0.85498469, 2.01634239],
+       [3.0170858 , 2.04008089, 0.64958657],
+       [2.50146307, 1.45339919, 1.18039119],
+       [4.20470736, 3.28828035, 0.85153198],
+       [2.10261542, 1.4753016 , 1.29212227],
+       [3.5130374 , 2.3519569 , 0.91898538],
+       [2.29364477, 1.00259481, 1.69084632],
+       [3.29299185, 2.48608161, 0.14407982],
+       [3.06850459, 2.0755294 , 0.64414256],
+       [2.98281193, 1.90538573, 0.85922548],
+       [2.93917766, 2.23999233, 0.44029273],
+       [2.76218819, 1.52441214, 1.29917314],
+       [2.99997394, 2.02845775, 0.65242007],
+       [3.30075423, 2.56854931, 0.09156753],
+       [1.97100783, 1.13268789, 1.53586354],
+       [2.86429186, 1.64055787, 1.21819146],
+       [1.75894614, 1.50235454, 1.63004632],
+       [2.66876605, 1.69049368, 0.93976301],
+       [2.14692859, 1.20443933, 1.42013543],
+       [2.73509062, 1.81754471, 0.80295956],
+       [2.07978432, 1.23155444, 1.42167617],
+       [2.98688415, 2.09807881, 0.53266094],
+       [2.99760623, 1.71931153, 1.28737363],
+       [3.45448018, 2.39329636, 0.66921713],
+       [2.54243643, 1.8068768 , 0.85885026],
+       [3.41936177, 2.43059735, 0.49954765],
+       [2.93644815, 1.69920413, 1.21488321],
+       [3.19791812, 2.73051476, 0.59528773],
+       [2.22627884, 0.99743945, 1.65408531],
+       [3.61592617, 2.60872287, 0.56641772],
+       [2.40103016, 1.25402197, 1.39862735],
+       [2.87194714, 1.90405827, 0.74758653],
+       [2.31087147, 1.3909519 , 1.22917725],
+       [2.83764266, 1.88173351, 0.75916112],
+       [1.75815385, 0.24699217, 2.38978315],
+       [2.94872501, 1.99419101, 0.66388572],
+       [1.98854128, 1.13874168, 1.52369588],
+       [3.17628527, 2.05175627, 0.86989342],
+       [2.96136042, 1.68860658, 1.28633114],
+       [3.09972435, 2.20949367, 0.4384029 ],
+       [2.5111153 , 1.74213609, 0.90797803],
+       [3.42736217, 2.3114079 , 0.80295956],
+       [2.46176032, 1.25447646, 1.43873233],
+       [3.34263426, 2.44485751, 0.30621607],
+       [2.66876605, 1.69049368, 0.93976301],
+       [2.58222119, 1.63758726, 0.98080063],
+       [2.68987839, 1.97506016, 0.69689205],
+       [4.1030323 , 2.94898849, 1.12460096],
+       [2.5775507 , 1.77493955, 0.857836  ],
+       [3.10881459, 2.0335918 , 0.78792935],
+       [3.01559612, 2.23862032, 0.38396588],
+       [2.82968294, 1.91797836, 0.70670824],
+       [3.43956676, 2.54627793, 0.2819425 ],
+       [3.28355605, 2.07708935, 1.04240842],
+       [3.00035703, 1.91827951, 0.85824909],
+       [3.4533263 , 2.45558209, 0.51929849],
+       [2.21612977, 1.0377647 , 1.59764853],
+       [1.42140001, 0.17964422, 2.64923861],
+       [1.89790281, 1.55789547, 4.17326537],
+       [0.94888009, 0.65671121, 2.90281524],
+       [1.12860247, 0.97802779, 3.48523349],
+       [1.29540097, 0.4890139 , 3.04241158],
+       [1.3308011 , 0.27767533, 2.63640751],
+       [1.54410821, 0.08029596, 2.57600301],
+       [1.59736495, 0.57065816, 3.18594448],
+       [1.88971816, 0.40868928, 2.25669931],
+       [1.41990536, 0.36305861, 2.95653812],
+       [2.39544199, 0.80034339, 2.43424763],
+       [1.13884494, 0.75232284, 3.25781943],
+       [1.60001214, 0.15310804, 2.76648919],
+       [1.0950401 , 0.59037244, 3.0233043 ],
+       [1.45469661, 0.1802705 , 2.5591384 ],
+       [1.15189765, 0.83152204, 3.3478841 ],
+       [2.13614313, 0.60320588, 2.2233687 ],
+       [1.38824961, 0.97477859, 3.56123262],
+       [1.36709853, 0.2819425 , 2.54627793],
+       [1.4994438 , 0.95991471, 3.56585115],
+       [1.10821083, 1.01107553, 3.50920856],
+       [1.6961908 , 0.21514764, 2.79087102],
+       [1.40362451, 0.24856766, 2.80802862],
+       [1.49974113, 0.29416772, 2.90533105],
+       [2.06856724, 0.47262196, 2.61620304],
+       [1.53204299, 0.27040574, 2.88540747],
+       [1.26501165, 0.52218104, 3.06459843],
+       [1.03428362, 0.56768799, 2.83944434],
+       [1.24886912, 1.04857219, 3.59485044],
+       [1.66277594, 0.81147693, 3.42617203],
+       [1.98028066, 0.4890139 , 2.21583105],
+       [1.54495844, 0.35774704, 2.31043889],
+       [2.10693018, 2.93408338, 5.33777869],
+       [1.34094461, 0.91482106, 3.49306994],
+       [1.42167617, 0.81866445, 3.41730924],
+       [2.07641059, 0.48148294, 2.46310889],
+       [1.94372732, 0.52120421, 2.98726315],
+       [1.75293987, 0.36054099, 2.25741839],
+       [0.90480882, 0.70181226, 2.80258368],
+       [1.98944159, 0.53973118, 2.14348734],
+       [1.59764853, 1.22971619, 3.83595672],
+       [1.5436233 , 0.14407982, 2.50650327],
+       [1.06204238, 0.85498469, 3.32930432],
+       [1.33321111, 1.20527395, 3.76352965],
+       [2.00558056, 0.46206709, 2.79725469],
+       [1.50801469, 0.15310804, 2.52729077],
+       [1.53108035, 1.34350012, 3.93270398],
+       [1.6754944 , 0.09013525, 2.6487182 ],
+       [1.67959936, 0.21436679, 2.79992931],
+       [1.31316912, 0.29352848, 2.64776857],
+       [1.40971249, 0.83187227, 3.4279412 ],
+       [1.57927849, 0.14407982, 2.48608161],
+       [1.55886673, 1.29157102, 3.88914   ],
+       [1.54228207, 0.42933384, 3.04529641],
+       [1.88996853, 0.57281698, 3.09881319],
+       [1.78929758, 0.38396588, 2.23862032],
+       [1.81529304, 0.57427887, 3.13993827],
+       [1.89843283, 0.4645947 , 2.18494135],
+       [1.47157579, 1.28145606, 3.86468023],
+       [1.5169306 , 0.28640849, 2.38970659],
+       [1.75908357, 0.66866774, 3.26342576],
+       [1.56654312, 0.16972985, 2.78581864],
+       [1.86361334, 2.14954642, 4.70300908],
+       [1.72894521, 0.51211626, 3.10290969],
+       [1.91058379, 1.53752593, 4.15344853],
+       [1.86483646, 1.44766424, 4.06366573],
+       [2.12195028, 0.6509254 , 2.98890467],
+       [1.38464936, 1.27763543, 3.84217976],
+       [1.32138096, 0.53973118, 3.11062498],
+       [1.73141106, 0.67961274, 3.28125914],
+       [1.49973534, 0.84582749, 3.45511565],
+       [1.54228207, 0.42933384, 3.04529641],
+       [1.51937074, 0.36054099, 2.97522236],
+       [1.99911161, 1.42899156, 4.03948317],
+       [1.13537598, 0.47262196, 2.70002426],
+       [1.15845135, 1.22239567, 3.72538053],
+       [1.67959936, 0.21436679, 2.79992931],
+       [1.99117457, 0.78601158, 3.30817062],
+       [0.94841636, 0.71422672, 3.05650654],
+       [1.15786419, 1.48352353, 3.95162184],
+       [1.22399139, 0.40289713, 2.85093055],
+       [1.50135832, 1.22799667, 3.82069178],
+       [1.65248084, 0.05494052, 2.58728357],
+       [1.71625107, 1.53586354, 4.13795578],
+       [2.06981998, 0.54081149, 2.84924796],
+       [1.01253327, 1.19656934, 3.64483361],
+       [1.20730004, 0.42121063, 2.86249467],
+       [1.80469511, 1.80307459, 4.39439767],
+       [1.43884735, 0.60102486, 3.20578913],
+       [1.66063313, 1.71770051, 4.292784  ],
+       [1.54811175, 0.05494052, 2.64573372],
+       [1.54267495, 1.16420612, 3.76698733],
+       [1.769235  , 0.19198294, 2.67527445],
+       [1.57993617, 1.43266279, 4.02283382],
+       [1.08701221, 0.82055633, 3.30524193],
+       [1.71363376, 0.77943336, 3.38877007],
+       [0.94485908, 0.87006426, 2.5264959 ],
+       [1.49517306, 1.42491085, 3.99967619],
+       [1.35617776, 0.78448896, 3.37010777],
+       [1.70123599, 2.26868422, 4.74453685],
+       [1.35710401, 0.42439006, 2.99888759],
+       [1.8303898 , 1.34804705, 3.96413907],
+       [1.41990536, 0.36305861, 2.95653812],
+       [2.19032903, 0.65671121, 2.20405203],
+       [1.00054599, 1.58281855, 3.96805515],
+       [1.88023759, 0.45029795, 2.19359685],
+       [1.02940547, 0.57272287, 2.77500299],
+       [0.95898918, 1.01182483, 3.44032904],
+       [1.84394718, 1.47826906, 4.0933925 ],
+       [1.9184949 , 0.31942452, 2.52901514],
+       [1.82355226, 1.72784648, 4.32888389],
+       [1.5882424 , 0.40147978, 3.01624822],
+       [1.81026172, 2.22292956, 4.74662217],
+       [1.48878144, 0.97223894, 3.57632286],
+       [1.32087818, 0.39316333, 2.94129756],
+       [1.41990536, 0.36305861, 2.95653812],
+       [1.34086178, 1.19057546, 3.75206099],
+       [1.60020405, 0.        , 2.61609502],
+       [0.87260304, 0.86369569, 3.20974706],
+       [1.58312398, 1.44880674, 1.80952888],
+       [0.90797803, 1.44216397, 2.5111153 ],
+       [0.94740491, 1.75817988, 2.65143009],
+       [1.91730631, 1.71532544, 1.51349545],
+       [0.59012064, 1.74223013, 2.99235908],
+       [1.60020405, 1.00037837, 1.84737291],
+       [2.35770405, 2.43507483, 1.57133895],
+       [0.6993596 , 1.54815818, 2.75716205],
+       [1.54826613, 1.2235483 , 1.83500133],
+       [0.64227355, 1.49957414, 2.78755043],
+       [1.52709382, 1.38165342, 1.85791936],
+       [0.85233724, 1.75251588, 2.74420783],
+       [1.85993561, 1.9572602 , 1.74503634],
+       [0.396429  , 1.47262762, 2.99948226],
+       [1.75670399, 1.57724147, 1.65046717],
+       [0.61930645, 1.24896327, 2.76106761],
+       [0.81866445, 1.42167617, 2.59162643],
+       [1.90267008, 3.2251685 , 3.73595517],
+       [1.68508198, 1.58730973, 1.73516444],
+       [1.06335139, 1.41852776, 2.34812492],
+       [2.6595624 , 2.27370045, 0.87904828],
+       [1.35617776, 1.61769488, 2.1202107 ],
+       [2.28306953, 1.82355226, 1.11156568],
+       [1.00861703, 1.67964639, 2.53046397],
+       [1.43576048, 1.24541854, 1.94372732],
+       [0.63422336, 1.64305994, 2.87430755],
+       [0.65535762, 1.29512355, 2.72476864],
+       [0.81502316, 1.16420612, 2.56760795],
+       [1.64055787, 1.51657455, 1.76289755],
+       [0.12819454, 1.47897602, 3.26951421],
+       [2.64175635, 1.95225895, 0.74097652],
+       [0.31325434, 1.82604178, 3.35919873],
+       [2.39007631, 1.85355992, 0.99452032],
+       [0.47962373, 1.24169704, 2.9143474 ],
+       [0.99743945, 1.46790988, 2.43127976],
+       [1.17949   , 1.01995878, 2.22292956],
+       [1.29540097, 1.2918155 , 2.08676827],
+       [0.45067624, 1.25349173, 3.35389279],
+       [1.52441214, 1.46263021, 1.87578109],
+       [0.        , 1.60020405, 3.37932763],
+       [0.89822111, 0.71043565, 2.94155076],
+       [1.85514861, 1.79575263, 1.63227332],
+       [0.80018624, 1.54815221, 2.66109834],
+       [1.60001214, 1.14460889, 1.80054511],
+       [0.80018624, 1.54815221, 2.66109834],
+       [0.57113023, 1.29212227, 2.80822015],
+       [1.2395695 , 1.81011463, 2.37780588],
+       [0.96402428, 0.69591322, 3.04391675],
+       [1.33733549, 2.12657709, 2.58142912],
+       [0.84221766, 1.30783427, 2.54312183],
+       [1.07786533, 1.07002611, 2.3134231 ],
+       [0.4791649 , 1.38095336, 2.90334691],
+       [1.66605198, 1.36074076, 1.71339068],
+       [0.53232044, 1.19503816, 2.86823815],
+       [2.39007631, 1.85355992, 0.99452032],
+       [0.61923965, 1.67099135, 2.90794892],
+       [1.81967598, 1.50056756, 1.56453542],
+       [0.78233104, 0.98861491, 2.65750544],
+       [0.64123852, 1.16148676, 2.75250199],
+       [1.64649592, 1.28828512, 1.73475021],
+       [0.30160294, 1.29975131, 3.17008936],
+       [1.67709631, 1.66939536, 1.77917737],
+       [1.59720678, 1.21819146, 1.78919383],
+       [0.44479434, 1.97383579, 3.81587029],
+       [1.84385413, 0.77943336, 1.84910152],
+       [1.11596137, 1.57877648, 2.35898   ],
+       [0.61003513, 1.03546578, 3.18399174],
+       [0.78448896, 1.35617776, 2.60771356]])</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-assign-each-point-to-nearest-centroid-1" class="level3" data-number="13.3.9">
+<h3 data-number="13.3.9" class="anchored" data-anchor-id="step-2-assign-each-point-to-nearest-centroid-1"><span class="header-section-number">13.3.9</span> Step 2: Assign each point to nearest centroid</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb515"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb515-1"><a href="#cb515-1" aria-hidden="true" tabindex="-1"></a>closest_centroid <span class="op">=</span> dists.argsort()[:,<span class="dv">1</span>]</span>
+<span id="cb515-2"><a href="#cb515-2" aria-hidden="true" tabindex="-1"></a>closest_centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
+       1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,
+       1, 0, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,
+       1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2,
+       1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 1, 2,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+       0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 2, 1, 1, 1, 0, 1, 1,
+       1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1,
+       0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 0, 1, 0, 0, 1, 0,
+       1, 1, 1])</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-assign-each-point-to-nearest-centroid-2" class="level3" data-number="13.3.10">
+<h3 data-number="13.3.10" class="anchored" data-anchor-id="step-2-assign-each-point-to-nearest-centroid-2"><span class="header-section-number">13.3.10</span> Step 2: Assign each point to nearest centroid</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb517"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb517-1"><a href="#cb517-1" aria-hidden="true" tabindex="-1"></a>df_scaled.index <span class="op">=</span> centroids.index[closest_centroid]</span>
+<span id="cb517-2"><a href="#cb517-2" aria-hidden="true" tabindex="-1"></a>df_scaled.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        bill_length_mm  flipper_length_mm
+purple       -0.896042          -1.426752
+purple       -0.822788          -1.069474
+purple       -0.676280          -0.426373
+purple       -1.335566          -0.569284
+purple       -0.859415          -0.783651</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-assign-each-point-to-nearest-centroid-3" class="level3" data-number="13.3.11">
+<h3 data-number="13.3.11" class="anchored" data-anchor-id="step-2-assign-each-point-to-nearest-centroid-3"><span class="header-section-number">13.3.11</span> Step 2: Assign each point to nearest centroid</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb519"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb519-1"><a href="#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb519-2"><a href="#cb519-2" aria-hidden="true" tabindex="-1"></a>(ggplot(df_scaled, aes(x <span class="op">=</span> <span class="st">"bill_length_mm"</span>, y <span class="op">=</span> <span class="st">"flipper_length_mm"</span>))</span>
+<span id="cb519-3"><a href="#cb519-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> df_scaled.index)</span>
+<span id="cb519-4"><a href="#cb519-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(centroids, color <span class="op">=</span> centroids.index, size <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb519-5"><a href="#cb519-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:1: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-280-5.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="step-3-find-new-centroids" class="level3" data-number="13.3.12">
+<h3 data-number="13.3.12" class="anchored" data-anchor-id="step-3-find-new-centroids"><span class="header-section-number">13.3.12</span> Step 3: Find new centroids</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb521"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb521-1"><a href="#cb521-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> df_scaled.groupby(df_scaled.index).mean()</span>
+<span id="cb521-2"><a href="#cb521-2" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        bill_length_mm  flipper_length_mm
+green        -0.267889          -0.215579
+orange        0.533375           0.846396
+purple       -0.364340          -0.601439</code></pre>
+</div>
+</div>
+</section>
+<section id="step-3-find-new-centroids-1" class="level3" data-number="13.3.13">
+<h3 data-number="13.3.13" class="anchored" data-anchor-id="step-3-find-new-centroids-1"><span class="header-section-number">13.3.13</span> Step 3: Find new centroids</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb523"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb523-1"><a href="#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb523-2"><a href="#cb523-2" aria-hidden="true" tabindex="-1"></a>(ggplot(df_scaled, aes(x <span class="op">=</span> <span class="st">"bill_length_mm"</span>, y <span class="op">=</span> <span class="st">"flipper_length_mm"</span>))</span>
+<span id="cb523-3"><a href="#cb523-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(color <span class="op">=</span> df_scaled.index)</span>
+<span id="cb523-4"><a href="#cb523-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point(centroids, color <span class="op">=</span> centroids.index, size <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb523-5"><a href="#cb523-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:1: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-282-7.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="step-4-repeat-over-and-over" class="level3" data-number="13.3.14">
+<h3 data-number="13.3.14" class="anchored" data-anchor-id="step-4-repeat-over-and-over"><span class="header-section-number">13.3.14</span> Step 4: Repeat over and over!</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb525"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb525-1"><a href="#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">3</span>):</span>
+<span id="cb525-2"><a href="#cb525-2" aria-hidden="true" tabindex="-1"></a>  dists <span class="op">=</span> pairwise_distances(df_scaled, centroids)</span>
+<span id="cb525-3"><a href="#cb525-3" aria-hidden="true" tabindex="-1"></a>  df_scaled.index <span class="op">=</span> centroids.index[closest_centroid]</span>
+<span id="cb525-4"><a href="#cb525-4" aria-hidden="true" tabindex="-1"></a>  centroids <span class="op">=</span> df_scaled.groupby(df_scaled.index).mean()</span>
+<span id="cb525-5"><a href="#cb525-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(centroids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        bill_length_mm  flipper_length_mm
+green         0.533375           0.846396
+orange       -0.364340          -0.601439
+purple       -0.267889          -0.215579
+        bill_length_mm  flipper_length_mm
+green         0.533375           0.846396
+orange       -0.364340          -0.601439
+purple       -0.267889          -0.215579</code></pre>
+</div>
+</div>
+</section>
+<section id="k-means-in-sklearn" class="level3" data-number="13.3.15">
+<h3 data-number="13.3.15" class="anchored" data-anchor-id="k-means-in-sklearn"><span class="header-section-number">13.3.15</span> K-means in sklearn</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb527"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb527-1"><a href="#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb527-2"><a href="#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb527-3"><a href="#cb527-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb527-4"><a href="#cb527-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-5"><a href="#cb527-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb527-6"><a href="#cb527-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-7"><a href="#cb527-7" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> make_pipeline(</span>
+<span id="cb527-8"><a href="#cb527-8" aria-hidden="true" tabindex="-1"></a>    StandardScaler(),</span>
+<span id="cb527-9"><a href="#cb527-9" aria-hidden="true" tabindex="-1"></a>   model</span>
+<span id="cb527-10"><a href="#cb527-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb527-11"><a href="#cb527-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-12"><a href="#cb527-12" aria-hidden="true" tabindex="-1"></a>pipeline.fit(df_penguins[[<span class="st">"bill_length_mm"</span>, <span class="st">"flipper_length_mm"</span>]].dropna())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-29 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-29 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-29 pre {
+  padding: 0;
+}
+
+#sk-container-id-29 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-29 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-29 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-29 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-29 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-29 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-29 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-29 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-29 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-29 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-29 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-29 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-29 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-29 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-29 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-29 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-29 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-29 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-29 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-29 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-29 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-29 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-29 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-29 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-29 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-29 div.sk-label label.sk-toggleable__label,
+#sk-container-id-29 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-29 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-29 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-29 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-29 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-29 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-29 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-29 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-29 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-29 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-29 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-29 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-29 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-29" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
+                ('kmeans', KMeans(n_clusters=3))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-89" type="checkbox"><label for="sk-estimator-id-89" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
+                ('kmeans', KMeans(n_clusters=3))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-90" type="checkbox"><label for="sk-estimator-id-90" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-91" type="checkbox"><label for="sk-estimator-id-91" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KMeans<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3)</pre></div> </div></div></div></div></div></div>
+</div>
+</div>
+</section>
+<section id="k-means-in-sklearn-1" class="level3" data-number="13.3.16">
+<h3 data-number="13.3.16" class="anchored" data-anchor-id="k-means-in-sklearn-1"><span class="header-section-number">13.3.16</span> K-means in sklearn</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb528"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb528-1"><a href="#cb528-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> model.cluster_centers_</span>
+<span id="cb528-2"><a href="#cb528-2" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> model.labels_</span>
+<span id="cb528-3"><a href="#cb528-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-4"><a href="#cb528-4" aria-hidden="true" tabindex="-1"></a>clusters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+       0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0,
+       0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 2, 0], dtype=int32)</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-k-means" class="level3" data-number="13.3.17">
+<h3 data-number="13.3.17" class="anchored" data-anchor-id="interpreting-k-means"><span class="header-section-number">13.3.17</span> Interpreting K-Means</h3>
+<p>The key takeaway here is the <strong>cluster centers</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb530"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb530-1"><a href="#cb530-1" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 0.9235766 , -0.37501448],
+       [-0.96427851, -0.80518575],
+       [ 0.66403058,  1.15087842]])</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Cluster 1 has medium bill, long flipper</p></li>
+<li><p>Cluster 2 has short bill, short flipper</p></li>
+<li><p>Cluster 3 has long bill, shortish flipper</p></li>
+</ul>
+</section>
+<section id="interpreting-k-means-1" class="level3" data-number="13.3.18">
+<h3 data-number="13.3.18" class="anchored" data-anchor-id="interpreting-k-means-1"><span class="header-section-number">13.3.18</span> Interpreting K-Means</h3>
+<p>We also might check if these clusters match any labels that we already know:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb532"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb532-1"><a href="#cb532-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb532-2"><a href="#cb532-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cluster"</span>: clusters,</span>
+<span id="cb532-3"><a href="#cb532-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"species"</span>: df_penguins[<span class="st">'species'</span>]</span>
+<span id="cb532-4"><a href="#cb532-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb532-5"><a href="#cb532-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-6"><a href="#cb532-6" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     cluster    species
+0          1     Adelie
+1          1     Adelie
+2          1     Adelie
+4          1     Adelie
+5          1     Adelie
+..       ...        ...
+339        0  Chinstrap
+340        0  Chinstrap
+341        0  Chinstrap
+342        2  Chinstrap
+343        0  Chinstrap
+
+[333 rows x 2 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-k-means-2" class="level3" data-number="13.3.19">
+<h3 data-number="13.3.19" class="anchored" data-anchor-id="interpreting-k-means-2"><span class="header-section-number">13.3.19</span> Interpreting K-Means</h3>
+<p>We also might check if these clusters match any labels that we already know:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb534"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb534-1"><a href="#cb534-1" aria-hidden="true" tabindex="-1"></a>results.value_counts([<span class="st">"cluster"</span>, <span class="st">"species"</span>]).unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>species  Adelie  Chinstrap  Gentoo
+cluster                           
+0           4.0       59.0     1.0
+1         141.0        5.0     NaN
+2           1.0        4.0   118.0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="your-turn-3" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="your-turn-3"><span class="header-section-number">13.4</span> Your Turn</h2>
+<section id="activity-12" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="activity-12"><span class="header-section-number">13.4.1</span> Activity</h3>
+<ul>
+<li><p>Fit a 3-means model using <em>all</em> the numeric predictors in the penguins data.</p></li>
+<li><p>Describe each cluster</p></li>
+<li><p>Do these clusters match up to the species?</p></li>
+<li><p>Then fit a 6-means model</p></li>
+<li><p>Do those clusters match up to species and island?</p></li>
+</ul>
+</section>
+</section>
+<section id="takeaways-15" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="takeaways-15"><span class="header-section-number">13.5</span> Takeaways</h2>
+<section id="takeaways-16" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="takeaways-16"><span class="header-section-number">13.5.1</span> Takeaways</h3>
+<ul>
+<li><p><strong>unsupervised learning</strong> is a way to find <em>structure</em> in data</p></li>
+<li><p><strong>k-means</strong> is the most common <strong>clustering method</strong></p></li>
+<li><p>We <strong>have to choose K ahead of time</strong></p></li>
+<li><p>(This is a big problem! Why can’t we tune?)</p></li>
 </ul>
 </section>
 </section>

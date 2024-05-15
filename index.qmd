@@ -108,3 +108,14 @@ editor: visual
 :::
 
 {{< include 12-logistic.qmd >}}
+
+
+::: lectitle
+# Clustering with K-Means
+
+[Slides](slides-13-kmeans.html)
+:::
+
+{{< include 13-kmeans.qmd >}}
+
+
