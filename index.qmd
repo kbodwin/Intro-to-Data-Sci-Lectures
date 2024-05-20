@@ -8,6 +8,8 @@ format:
     number-sections: true
     css: styles.css
 editor: visual
+execute:
+  cache: true
 ---
 
 
@@ -117,5 +119,13 @@ editor: visual
 :::
 
 {{< include 13-kmeans.qmd >}}
+
+::: lectitle
+# Merging Data
+
+[Slides](slides-14-merge.html)
+:::
+
+{{< include 14-merge.qmd >}}
 
 

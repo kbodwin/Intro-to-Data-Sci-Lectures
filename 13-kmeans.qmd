@@ -150,7 +150,7 @@ df_scaled.head()
 ### Step 1: Choose 3 random points to be centroids
 
 ```{python}
-centroids = df_scaled.sample(3)
+centroids = df_scaled.sample(3, random_state=1234)
 centroids.index = ["orange", "purple", "green"]
 
 centroids
@@ -179,7 +179,7 @@ dists
 ### Step 2:  Assign each point to nearest centroid
 
 ```{python}
-closest_centroid = dists.argsort()[:,1]
+closest_centroid = dists.argsort()[:,0]
 closest_centroid
 ```
 
@@ -236,11 +236,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
-model = KMeans(n_clusters=3)
+model = KMeans(n_clusters=3, random_state=1234)
 
 pipeline = make_pipeline(
     StandardScaler(),
-   model
+    model
 )
 
 pipeline.fit(df_penguins[["bill_length_mm", "flipper_length_mm"]].dropna())
@@ -262,11 +262,11 @@ The key takeaway here is the **cluster centers**:
 centroids
 ```
 
-* Cluster 1 has medium bill, long flipper
+* Cluster 1 has long bill, shortish flipper
 
-* Cluster 2 has short bill, short flipper
+* Cluster 2 has longish bill, long flipper
 
-* Cluster 3 has long bill, shortish flipper
+* Cluster 3 has short bill, short flipper
 
 ### Interpreting K-Means
 
