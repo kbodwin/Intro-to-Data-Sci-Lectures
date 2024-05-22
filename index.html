@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Unsupervised Learning with K-Means</title>
+<title>Combining Datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#regression-and-cross-validation" id="toc-regression-and-cross-validation" class="nav-link" data-scroll-target="#regression-and-cross-validation"><span class="header-section-number">10</span> Regression and Cross-Validation</a></li>
   <li><a href="#classification-with-knn" id="toc-classification-with-knn" class="nav-link" data-scroll-target="#classification-with-knn"><span class="header-section-number">11</span> Classification with KNN</a></li>
   <li><a href="#clustering-with-k-means" id="toc-clustering-with-k-means" class="nav-link" data-scroll-target="#clustering-with-k-means"><span class="header-section-number">13</span> Clustering with K-Means</a></li>
+  <li><a href="#merging-data" id="toc-merging-data" class="nav-link" data-scroll-target="#merging-data"><span class="header-section-number">14</span> Merging Data</a></li>
   </ul>
 </nav>
 </div>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Unsupervised Learning with K-Means</h1>
+<h1 class="title">Combining Datasets</h1>
 </div>
 
 
@@ -21806,7 +21807,7 @@ Name: proportion, dtype: float64</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_db8d1b63" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_c964343b" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23417,7 +23418,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.3.4" class="anchored" data-anchor-id="lecture-activity-part-1"><span class="header-section-number">5.3.4</span> (Lecture Activity Part 1)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_17463238" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_85c1b7d3" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -23540,7 +23541,7 @@ Name: 291, dtype: object</code></pre>
 <h3 data-number="5.4.6" class="anchored" data-anchor-id="lecture-activity-part-2"><span class="header-section-number">5.4.6</span> (Lecture Activity Part 2)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8cc6aa69" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_3b2d14e3" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -24492,7 +24493,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <h3 data-number="5.5.9" class="anchored" data-anchor-id="lecture-activity-part-3"><span class="header-section-number">5.5.9</span> (Lecture Activity Part 3)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_703c8844" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_ae102fbd" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -24522,7 +24523,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <h3 data-number="5.6.3" class="anchored" data-anchor-id="lecture-activity-part-4"><span class="header-section-number">5.6.3</span> (Lecture Activity Part 4)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c26c333e" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_931d45a9" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -27350,15 +27351,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-8" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"><label for="sk-estimator-id-26" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"><label for="sk-estimator-id-27" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox"><label for="sk-estimator-id-28" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox"><label for="sk-estimator-id-29" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox"><label for="sk-estimator-id-30" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb263"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>preproc.set_output(transform <span class="op">=</span> <span class="st">"pandas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -27768,15 +27769,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-9" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;)])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox"><label for="sk-estimator-id-31" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('standardscaler', StandardScaler(),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;),
                                 ('onehotencoder',
                                  OneHotEncoder(sparse_output=False),
-                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32a9e2720&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x32ee1fe60&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;)])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox"><label for="sk-estimator-id-32" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">standardscaler</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x330055c70&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox"><label for="sk-estimator-id-33" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox"><label for="sk-estimator-id-34" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x331104ce0&gt;</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-35" type="checkbox"><label for="sk-estimator-id-35" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-36" type="checkbox"><label for="sk-estimator-id-36" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-37" type="checkbox"><label for="sk-estimator-id-37" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb264"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>df_transformed <span class="op">=</span> preproc.transform(df[features])</span>
 <span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a>df_transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -35265,7 +35266,7 @@ Name: age, dtype: float64</code></pre>
 <span id="cb402-15"><a href="#cb402-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb402-16"><a href="#cb402-16" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_test, pred_y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>110.24346713205892</code></pre>
+<pre><code>7.388780414941717</code></pre>
 </div>
 </div>
 </section>
@@ -35286,7 +35287,7 @@ Name: age, dtype: float64</code></pre>
 <span id="cb404-12"><a href="#cb404-12" aria-hidden="true" tabindex="-1"></a>pred_y_test <span class="op">=</span> pipeline.predict(X<span class="op">=</span>X_test)</span>
 <span id="cb404-13"><a href="#cb404-13" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_test, pred_y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>256.33997456530943</code></pre>
+<pre><code>548.8267296951905</code></pre>
 </div>
 </div>
 </section>
@@ -35850,18 +35851,18 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="sourceCode cell-code" id="cb411"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb411-1"><a href="#cb411-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(grid_cv.cv_results_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    mean_fit_time  std_fit_time  ...  std_test_score  rank_test_score
-0        0.001231      0.000163  ...      219.338831               12
-1        0.001187      0.000085  ...      209.511631                9
-2        0.001214      0.000042  ...      178.819362                6
-3        0.001131      0.000018  ...      217.989122               11
-4        0.001133      0.000044  ...      212.797774                7
-5        0.001124      0.000012  ...      205.240907                3
-6        0.001141      0.000045  ...      227.978005               10
-7        0.001117      0.000015  ...      175.175403                2
-8        0.001134      0.000035  ...      174.981203                5
-9        0.001112      0.000008  ...      175.186322                1
-10       0.001109      0.000007  ...      200.091917                4
-11       0.001122      0.000021  ...      232.710455                8
+0        0.001438      0.000193  ...      219.338831               12
+1        0.001198      0.000039  ...      209.511631                9
+2        0.001249      0.000175  ...      178.819362                6
+3        0.001168      0.000052  ...      217.989122               11
+4        0.001356      0.000190  ...      212.797774                7
+5        0.001375      0.000416  ...      205.240907                3
+6        0.001531      0.000273  ...      227.978005               10
+7        0.001398      0.000127  ...      175.175403                2
+8        0.001338      0.000341  ...      174.981203                5
+9        0.001238      0.000040  ...      175.186322                1
+10       0.001445      0.000219  ...      200.091917                4
+11       0.001295      0.000139  ...      232.710455                8
 
 [12 rows x 15 columns]</code></pre>
 </div>
@@ -38028,15 +38029,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="step-1-choose-3-random-points-to-be-centroids" class="level3" data-number="13.3.6">
 <h3 data-number="13.3.6" class="anchored" data-anchor-id="step-1-choose-3-random-points-to-be-centroids"><span class="header-section-number">13.3.6</span> Step 1: Choose 3 random points to be centroids</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb509"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb509-1"><a href="#cb509-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> df_scaled.sample(<span class="dv">3</span>)</span>
+<div class="sourceCode cell-code" id="cb509"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb509-1"><a href="#cb509-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> df_scaled.sample(<span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span>
 <span id="cb509-2"><a href="#cb509-2" aria-hidden="true" tabindex="-1"></a>centroids.index <span class="op">=</span> [<span class="st">"orange"</span>, <span class="st">"purple"</span>, <span class="st">"green"</span>]</span>
 <span id="cb509-3"><a href="#cb509-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb509-4"><a href="#cb509-4" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        bill_length_mm  flipper_length_mm
-orange        1.741103           0.288183
-purple        0.221082           0.788372
-green        -1.170744          -1.426752</code></pre>
+orange        1.100130           1.217106
+purple        1.503027          -0.283462
+green         0.257709          -0.926562</code></pre>
 </div>
 </div>
 </section>
@@ -38068,364 +38069,364 @@ green        -1.170744          -1.426752</code></pre>
 <span id="cb513-3"><a href="#cb513-3" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> pairwise_distances(df_scaled, centroids)</span>
 <span id="cb513-4"><a href="#cb513-4" aria-hidden="true" tabindex="-1"></a>dists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([[3.14571656, 2.48087444, 0.27470259],
-       [2.90116647, 2.13102189, 0.49871973],
-       [2.52077957, 1.51025296, 1.11590868],
-       [3.19392265, 2.06552264, 0.87316442],
-       [2.81274261, 1.9075456 , 0.71449578],
-       [3.1764848 , 2.4975815 , 0.23807557],
-       [2.71456585, 1.63798352, 1.04240842],
-       [2.80319361, 2.27136382, 0.64494334],
-       [2.90630831, 1.92682066, 0.7376508 ],
-       [3.49720727, 2.1838354 , 1.33321111],
-       [3.40899949, 2.49052337, 0.3394597 ],
-       [2.8030077 , 1.70076609, 1.0204599 ],
-       [2.09402248, 1.18039119, 1.45339919],
-       [3.80616141, 2.8133525 , 0.62400869],
-       [1.58251445, 1.29451806, 1.79704494],
-       [3.62955434, 3.03471394, 0.50152842],
-       [3.40054812, 2.66739235, 0.07376508],
-       [3.41993876, 2.36680437, 0.6509254 ],
-       [3.14537384, 2.31637366, 0.30621607],
-       [3.2308687 , 2.56947058, 0.23108715],
-       [3.57261646, 2.545249  , 0.60102486],
-       [2.83767337, 2.23690357, 0.56768799],
-       [2.70597678, 1.9829406 , 0.68254732],
-       [3.70435485, 3.15542516, 0.64544292],
-       [2.97643864, 2.44321684, 0.5358771 ],
-       [3.2086974 , 2.64425557, 0.40868928],
-       [3.55429789, 2.83705552, 0.22653758],
-       [2.83710097, 2.00765138, 0.60931357],
-       [2.75250199, 2.15015197, 0.64123852],
-       [3.21209717, 2.01812372, 1.02423252],
-       [2.69663783, 1.58571599, 1.11116448],
-       [2.89761136, 1.96086504, 0.67961274],
-       [2.73380937, 2.35165691, 0.84544633],
-       [3.37932763, 2.61609502, 0.        ],
-       [2.92344566, 2.23181736, 0.45637618],
-       [3.52045938, 2.67092446, 0.21374617],
-       [2.4331064 , 1.45770717, 1.15939235],
-       [3.48057192, 2.50804395, 0.46206709],
-       [1.83767121, 1.16090162, 1.60182007],
-       [3.34263426, 2.44485751, 0.30621607],
-       [2.76202677, 1.87697165, 0.74008912],
-       [2.80319361, 2.27136382, 0.64494334],
-       [3.37934582, 2.30433313, 0.70670824],
-       [2.28206485, 1.59177931, 1.11868431],
-       [2.88499473, 2.12211118, 0.51166528],
-       [2.73820558, 1.95277621, 0.67808888],
-       [3.55350001, 2.44143341, 0.80018624],
-       [2.13614313, 1.03859698, 1.57877648],
-       [3.70967554, 2.65160444, 0.711419  ],
-       [2.43127976, 1.65408531, 0.99743945],
-       [2.98239665, 2.17733968, 0.43975325],
-       [2.51324159, 1.59778108, 1.01837911],
-       [3.55437923, 2.72860725, 0.20144856],
-       [3.01606856, 1.89512354, 0.92892278],
-       [3.55930938, 2.59789299, 0.45029795],
-       [2.34573081, 1.40915778, 1.2082625 ],
-       [3.24364245, 2.37894593, 0.28582239],
-       [2.45352185, 1.61435508, 1.01422887],
-       [3.47256115, 2.56909421, 0.30699917],
-       [2.36902455, 1.57385492, 1.07444376],
-       [3.37298797, 2.15203125, 1.07175625],
-       [2.57535974, 1.87210608, 0.81304073],
-       [3.39671873, 2.31775695, 0.71449578],
-       [2.20028806, 1.1783299 , 1.43778443],
-       [3.81630814, 2.65750544, 0.98861491],
-       [2.74515762, 1.86702836, 0.74932147],
-       [2.62555554, 1.53586354, 1.13268789],
-       [1.52160193, 1.07745158, 1.88738877],
-       [3.46630721, 2.37210655, 0.74932147],
-       [2.085763  , 1.2918155 , 1.38117217],
-       [2.51501911, 1.69464714, 0.93585467],
-       [3.3410378 , 2.47981619, 0.22653758],
-       [3.41936177, 2.43059735, 0.49954765],
-       [2.20663706, 1.34086178, 1.29611361],
-       [3.64518594, 2.54350203, 0.792858  ],
-       [2.04498368, 1.21841267, 1.44600246],
-       [3.33469704, 2.36946028, 0.45932411],
-       [3.47707166, 2.29444721, 0.9720418 ],
-       [3.13090842, 2.08442741, 0.71666499],
-       [2.36847567, 1.47120095, 1.1497995 ],
-       [3.32728762, 2.26447287, 0.68575366],
-       [3.2479172 , 2.2386349 , 0.58584264],
-       [3.00929134, 2.07311071, 0.58584264],
-       [2.88060478, 1.94997381, 0.68575366],
-       [3.26684487, 1.88080709, 1.54038203],
-       [2.27087471, 0.90220317, 1.8308047 ],
-       [3.84647324, 2.81589524, 0.71857689],
-       [2.88499473, 2.12211118, 0.51166528],
-       [3.41936177, 2.43059735, 0.49954765],
-       [2.33567327, 0.85498469, 2.01634239],
-       [3.0170858 , 2.04008089, 0.64958657],
-       [2.50146307, 1.45339919, 1.18039119],
-       [4.20470736, 3.28828035, 0.85153198],
-       [2.10261542, 1.4753016 , 1.29212227],
-       [3.5130374 , 2.3519569 , 0.91898538],
-       [2.29364477, 1.00259481, 1.69084632],
-       [3.29299185, 2.48608161, 0.14407982],
-       [3.06850459, 2.0755294 , 0.64414256],
-       [2.98281193, 1.90538573, 0.85922548],
-       [2.93917766, 2.23999233, 0.44029273],
-       [2.76218819, 1.52441214, 1.29917314],
-       [2.99997394, 2.02845775, 0.65242007],
-       [3.30075423, 2.56854931, 0.09156753],
-       [1.97100783, 1.13268789, 1.53586354],
-       [2.86429186, 1.64055787, 1.21819146],
-       [1.75894614, 1.50235454, 1.63004632],
-       [2.66876605, 1.69049368, 0.93976301],
-       [2.14692859, 1.20443933, 1.42013543],
-       [2.73509062, 1.81754471, 0.80295956],
-       [2.07978432, 1.23155444, 1.42167617],
-       [2.98688415, 2.09807881, 0.53266094],
-       [2.99760623, 1.71931153, 1.28737363],
-       [3.45448018, 2.39329636, 0.66921713],
-       [2.54243643, 1.8068768 , 0.85885026],
-       [3.41936177, 2.43059735, 0.49954765],
-       [2.93644815, 1.69920413, 1.21488321],
-       [3.19791812, 2.73051476, 0.59528773],
-       [2.22627884, 0.99743945, 1.65408531],
-       [3.61592617, 2.60872287, 0.56641772],
-       [2.40103016, 1.25402197, 1.39862735],
-       [2.87194714, 1.90405827, 0.74758653],
-       [2.31087147, 1.3909519 , 1.22917725],
-       [2.83764266, 1.88173351, 0.75916112],
-       [1.75815385, 0.24699217, 2.38978315],
-       [2.94872501, 1.99419101, 0.66388572],
-       [1.98854128, 1.13874168, 1.52369588],
-       [3.17628527, 2.05175627, 0.86989342],
-       [2.96136042, 1.68860658, 1.28633114],
-       [3.09972435, 2.20949367, 0.4384029 ],
-       [2.5111153 , 1.74213609, 0.90797803],
-       [3.42736217, 2.3114079 , 0.80295956],
-       [2.46176032, 1.25447646, 1.43873233],
-       [3.34263426, 2.44485751, 0.30621607],
-       [2.66876605, 1.69049368, 0.93976301],
-       [2.58222119, 1.63758726, 0.98080063],
-       [2.68987839, 1.97506016, 0.69689205],
-       [4.1030323 , 2.94898849, 1.12460096],
-       [2.5775507 , 1.77493955, 0.857836  ],
-       [3.10881459, 2.0335918 , 0.78792935],
-       [3.01559612, 2.23862032, 0.38396588],
-       [2.82968294, 1.91797836, 0.70670824],
-       [3.43956676, 2.54627793, 0.2819425 ],
-       [3.28355605, 2.07708935, 1.04240842],
-       [3.00035703, 1.91827951, 0.85824909],
-       [3.4533263 , 2.45558209, 0.51929849],
-       [2.21612977, 1.0377647 , 1.59764853],
-       [1.42140001, 0.17964422, 2.64923861],
-       [1.89790281, 1.55789547, 4.17326537],
-       [0.94888009, 0.65671121, 2.90281524],
-       [1.12860247, 0.97802779, 3.48523349],
-       [1.29540097, 0.4890139 , 3.04241158],
-       [1.3308011 , 0.27767533, 2.63640751],
-       [1.54410821, 0.08029596, 2.57600301],
-       [1.59736495, 0.57065816, 3.18594448],
-       [1.88971816, 0.40868928, 2.25669931],
-       [1.41990536, 0.36305861, 2.95653812],
-       [2.39544199, 0.80034339, 2.43424763],
-       [1.13884494, 0.75232284, 3.25781943],
-       [1.60001214, 0.15310804, 2.76648919],
-       [1.0950401 , 0.59037244, 3.0233043 ],
-       [1.45469661, 0.1802705 , 2.5591384 ],
-       [1.15189765, 0.83152204, 3.3478841 ],
-       [2.13614313, 0.60320588, 2.2233687 ],
-       [1.38824961, 0.97477859, 3.56123262],
-       [1.36709853, 0.2819425 , 2.54627793],
-       [1.4994438 , 0.95991471, 3.56585115],
-       [1.10821083, 1.01107553, 3.50920856],
-       [1.6961908 , 0.21514764, 2.79087102],
-       [1.40362451, 0.24856766, 2.80802862],
-       [1.49974113, 0.29416772, 2.90533105],
-       [2.06856724, 0.47262196, 2.61620304],
-       [1.53204299, 0.27040574, 2.88540747],
-       [1.26501165, 0.52218104, 3.06459843],
-       [1.03428362, 0.56768799, 2.83944434],
-       [1.24886912, 1.04857219, 3.59485044],
-       [1.66277594, 0.81147693, 3.42617203],
-       [1.98028066, 0.4890139 , 2.21583105],
-       [1.54495844, 0.35774704, 2.31043889],
-       [2.10693018, 2.93408338, 5.33777869],
-       [1.34094461, 0.91482106, 3.49306994],
-       [1.42167617, 0.81866445, 3.41730924],
-       [2.07641059, 0.48148294, 2.46310889],
-       [1.94372732, 0.52120421, 2.98726315],
-       [1.75293987, 0.36054099, 2.25741839],
-       [0.90480882, 0.70181226, 2.80258368],
-       [1.98944159, 0.53973118, 2.14348734],
-       [1.59764853, 1.22971619, 3.83595672],
-       [1.5436233 , 0.14407982, 2.50650327],
-       [1.06204238, 0.85498469, 3.32930432],
-       [1.33321111, 1.20527395, 3.76352965],
-       [2.00558056, 0.46206709, 2.79725469],
-       [1.50801469, 0.15310804, 2.52729077],
-       [1.53108035, 1.34350012, 3.93270398],
-       [1.6754944 , 0.09013525, 2.6487182 ],
-       [1.67959936, 0.21436679, 2.79992931],
-       [1.31316912, 0.29352848, 2.64776857],
-       [1.40971249, 0.83187227, 3.4279412 ],
-       [1.57927849, 0.14407982, 2.48608161],
-       [1.55886673, 1.29157102, 3.88914   ],
-       [1.54228207, 0.42933384, 3.04529641],
-       [1.88996853, 0.57281698, 3.09881319],
-       [1.78929758, 0.38396588, 2.23862032],
-       [1.81529304, 0.57427887, 3.13993827],
-       [1.89843283, 0.4645947 , 2.18494135],
-       [1.47157579, 1.28145606, 3.86468023],
-       [1.5169306 , 0.28640849, 2.38970659],
-       [1.75908357, 0.66866774, 3.26342576],
-       [1.56654312, 0.16972985, 2.78581864],
-       [1.86361334, 2.14954642, 4.70300908],
-       [1.72894521, 0.51211626, 3.10290969],
-       [1.91058379, 1.53752593, 4.15344853],
-       [1.86483646, 1.44766424, 4.06366573],
-       [2.12195028, 0.6509254 , 2.98890467],
-       [1.38464936, 1.27763543, 3.84217976],
-       [1.32138096, 0.53973118, 3.11062498],
-       [1.73141106, 0.67961274, 3.28125914],
-       [1.49973534, 0.84582749, 3.45511565],
-       [1.54228207, 0.42933384, 3.04529641],
-       [1.51937074, 0.36054099, 2.97522236],
-       [1.99911161, 1.42899156, 4.03948317],
-       [1.13537598, 0.47262196, 2.70002426],
-       [1.15845135, 1.22239567, 3.72538053],
-       [1.67959936, 0.21436679, 2.79992931],
-       [1.99117457, 0.78601158, 3.30817062],
-       [0.94841636, 0.71422672, 3.05650654],
-       [1.15786419, 1.48352353, 3.95162184],
-       [1.22399139, 0.40289713, 2.85093055],
-       [1.50135832, 1.22799667, 3.82069178],
-       [1.65248084, 0.05494052, 2.58728357],
-       [1.71625107, 1.53586354, 4.13795578],
-       [2.06981998, 0.54081149, 2.84924796],
-       [1.01253327, 1.19656934, 3.64483361],
-       [1.20730004, 0.42121063, 2.86249467],
-       [1.80469511, 1.80307459, 4.39439767],
-       [1.43884735, 0.60102486, 3.20578913],
-       [1.66063313, 1.71770051, 4.292784  ],
-       [1.54811175, 0.05494052, 2.64573372],
-       [1.54267495, 1.16420612, 3.76698733],
-       [1.769235  , 0.19198294, 2.67527445],
-       [1.57993617, 1.43266279, 4.02283382],
-       [1.08701221, 0.82055633, 3.30524193],
-       [1.71363376, 0.77943336, 3.38877007],
-       [0.94485908, 0.87006426, 2.5264959 ],
-       [1.49517306, 1.42491085, 3.99967619],
-       [1.35617776, 0.78448896, 3.37010777],
-       [1.70123599, 2.26868422, 4.74453685],
-       [1.35710401, 0.42439006, 2.99888759],
-       [1.8303898 , 1.34804705, 3.96413907],
-       [1.41990536, 0.36305861, 2.95653812],
-       [2.19032903, 0.65671121, 2.20405203],
-       [1.00054599, 1.58281855, 3.96805515],
-       [1.88023759, 0.45029795, 2.19359685],
-       [1.02940547, 0.57272287, 2.77500299],
-       [0.95898918, 1.01182483, 3.44032904],
-       [1.84394718, 1.47826906, 4.0933925 ],
-       [1.9184949 , 0.31942452, 2.52901514],
-       [1.82355226, 1.72784648, 4.32888389],
-       [1.5882424 , 0.40147978, 3.01624822],
-       [1.81026172, 2.22292956, 4.74662217],
-       [1.48878144, 0.97223894, 3.57632286],
-       [1.32087818, 0.39316333, 2.94129756],
-       [1.41990536, 0.36305861, 2.95653812],
-       [1.34086178, 1.19057546, 3.75206099],
-       [1.60020405, 0.        , 2.61609502],
-       [0.87260304, 0.86369569, 3.20974706],
-       [1.58312398, 1.44880674, 1.80952888],
-       [0.90797803, 1.44216397, 2.5111153 ],
-       [0.94740491, 1.75817988, 2.65143009],
-       [1.91730631, 1.71532544, 1.51349545],
-       [0.59012064, 1.74223013, 2.99235908],
-       [1.60020405, 1.00037837, 1.84737291],
-       [2.35770405, 2.43507483, 1.57133895],
-       [0.6993596 , 1.54815818, 2.75716205],
-       [1.54826613, 1.2235483 , 1.83500133],
-       [0.64227355, 1.49957414, 2.78755043],
-       [1.52709382, 1.38165342, 1.85791936],
-       [0.85233724, 1.75251588, 2.74420783],
-       [1.85993561, 1.9572602 , 1.74503634],
-       [0.396429  , 1.47262762, 2.99948226],
-       [1.75670399, 1.57724147, 1.65046717],
-       [0.61930645, 1.24896327, 2.76106761],
-       [0.81866445, 1.42167617, 2.59162643],
-       [1.90267008, 3.2251685 , 3.73595517],
-       [1.68508198, 1.58730973, 1.73516444],
-       [1.06335139, 1.41852776, 2.34812492],
-       [2.6595624 , 2.27370045, 0.87904828],
-       [1.35617776, 1.61769488, 2.1202107 ],
-       [2.28306953, 1.82355226, 1.11156568],
-       [1.00861703, 1.67964639, 2.53046397],
-       [1.43576048, 1.24541854, 1.94372732],
-       [0.63422336, 1.64305994, 2.87430755],
-       [0.65535762, 1.29512355, 2.72476864],
-       [0.81502316, 1.16420612, 2.56760795],
-       [1.64055787, 1.51657455, 1.76289755],
-       [0.12819454, 1.47897602, 3.26951421],
-       [2.64175635, 1.95225895, 0.74097652],
-       [0.31325434, 1.82604178, 3.35919873],
-       [2.39007631, 1.85355992, 0.99452032],
-       [0.47962373, 1.24169704, 2.9143474 ],
-       [0.99743945, 1.46790988, 2.43127976],
-       [1.17949   , 1.01995878, 2.22292956],
-       [1.29540097, 1.2918155 , 2.08676827],
-       [0.45067624, 1.25349173, 3.35389279],
-       [1.52441214, 1.46263021, 1.87578109],
-       [0.        , 1.60020405, 3.37932763],
-       [0.89822111, 0.71043565, 2.94155076],
-       [1.85514861, 1.79575263, 1.63227332],
-       [0.80018624, 1.54815221, 2.66109834],
-       [1.60001214, 1.14460889, 1.80054511],
-       [0.80018624, 1.54815221, 2.66109834],
-       [0.57113023, 1.29212227, 2.80822015],
-       [1.2395695 , 1.81011463, 2.37780588],
-       [0.96402428, 0.69591322, 3.04391675],
-       [1.33733549, 2.12657709, 2.58142912],
-       [0.84221766, 1.30783427, 2.54312183],
-       [1.07786533, 1.07002611, 2.3134231 ],
-       [0.4791649 , 1.38095336, 2.90334691],
-       [1.66605198, 1.36074076, 1.71339068],
-       [0.53232044, 1.19503816, 2.86823815],
-       [2.39007631, 1.85355992, 0.99452032],
-       [0.61923965, 1.67099135, 2.90794892],
-       [1.81967598, 1.50056756, 1.56453542],
-       [0.78233104, 0.98861491, 2.65750544],
-       [0.64123852, 1.16148676, 2.75250199],
-       [1.64649592, 1.28828512, 1.73475021],
-       [0.30160294, 1.29975131, 3.17008936],
-       [1.67709631, 1.66939536, 1.77917737],
-       [1.59720678, 1.21819146, 1.78919383],
-       [0.44479434, 1.97383579, 3.81587029],
-       [1.84385413, 0.77943336, 1.84910152],
-       [1.11596137, 1.57877648, 2.35898   ],
-       [0.61003513, 1.03546578, 3.18399174],
-       [0.78448896, 1.35617776, 2.60771356]])</code></pre>
+<pre><code>array([[3.31280601, 2.65756361, 1.25750955],
+       [2.98765095, 2.45504189, 1.08990689],
+       [2.42005271, 2.18398796, 1.05949247],
+       [3.02056375, 2.85294705, 1.63284194],
+       [2.80050792, 2.41481315, 1.12622791],
+       [3.33500418, 2.69067414, 1.29119662],
+       [2.57156512, 2.3850412 , 1.2407285 ],
+       [3.04529641, 2.29806449, 0.89662613],
+       [2.84268531, 2.5272681 , 1.26363405],
+       [3.16169885, 3.22396898, 2.10297765],
+       [3.40330601, 2.98281193, 1.62578308],
+       [2.64264016, 2.47645028, 1.3250397 ],
+       [2.03426664, 1.77641006, 0.83404824],
+       [3.75024537, 3.38957517, 2.03466135],
+       [1.86483646, 1.15549605, 0.44259048],
+       [3.85705717, 3.10733894, 1.71404134],
+       [3.52802426, 2.92011383, 1.52160193],
+       [3.31086743, 3.03934341, 1.74124982],
+       [3.19847175, 2.70347666, 1.3358841 ],
+       [3.40293789, 2.73820558, 1.33705371],
+       [3.48627248, 3.17639839, 1.85104379],
+       [3.03614689, 2.34812492, 0.94888009],
+       [2.81666778, 2.25868736, 0.90020224],
+       [3.96414607, 3.17008936, 1.78707829],
+       [3.22486717, 2.46306398, 1.06397177],
+       [3.44485965, 2.69307395, 1.29540097],
+       [3.6965367 , 3.06420983, 1.66304407],
+       [2.87974414, 2.41308819, 1.08049684],
+       [2.94614023, 2.26835229, 0.87226604],
+       [2.98400637, 2.89706094, 1.72244118],
+       [2.5264959 , 2.38182784, 1.27121822],
+       [2.86532557, 2.50446665, 1.2171107 ],
+       [3.06812687, 2.19760114, 0.81866445],
+       [3.48523349, 2.90794892, 1.51349545],
+       [3.06459843, 2.45352185, 1.06464088],
+       [3.56786099, 3.06850459, 1.68534657],
+       [2.35366029, 2.09262526, 0.97972589],
+       [3.43540103, 3.06914399, 1.72739138],
+       [1.9075456 , 1.48511399, 0.61923965],
+       [3.3508694 , 2.91272609, 1.55319867],
+       [2.76234434, 2.36109158, 1.07175419],
+       [3.04529641, 2.29806449, 0.89662613],
+       [3.25216292, 3.00865748, 1.72739138],
+       [2.38970659, 1.86303943, 0.60684234],
+       [2.97589698, 2.43769941, 1.07175419],
+       [2.80756401, 2.307367  , 0.97061581],
+       [3.39840825, 3.18938929, 1.90995871],
+       [1.94955717, 1.88023759, 1.05969544],
+       [3.60060894, 3.31931484, 1.99745064],
+       [2.49052337, 2.02379278, 0.76326163],
+       [3.04739176, 2.54195862, 1.18074489],
+       [2.48085599, 2.14350838, 0.94888009],
+       [3.61971862, 3.09418865, 1.70492516],
+       [2.84567598, 2.68235139, 1.49140596],
+       [3.52400416, 3.14103371, 1.78929758],
+       [2.28900582, 2.00128128, 0.90220317],
+       [3.27371346, 2.80790061, 1.44444881],
+       [2.47147136, 2.06395734, 0.8377472 ],
+       [3.47932391, 3.03898602, 1.67281464],
+       [2.41206614, 1.97383579, 0.75232284],
+       [3.12289631, 3.06169263, 1.88076916],
+       [2.69293387, 2.13210001, 0.78748075],
+       [3.26662007, 3.02671766, 1.74564276],
+       [2.07303795, 1.90594454, 0.97223894],
+       [3.62406821, 3.46096079, 2.18398796],
+       [2.74974938, 2.34319695, 1.05360706],
+       [2.4695699 , 2.30860783, 1.20623845],
+       [1.68621507, 1.17206437, 0.64725903],
+       [3.3248288 , 3.09898812, 1.81866078],
+       [2.10704904, 1.72739138, 0.69058608],
+       [2.54941599, 2.11337102, 0.85153198],
+       [3.37599805, 2.89983596, 1.52866601],
+       [3.36063009, 3.01602939, 1.6863571 ],
+       [2.18955636, 1.85517676, 0.78448896],
+       [3.49972037, 3.27347641, 1.97914897],
+       [2.04008089, 1.70465433, 0.7323886 ],
+       [3.29232268, 2.92714924, 1.59487653],
+       [3.26145063, 3.14462596, 1.91982855],
+       [3.02185695, 2.76218819, 1.49880312],
+       [2.34083854, 2.00764944, 0.86463508],
+       [3.20902775, 2.95449566, 1.67264539],
+       [3.17010998, 2.85968414, 1.55828716],
+       [2.98079559, 2.60897328, 1.30222085],
+       [2.85224471, 2.48652479, 1.19892581],
+       [2.8575144 , 3.04277676, 2.03872254],
+       [1.87602721, 2.1116463 , 1.44766424],
+       [3.76113957, 3.4415877 , 2.09871627],
+       [2.97589698, 2.43769941, 1.07175419],
+       [3.36063009, 3.01602939, 1.6863571 ],
+       [1.83010508, 2.23080055, 1.65892573],
+       [2.95844678, 2.6302031 , 1.34450272],
+       [2.37210655, 2.18047832, 1.0950401 ],
+       [4.21288031, 3.7521184 , 2.36318054],
+       [2.23660636, 1.68649398, 0.49398435],
+       [3.31628424, 3.17012025, 1.92593175],
+       [1.96607285, 2.09544162, 1.34094461],
+       [3.36582272, 2.83764266, 1.45469661],
+       [2.99914827, 2.68416133, 1.39914418],
+       [2.84632279, 2.63438265, 1.41921997],
+       [3.07579541, 2.47048178, 1.08229324],
+       [2.49035895, 2.49473349, 1.47262762],
+       [2.94498238, 2.61222612, 1.3262944 ],
+       [3.42627499, 2.8239848 , 1.42739384],
+       [1.95000536, 1.64821552, 0.75888352],
+       [2.60609685, 2.58319279, 1.51586748],
+       [2.09081499, 1.28247703, 0.21747336],
+       [2.59793825, 2.30696275, 1.10331853],
+       [2.07175825, 1.83135058, 0.87006426],
+       [2.711037  , 2.34699312, 1.08359889],
+       [2.06361837, 1.74124982, 0.75582607],
+       [2.99231835, 2.57232379, 1.24531839],
+       [2.69307395, 2.73245215, 1.67877094],
+       [3.33951217, 3.07532447, 1.77784662],
+       [2.63640751, 2.1116463 , 0.79071602],
+       [3.36063009, 3.01602939, 1.6863571 ],
+       [2.66765684, 2.65641956, 1.58084943],
+       [3.49683352, 2.66105988, 1.28145606],
+       [1.94617953, 2.00986872, 1.23990809],
+       [3.54608321, 3.21098522, 1.87343638],
+       [2.19241606, 2.12916823, 1.17921163],
+       [2.81589524, 2.49117973, 1.22755365],
+       [2.26366415, 1.96474952, 0.87195702],
+       [2.78932882, 2.45510731, 1.19150661],
+       [1.22239567, 1.75024432, 1.58994868],
+       [2.90490748, 2.55832382, 1.27168753],
+       [1.96175141, 1.66652902, 0.76876297],
+       [3.00581577, 2.83472628, 1.61497717],
+       [2.66150587, 2.69587595, 1.64649592],
+       [3.10743497, 2.67924791, 1.33879418],
+       [2.58062166, 2.09343296, 0.80034339],
+       [3.26752747, 3.07012501, 1.80748051],
+       [2.20801836, 2.20805114, 1.28145606],
+       [3.3508694 , 2.91272609, 1.55319867],
+       [2.59793825, 2.30696275, 1.10331853],
+       [2.53223651, 2.21612977, 1.01711712],
+       [2.80539296, 2.24132193, 0.88194772],
+       [3.91680569, 3.7367696 , 2.43569627],
+       [2.62750224, 2.16463603, 0.87251817],
+       [2.97674429, 2.75200267, 1.51067935],
+       [3.10136747, 2.56495407, 1.19150661],
+       [2.8133525 , 2.43273245, 1.14439574],
+       [3.45319957, 3.00413291, 1.63673821],
+       [3.04541598, 2.97022798, 1.79266467],
+       [2.86060341, 2.65258879, 1.43695108],
+       [3.38826038, 3.05162594, 1.72295191],
+       [1.97452748, 1.98028066, 1.17175822],
+       [0.87195702, 1.49957414, 1.64847089],
+       [0.85746718, 2.39220691, 3.11712778],
+       [0.61923965, 1.12860247, 1.68418839],
+       [0.        , 1.55371461, 2.30325549],
+       [0.4890139 , 1.53752593, 1.97092086],
+       [0.85885026, 1.39734095, 1.58487802],
+       [0.97972589, 1.59736495, 1.64347876],
+       [0.60855535, 1.86702836, 2.22788067],
+       [1.38532274, 1.8416923 , 1.54906668],
+       [0.62400869, 1.62243446, 1.94626265],
+       [1.69086174, 2.39961047, 2.03242311],
+       [0.23229735, 1.47873748, 2.10658156],
+       [0.87226604, 1.72659978, 1.85793581],
+       [0.46206709, 1.33843425, 1.86896632],
+       [0.9583298 , 1.4955375 , 1.573729  ],
+       [0.14676424, 1.52460466, 2.19184484],
+       [1.57265334, 2.08620176, 1.69084632],
+       [0.25964924, 1.80079035, 2.45858151],
+       [0.94756177, 1.39378411, 1.50770276],
+       [0.37198712, 1.89790281, 2.50352891],
+       [0.03662701, 1.5446219 , 2.3169027 ],
+       [0.92261113, 1.82893019, 1.93008326],
+       [0.73382121, 1.54815221, 1.7977126 ],
+       [0.7107    , 1.6798172 , 1.93632876],
+       [1.3178112 , 2.13425699, 1.9828813 ],
+       [0.74570298, 1.70360738, 1.93355547],
+       [0.45637618, 1.51776704, 1.97873303],
+       [0.65988055, 1.18301002, 1.65354113],
+       [0.1429112 , 1.69214317, 2.43682534],
+       [0.57113023, 1.99911161, 2.45428138],
+       [1.46704169, 1.92320237, 1.57430077],
+       [1.19292597, 1.48366556, 1.35876755],
+       [1.95605558, 2.71972302, 3.9710836 ],
+       [0.21815076, 1.73877167, 2.38486594],
+       [0.32600926, 1.78474582, 2.35165691],
+       [1.40150385, 2.09714437, 1.85852912],
+       [1.02804264, 2.12408476, 2.22268098],
+       [1.31071523, 1.69497479, 1.4519285 ],
+       [0.75317344, 1.01422887, 1.55164259],
+       [1.51586748, 1.90909907, 1.51223553],
+       [0.50552485, 2.05663499, 2.75347031],
+       [1.03326768, 1.56833131, 1.57212983],
+       [0.16059191, 1.43873233, 2.14351249],
+       [0.30013173, 1.81331607, 2.6028366 ],
+       [1.17424051, 2.12670278, 2.098268  ],
+       [1.00296129, 1.5389732 , 1.57212983],
+       [0.50850156, 2.02483424, 2.8039821 ],
+       [0.99999131, 1.75908357, 1.78873522],
+       [0.90480882, 1.81595606, 1.92964879],
+       [0.84527051, 1.38371359, 1.58730973],
+       [0.30965323, 1.77768495, 2.35600269],
+       [1.06397177, 1.5979896 , 1.57298292],
+       [0.50052433, 2.03738365, 2.78043969],
+       [0.64494334, 1.76975287, 2.08198115],
+       [0.9267604 , 2.10704904, 2.28775224],
+       [1.34156932, 1.72750895, 1.45884181],
+       [0.83640732, 2.05099084, 2.28665248],
+       [1.43576048, 1.82604178, 1.48481888],
+       [0.43494671, 1.9572602 , 2.73051476],
+       [1.11868431, 1.48814642, 1.4292293 ],
+       [0.72818152, 2.03675821, 2.36258173],
+       [0.8377472 , 1.70076609, 1.85865773],
+       [1.2177945 , 2.45974142, 3.47813086],
+       [0.77247922, 1.96086504, 2.21633446],
+       [0.85824909, 2.39864739, 3.10742923],
+       [0.79132725, 2.33943144, 3.02436827],
+       [1.19892581, 2.28900582, 2.3129025 ],
+       [0.37958056, 1.87804462, 2.68268999],
+       [0.44479434, 1.58820163, 2.04461389],
+       [0.69326144, 2.01723407, 2.36513557],
+       [0.39321457, 1.86483646, 2.4131451 ],
+       [0.64494334, 1.76975287, 2.08198115],
+       [0.67459759, 1.72379356, 2.00912071],
+       [0.89497783, 2.44846608, 3.05781715],
+       [0.789426  , 1.21495445, 1.54906668],
+       [0.24699217, 1.65577895, 2.51358477],
+       [0.90480882, 1.81595606, 1.92964879],
+       [0.94888009, 2.25720493, 2.50121413],
+       [0.45932411, 1.21290254, 1.84394718],
+       [0.50553776, 1.71581418, 2.69276829],
+       [0.64072803, 1.38620126, 1.7536116 ],
+       [0.42873359, 1.97092086, 2.706829  ],
+       [1.0276904 , 1.71350285, 1.7173772 ],
+       [0.72942091, 2.22991203, 3.02447106],
+       [1.20869138, 2.20202646, 2.17473356],
+       [0.23807557, 1.50959238, 2.40058028],
+       [0.62723823, 1.37466083, 1.75752792],
+       [0.93976301, 2.35810585, 3.2422759 ],
+       [0.45783764, 1.72990386, 2.17789275],
+       [0.82031478, 2.21512354, 3.11773346],
+       [0.92895968, 1.62922345, 1.71503214],
+       [0.4384029 , 1.99165715, 2.67974457],
+       [1.04701124, 1.86120941, 1.86514242],
+       [0.59012064, 2.08801326, 2.88979314],
+       [0.1802705 , 1.45126574, 2.13064374],
+       [0.63560911, 2.03304798, 2.44497133],
+       [1.11116448, 0.81737855, 1.20443933],
+       [0.53923163, 2.01087272, 2.84247159],
+       [0.28384399, 1.71184058, 2.28671747],
+       [1.29540097, 2.31644419, 3.44485965],
+       [0.55578284, 1.578852  , 1.9572602 ],
+       [0.73331875, 2.28671747, 2.93744538],
+       [0.62400869, 1.62243446, 1.94626265],
+       [1.6239586 , 2.13553543, 1.71184058],
+       [0.62674586, 1.58730973, 2.65579236],
+       [1.41990536, 1.80952888, 1.47995458],
+       [0.73119895, 1.13975054, 1.57993617],
+       [0.16972985, 1.39289516, 2.20802233],
+       [0.7868645 , 2.32843845, 3.03847437],
+       [1.2428383 , 1.96102939, 1.81996233],
+       [0.90039518, 2.36151681, 3.20230819],
+       [0.69957209, 1.80270496, 2.07738504],
+       [1.26790576, 2.41710285, 3.48746967],
+       [0.36054099, 1.89179638, 2.50801271],
+       [0.58705697, 1.52120579, 1.88686371],
+       [0.62400869, 1.62243446, 1.94626265],
+       [0.29506032, 1.81654993, 2.59632134],
+       [0.97802779, 1.67099135, 1.71532544],
+       [0.35774704, 1.21841267, 1.96731865],
+       [1.96530814, 1.10331853, 0.3496798 ],
+       [1.57202316, 0.40918455, 1.01806255],
+       [1.80218452, 0.32994027, 1.13803382],
+       [2.30325549, 1.40156912, 0.        ],
+       [1.57993617, 0.09156753, 1.48352353],
+       [1.67782206, 1.28393532, 0.71549409],
+       [2.94610995, 1.75817988, 0.72596425],
+       [1.51933636, 0.16482155, 1.25739871],
+       [1.79934366, 1.14439574, 0.51211626],
+       [1.44880674, 0.17964422, 1.29540097],
+       [1.89179638, 1.06464088, 0.41945552],
+       [1.7429647 , 0.23310456, 1.23083449],
+       [2.42119265, 1.28145606, 0.36305861],
+       [1.26876303, 0.28815964, 1.52441214],
+       [2.13700933, 1.25750955, 0.16972985],
+       [1.21819146, 0.42263525, 1.31728227],
+       [1.501573  , 0.34795661, 1.10400918],
+       [3.02265467, 1.56055903, 2.36109158],
+       [2.10658156, 1.17406246, 0.23229735],
+       [1.64999607, 0.56768799, 0.85702067],
+       [2.98783556, 2.12794354, 0.74299076],
+       [1.94875972, 0.80184404, 0.60684234],
+       [2.5411789 , 1.79644222, 0.40918455],
+       [1.78976616, 0.40933222, 1.01711712],
+       [1.75107285, 1.01733067, 0.55395776],
+       [1.5446219 , 0.03662701, 1.36912854],
+       [1.2894561 , 0.37799371, 1.26790576],
+       [1.2894561 , 0.53893267, 1.13975054],
+       [2.03883821, 1.14544573, 0.2819425 ],
+       [1.06105559, 0.58210961, 1.81993717],
+       [2.77201935, 2.18931835, 0.8271998 ],
+       [1.43778443, 0.4645947 , 1.86013845],
+       [2.60639791, 1.91473835, 0.5358771 ],
+       [1.08736678, 0.48177573, 1.48343987],
+       [1.64439681, 0.47962373, 0.93290683],
+       [1.43277567, 0.87251817, 0.87505358],
+       [1.70123599, 0.85445725, 0.64227355],
+       [0.6789194 , 0.92964459, 1.98297546],
+       [1.94265143, 1.03428362, 0.396429  ],
+       [1.12860247, 0.61923965, 1.91730631],
+       [0.60026345, 1.09833112, 1.70467449],
+       [2.32186725, 1.31071523, 0.16300463],
+       [1.58064005, 0.24856766, 1.15815191],
+       [1.77493955, 1.22908376, 0.57193806],
+       [1.58064005, 0.24856766, 1.15815191],
+       [1.2235483 , 0.38396588, 1.35678985],
+       [2.00084056, 0.63094674, 0.87251817],
+       [0.46620912, 1.22158167, 1.83729642],
+       [2.2320918 , 0.72596425, 1.11940681],
+       [1.42958125, 0.4452947 , 1.07698404],
+       [1.40153652, 0.76433301, 0.92860621],
+       [1.24150763, 0.32118382, 1.43884735],
+       [1.95225895, 1.22421155, 0.36147756],
+       [1.07947297, 0.50918955, 1.44600246],
+       [2.60639791, 1.91473835, 0.5358771 ],
+       [1.55371461, 0.        , 1.40156912],
+       [2.12012471, 1.35173833, 0.21747336],
+       [1.07947297, 0.68254732, 1.28800151],
+       [1.14387612, 0.51166528, 1.33172173],
+       [1.89480981, 1.22755365, 0.43029528],
+       [0.92537763, 0.64544292, 1.75251588],
+       [2.15348502, 1.14226045, 0.26616022],
+       [1.82240181, 1.19892581, 0.50319746],
+       [1.32138096, 0.97223894, 2.33896333],
+       [1.65048797, 1.63284194, 1.05916509],
+       [1.78789128, 0.55535066, 0.8480954 ],
+       [0.59012064, 0.963656  , 1.85721243],
+       [1.42958125, 0.37317516, 1.13283543]])</code></pre>
 </div>
 </div>
 </section>
 <section id="step-2-assign-each-point-to-nearest-centroid-1" class="level3" data-number="13.3.9">
 <h3 data-number="13.3.9" class="anchored" data-anchor-id="step-2-assign-each-point-to-nearest-centroid-1"><span class="header-section-number">13.3.9</span> Step 2: Assign each point to nearest centroid</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb515"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb515-1"><a href="#cb515-1" aria-hidden="true" tabindex="-1"></a>closest_centroid <span class="op">=</span> dists.argsort()[:,<span class="dv">1</span>]</span>
+<div class="sourceCode cell-code" id="cb515"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb515-1"><a href="#cb515-1" aria-hidden="true" tabindex="-1"></a>closest_centroid <span class="op">=</span> dists.argsort()[:,<span class="dv">0</span>]</span>
 <span id="cb515-2"><a href="#cb515-2" aria-hidden="true" tabindex="-1"></a>closest_centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
-       1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,
-       1, 0, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,
-       1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2,
-       1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 1, 2,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+<pre><code>array([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-       0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 2, 1, 1, 1, 0, 1, 1,
-       1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1,
-       0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 0, 1, 0, 0, 1, 0,
-       1, 1, 1])</code></pre>
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2,
+       2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 1, 2, 0, 2, 1, 0, 2, 1,
+       2, 1, 1, 1, 0, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2,
+       1, 0, 1])</code></pre>
 </div>
 </div>
 </section>
@@ -38435,12 +38436,12 @@ green        -1.170744          -1.426752</code></pre>
 <div class="sourceCode cell-code" id="cb517"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb517-1"><a href="#cb517-1" aria-hidden="true" tabindex="-1"></a>df_scaled.index <span class="op">=</span> centroids.index[closest_centroid]</span>
 <span id="cb517-2"><a href="#cb517-2" aria-hidden="true" tabindex="-1"></a>df_scaled.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        bill_length_mm  flipper_length_mm
-purple       -0.896042          -1.426752
-purple       -0.822788          -1.069474
-purple       -0.676280          -0.426373
-purple       -1.335566          -0.569284
-purple       -0.859415          -0.783651</code></pre>
+<pre><code>       bill_length_mm  flipper_length_mm
+green       -0.896042          -1.426752
+green       -0.822788          -1.069474
+green       -0.676280          -0.426373
+green       -1.335566          -0.569284
+green       -0.859415          -0.783651</code></pre>
 </div>
 </div>
 </section>
@@ -38471,9 +38472,9 @@ purple       -0.859415          -0.783651</code></pre>
 <span id="cb521-2"><a href="#cb521-2" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        bill_length_mm  flipper_length_mm
-green        -0.267889          -0.215579
-orange        0.533375           0.846396
-purple       -0.364340          -0.601439</code></pre>
+green        -0.758955          -0.770434
+orange        0.671414           1.156193
+purple        1.299651          -0.204485</code></pre>
 </div>
 </div>
 </section>
@@ -38507,13 +38508,13 @@ purple       -0.364340          -0.601439</code></pre>
 <span id="cb525-5"><a href="#cb525-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(centroids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        bill_length_mm  flipper_length_mm
-green         0.533375           0.846396
-orange       -0.364340          -0.601439
-purple       -0.267889          -0.215579
+green         0.671414           1.156193
+orange        1.299651          -0.204485
+purple       -0.758955          -0.770434
         bill_length_mm  flipper_length_mm
-green         0.533375           0.846396
-orange       -0.364340          -0.601439
-purple       -0.267889          -0.215579</code></pre>
+green         0.671414           1.156193
+orange        1.299651          -0.204485
+purple       -0.758955          -0.770434</code></pre>
 </div>
 </div>
 </section>
@@ -38524,11 +38525,11 @@ purple       -0.267889          -0.215579</code></pre>
 <span id="cb527-2"><a href="#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb527-3"><a href="#cb527-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb527-4"><a href="#cb527-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-5"><a href="#cb527-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb527-5"><a href="#cb527-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span>
 <span id="cb527-6"><a href="#cb527-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb527-7"><a href="#cb527-7" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> make_pipeline(</span>
 <span id="cb527-8"><a href="#cb527-8" aria-hidden="true" tabindex="-1"></a>    StandardScaler(),</span>
-<span id="cb527-9"><a href="#cb527-9" aria-hidden="true" tabindex="-1"></a>   model</span>
+<span id="cb527-9"><a href="#cb527-9" aria-hidden="true" tabindex="-1"></a>    model</span>
 <span id="cb527-10"><a href="#cb527-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb527-11"><a href="#cb527-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb527-12"><a href="#cb527-12" aria-hidden="true" tabindex="-1"></a>pipeline.fit(df_penguins[[<span class="st">"bill_length_mm"</span>, <span class="st">"flipper_length_mm"</span>]].dropna())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -38938,8 +38939,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   background-color: var(--sklearn-color-fitted-level-3);
 }
 </style><div id="sk-container-id-29" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kmeans', KMeans(n_clusters=3))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-89" type="checkbox"><label for="sk-estimator-id-89" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('kmeans', KMeans(n_clusters=3))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-90" type="checkbox"><label for="sk-estimator-id-90" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-91" type="checkbox"><label for="sk-estimator-id-91" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KMeans<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3)</pre></div> </div></div></div></div></div></div>
+                ('kmeans', KMeans(n_clusters=3, random_state=1234))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-89" type="checkbox"><label for="sk-estimator-id-89" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('standardscaler', StandardScaler()),
+                ('kmeans', KMeans(n_clusters=3, random_state=1234))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-90" type="checkbox"><label for="sk-estimator-id-90" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-91" type="checkbox"><label for="sk-estimator-id-91" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;KMeans<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.4/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=1234)</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
 </section>
@@ -38951,22 +38952,22 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb528-3"><a href="#cb528-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb528-4"><a href="#cb528-4" aria-hidden="true" tabindex="-1"></a>clusters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+<pre><code>array([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1,
        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-       1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1,
-       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2,
-       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-       0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-       2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-       0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0,
-       0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 2, 0], dtype=int32)</code></pre>
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+       0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0,
+       0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 1, 0], dtype=int32)</code></pre>
 </div>
 </div>
 </section>
@@ -38977,14 +38978,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="sourceCode cell-code" id="cb530"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb530-1"><a href="#cb530-1" aria-hidden="true" tabindex="-1"></a>centroids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[ 0.9235766 , -0.37501448],
-       [-0.96427851, -0.80518575],
-       [ 0.66403058,  1.15087842]])</code></pre>
+       [ 0.66403058,  1.15087842],
+       [-0.96427851, -0.80518575]])</code></pre>
 </div>
 </div>
 <ul>
-<li><p>Cluster 1 has medium bill, long flipper</p></li>
-<li><p>Cluster 2 has short bill, short flipper</p></li>
-<li><p>Cluster 3 has long bill, shortish flipper</p></li>
+<li><p>Cluster 1 has long bill, shortish flipper</p></li>
+<li><p>Cluster 2 has longish bill, long flipper</p></li>
+<li><p>Cluster 3 has short bill, short flipper</p></li>
 </ul>
 </section>
 <section id="interpreting-k-means-1" class="level3" data-number="13.3.18">
@@ -38999,16 +39000,16 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb532-6"><a href="#cb532-6" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cluster    species
-0          1     Adelie
-1          1     Adelie
-2          1     Adelie
-4          1     Adelie
-5          1     Adelie
+0          2     Adelie
+1          2     Adelie
+2          2     Adelie
+4          2     Adelie
+5          2     Adelie
 ..       ...        ...
 339        0  Chinstrap
 340        0  Chinstrap
 341        0  Chinstrap
-342        2  Chinstrap
+342        1  Chinstrap
 343        0  Chinstrap
 
 [333 rows x 2 columns]</code></pre>
@@ -39024,8 +39025,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <pre><code>species  Adelie  Chinstrap  Gentoo
 cluster                           
 0           4.0       59.0     1.0
-1         141.0        5.0     NaN
-2           1.0        4.0   118.0</code></pre>
+1           1.0        4.0   118.0
+2         141.0        5.0     NaN</code></pre>
 </div>
 </div>
 </section>
@@ -39052,6 +39053,544 @@ cluster
 <li><p><strong>k-means</strong> is the most common <strong>clustering method</strong></p></li>
 <li><p>We <strong>have to choose K ahead of time</strong></p></li>
 <li><p>(This is a big problem! Why can’t we tune?)</p></li>
+</ul>
+</section>
+</section>
+<section id="merging-data" class="level1 lectitle" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Merging Data</h1>
+<p><a href="slides-14-merge.html">Slides</a></p>
+</section>
+<section id="the-story-so-far-11" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="the-story-so-far-11"><span class="header-section-number">14.1</span> The story so far</h2>
+<section id="data-analysis-the-whole-game" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="data-analysis-the-whole-game"><span class="header-section-number">14.1.1</span> Data analysis: the whole game</h3>
+<ul>
+<li><p><strong>Acquire</strong> data and <strong>clean</strong> it by fixing variable types, dropping or replacing missing data, and looking for other issues.</p></li>
+<li><p><strong>Explore</strong> the dataset by making summaries and plots of <em>one variable</em>.</p></li>
+<li><p>Establish <strong>research questions</strong> to answer with this data.</p></li>
+<li><p>Create <strong>visualizations</strong> of <em>two or more variables</em> that address simple questions.</p></li>
+<li><p>Fit <strong>predictive models</strong> to address more complex questions, and/or to prepare for prediction on future data.</p></li>
+<li><p>Fit <strong>unsupervised models</strong> to answer open-ended questions.</p></li>
+</ul>
+</section>
+</section>
+<section id="joining-on-a-key" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="joining-on-a-key"><span class="header-section-number">14.2</span> Joining on a Key</h2>
+<section id="example-planes-and-flights" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="example-planes-and-flights"><span class="header-section-number">14.2.1</span> Example: Planes and flights</h3>
+<ul>
+<li><p>Sometimes, information is spread across multiple data sets.</p></li>
+<li><p>For example, suppose we want to know which manufacturer’s planes made the most flights in November 2013.</p></li>
+<li><p>One data set contains information about flights in Nov.&nbsp;2013…</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb536"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb536-1"><a href="#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb536-2"><a href="#cb536-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">"https://datasci112.stanford.edu/data/nycflights13/"</span></span>
+<span id="cb536-3"><a href="#cb536-3" aria-hidden="true" tabindex="-1"></a>df_flights <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/flights11.csv"</span>)</span>
+<span id="cb536-4"><a href="#cb536-4" aria-hidden="true" tabindex="-1"></a>df_flights.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year  month  day  dep_time  ...  distance  hour  minute  tailnum
+0  2013     11    1    2108.0  ...      1167    20      56   N10156
+1  2013     11    1    1154.0  ...       541    12       0   N102UW
+2  2013     11    1     854.0  ...       946     8      29   N10575
+3  2013     11    1    1643.0  ...       594    15       5   N10575
+4  2013     11    1     603.0  ...       282     6       0   N11109
+
+[5 rows x 18 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="example-planes-and-flights-1" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="example-planes-and-flights-1"><span class="header-section-number">14.2.2</span> Example: Planes and Flights</h3>
+<p>…while another contains information about planes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb538"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb538-1"><a href="#cb538-1" aria-hidden="true" tabindex="-1"></a>df_planes <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/planes.csv"</span>)</span>
+<span id="cb538-2"><a href="#cb538-2" aria-hidden="true" tabindex="-1"></a>df_planes.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  tailnum    year                     type  ... seats speed     engine
+0  N10156  2004.0  Fixed wing multi engine  ...    55   NaN  Turbo-fan
+1  N102UW  1998.0  Fixed wing multi engine  ...   182   NaN  Turbo-fan
+2  N103US  1999.0  Fixed wing multi engine  ...   182   NaN  Turbo-fan
+3  N104UW  1999.0  Fixed wing multi engine  ...   182   NaN  Turbo-fan
+4  N10575  2002.0  Fixed wing multi engine  ...    55   NaN  Turbo-fan
+
+[5 rows x 9 columns]</code></pre>
+</div>
+</div>
+<p>In order to answer the question of which manufacturer made the most flights, we have to join these two data sets together.</p>
+</section>
+<section id="keys" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="keys"><span class="header-section-number">14.2.3</span> Keys</h3>
+<ul>
+<li><p>A <strong>primary key</strong> is a column (or a set of columns) that uniquely identifies observations in a data frame.</p></li>
+<li><p>The <strong>primary key</strong> is the column(s) you would think of as the <strong>index</strong>.</p></li>
+<li><p>A <strong>foreign key</strong> is a column (or a set of columns) that points to the primary key of another data frame.</p></li>
+<li><p>Planes are uniquely identified by their <em>tail number</em> (<code>tailnum</code>).</p></li>
+</ul>
+</section>
+<section id="joining-on-a-key-1" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="joining-on-a-key-1"><span class="header-section-number">14.2.4</span> Joining on a Key</h3>
+<p>Each value of the <strong>primary key</strong> should only appear once, but it could appear many times in a <strong>foreign key</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb540"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb540-1"><a href="#cb540-1" aria-hidden="true" tabindex="-1"></a>df_flights[<span class="st">'tailnum'</span>].value_counts().head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tailnum
+N353JB    48
+N955UW    47
+N184JB    47
+N375JB    42
+N281JB    42
+Name: count, dtype: int64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb542"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb542-1"><a href="#cb542-1" aria-hidden="true" tabindex="-1"></a>df_planes[<span class="st">'tailnum'</span>].value_counts().head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tailnum
+N10156    1
+N709EV    1
+N706JB    1
+N706SW    1
+N706TW    1
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="joining-on-a-key-2" class="level3" data-number="14.2.5">
+<h3 data-number="14.2.5" class="anchored" data-anchor-id="joining-on-a-key-2"><span class="header-section-number">14.2.5</span> Joining on a Key</h3>
+<p>The Pandas function <code>.merge()</code> can be used to join two <code>DataFrame</code>s on a key.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb544"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb544-1"><a href="#cb544-1" aria-hidden="true" tabindex="-1"></a>df_joined <span class="op">=</span> df_flights.merge(df_planes, on<span class="op">=</span><span class="st">"tailnum"</span>)</span>
+<span id="cb544-2"><a href="#cb544-2" aria-hidden="true" tabindex="-1"></a>df_joined.head()   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year_x  month  day  dep_time  ...  engines  seats  speed     engine
+0    2013     11    1    2108.0  ...        2     55    NaN  Turbo-fan
+1    2013     11    1    1154.0  ...        2    182    NaN  Turbo-fan
+2    2013     11    1     854.0  ...        2     55    NaN  Turbo-fan
+3    2013     11    1    1643.0  ...        2     55    NaN  Turbo-fan
+4    2013     11    1     603.0  ...        2     55    NaN  Turbo-fan
+
+[5 rows x 26 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="overlapping-column-names" class="level3" data-number="14.2.6">
+<h3 data-number="14.2.6" class="anchored" data-anchor-id="overlapping-column-names"><span class="header-section-number">14.2.6</span> Overlapping Column Names</h3>
+<ul>
+<li><p>Joining two data frames results in a <em>wider</em> data frame, with more columns.</p></li>
+<li><p>By default, Pandas adds the suffixes <code>_x</code> and <code>_y</code> to overlapping column names, but this can be customized.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb546"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb546-1"><a href="#cb546-1" aria-hidden="true" tabindex="-1"></a>df_joined <span class="op">=</span> df_flights.merge(df_planes, on<span class="op">=</span><span class="st">"tailnum"</span>,</span>
+<span id="cb546-2"><a href="#cb546-2" aria-hidden="true" tabindex="-1"></a>                             suffixes<span class="op">=</span>(<span class="st">"_flight"</span>, <span class="st">"_plane"</span>))</span>
+<span id="cb546-3"><a href="#cb546-3" aria-hidden="true" tabindex="-1"></a>df_joined.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['year_flight', 'month', 'day', 'dep_time', 'sched_dep_time',
+       'dep_delay', 'arr_time', 'sched_arr_time', 'arr_delay', 'carrier',
+       'flight', 'origin', 'dest', 'air_time', 'distance', 'hour', 'minute',
+       'tailnum', 'year_plane', 'type', 'manufacturer', 'model', 'engines',
+       'seats', 'speed', 'engine'],
+      dtype='object')</code></pre>
+</div>
+</div>
+</section>
+<section id="analyzing-the-joined-data" class="level3" data-number="14.2.7">
+<h3 data-number="14.2.7" class="anchored" data-anchor-id="analyzing-the-joined-data"><span class="header-section-number">14.2.7</span> Analyzing the Joined Data</h3>
+<p>Now that we have joined the two data sets, we can answer the question: which manufacturer’s planes made the most flights?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb548"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb548-1"><a href="#cb548-1" aria-hidden="true" tabindex="-1"></a>df_joined[<span class="st">"manufacturer"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>manufacturer
+BOEING                           6557
+EMBRAER                          5175
+AIRBUS                           3954
+AIRBUS INDUSTRIE                 3456
+BOMBARDIER INC                   2632
+MCDONNELL DOUGLAS AIRCRAFT CO     811
+MCDONNELL DOUGLAS                 330
+CANADAIR                          122
+MCDONNELL DOUGLAS CORPORATION     121
+CESSNA                             36
+CIRRUS DESIGN CORP                 21
+ROBINSON HELICOPTER CO             19
+BARKER JACK L                      15
+PIPER                               9
+FRIEDEMANN JON                      8
+SIKORSKY                            6
+BELL                                5
+DEHAVILLAND                         4
+AGUSTA SPA                          3
+AMERICAN AIRCRAFT INC               3
+DOUGLAS                             2
+LAMBERT RICHARD                     2
+KILDALL GARY                        2
+LEARJET INC                         2
+MARZ BARRY                          1
+AVIAT AIRCRAFT INC                  1
+PAIR MIKE E                         1
+LEBLANC GLENN T                     1
+STEWART MACO                        1
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="joining-on-multiple-keys" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="joining-on-multiple-keys"><span class="header-section-number">14.3</span> Joining on Multiple Keys</h2>
+<section id="example-weather-and-flights" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="example-weather-and-flights"><span class="header-section-number">14.3.1</span> Example: Weather and Flights</h3>
+<ul>
+<li><p>Research question: What weather factors cause flight delays?</p></li>
+<li><p>Here is a data set containing hourly weather data at each airport in 2013.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb550"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb550-1"><a href="#cb550-1" aria-hidden="true" tabindex="-1"></a>df_weather <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/weather.csv"</span>)</span>
+<span id="cb550-2"><a href="#cb550-2" aria-hidden="true" tabindex="-1"></a>df_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  airport  year  month  day  ...  wind_gust  precip  pressure  visib
+0     EWR  2013      1    1  ...        NaN     0.0    1012.0   10.0
+1     EWR  2013      1    1  ...        NaN     0.0    1012.3   10.0
+2     EWR  2013      1    1  ...        NaN     0.0    1012.5   10.0
+3     EWR  2013      1    1  ...        NaN     0.0    1012.2   10.0
+4     EWR  2013      1    1  ...        NaN     0.0    1011.9   10.0
+
+[5 rows x 14 columns]</code></pre>
+</div>
+</div>
+<p><strong>What is the primary key of this data set?</strong></p>
+</section>
+<section id="a-key-with-multiple-columns" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="a-key-with-multiple-columns"><span class="header-section-number">14.3.2</span> A Key with Multiple Columns</h3>
+<p>Let’s start by looking at flights out of JFK only, for simplicity.</p>
+<p>We need to join to the weather data on year, month, day, and hour.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb552"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb552-1"><a href="#cb552-1" aria-hidden="true" tabindex="-1"></a>df_flights_jfk <span class="op">=</span> df_flights[df_flights[<span class="st">"origin"</span>] <span class="op">==</span> <span class="st">"JFK"</span>]</span>
+<span id="cb552-2"><a href="#cb552-2" aria-hidden="true" tabindex="-1"></a>df_weather_jfk <span class="op">=</span> df_weather[df_weather[<span class="st">"airport"</span>] <span class="op">==</span> <span class="st">"JFK"</span>]</span>
+<span id="cb552-3"><a href="#cb552-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-4"><a href="#cb552-4" aria-hidden="true" tabindex="-1"></a>df_jfk <span class="op">=</span> df_flights_jfk.merge(df_weather_jfk, on<span class="op">=</span>(<span class="st">"year"</span>,<span class="st">"month"</span>,<span class="st">"day"</span>,<span class="st">"hour"</span>))</span>
+<span id="cb552-5"><a href="#cb552-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb552-6"><a href="#cb552-6" aria-hidden="true" tabindex="-1"></a>df_jfk.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year  month  day  dep_time  ...  wind_gust  precip  pressure  visib
+0  2013     11    1    1154.0  ...        NaN    0.00    1002.8   10.0
+1  2013     11    1    2055.0  ...        NaN    0.00    1005.0   10.0
+2  2013     11    1    1814.0  ...        NaN    0.00    1003.9   10.0
+3  2013     11    1    1014.0  ...        NaN    0.07       NaN   10.0
+4  2013     11    1    1852.0  ...        NaN    0.00    1003.9   10.0
+
+[5 rows x 28 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="lets-see-how-rain-affects-departure-delays." class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="lets-see-how-rain-affects-departure-delays."><span class="header-section-number">14.3.3</span> Let’s see how rain affects departure delays.</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb554"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb554-1"><a href="#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb554-2"><a href="#cb554-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-3"><a href="#cb554-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df_jfk, aes(x<span class="op">=</span><span class="st">"precip"</span>, y<span class="op">=</span><span class="st">"dep_delay"</span>)) <span class="op">+</span></span>
+<span id="cb554-4"><a href="#cb554-4" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb554-5"><a href="#cb554-5" aria-hidden="true" tabindex="-1"></a>theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:2: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 12 rows containing missing values.
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-300-1.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+<section id="joining-on-keys-with-different-names" class="level3" data-number="14.3.4">
+<h3 data-number="14.3.4" class="anchored" data-anchor-id="joining-on-keys-with-different-names"><span class="header-section-number">14.3.4</span> Joining on Keys with Different Names</h3>
+<ul>
+<li><p>Sometimes, the join keys have different names in the two data sets.</p></li>
+<li><p>This frequently happens if the data sets come from different sources.</p></li>
+<li><p>For example, if we want to join the (entire) flights data to the weather data, we would need to include the <em>airport</em> in the key.</p></li>
+<li><p>But the airport is called <code>origin</code> in <code>df_flights</code> and <code>airport</code> in <code>df_weather</code>.</p></li>
+<li><p>The <code>.merge()</code> function provides <code>left_on=</code> and <code>right_on=</code> arguments for specifying different column names in the <strong>left</strong> (first) and <strong>right</strong> (second) data frames.</p></li>
+</ul>
+</section>
+<section id="joining-on-keys-with-different-names-1" class="level3" data-number="14.3.5">
+<h3 data-number="14.3.5" class="anchored" data-anchor-id="joining-on-keys-with-different-names-1"><span class="header-section-number">14.3.5</span> Joining on Keys with Different Names</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb556"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb556-1"><a href="#cb556-1" aria-hidden="true" tabindex="-1"></a>df_flights_weather <span class="op">=</span> df_flights.merge(</span>
+<span id="cb556-2"><a href="#cb556-2" aria-hidden="true" tabindex="-1"></a>    df_weather,</span>
+<span id="cb556-3"><a href="#cb556-3" aria-hidden="true" tabindex="-1"></a>    left_on<span class="op">=</span>(<span class="st">"origin"</span>, <span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>),</span>
+<span id="cb556-4"><a href="#cb556-4" aria-hidden="true" tabindex="-1"></a>    right_on<span class="op">=</span>(<span class="st">"airport"</span>, <span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rain-and-delays-by-airport" class="level3" data-number="14.3.6">
+<h3 data-number="14.3.6" class="anchored" data-anchor-id="rain-and-delays-by-airport"><span class="header-section-number">14.3.6</span> Rain and delays by airport</h3>
+<p>Now we can visualize how rain impacts delays at each airport:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb557"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb557-1"><a href="#cb557-1" aria-hidden="true" tabindex="-1"></a>df_rain <span class="op">=</span> df_flights_weather.groupby([<span class="st">"airport"</span>, <span class="st">"precip"</span>])[<span class="st">"dep_delay"</span>].mean().to_frame().reset_index()</span>
+<span id="cb557-2"><a href="#cb557-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb557-3"><a href="#cb557-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df_rain, aes(x<span class="op">=</span><span class="st">'precip'</span>, y<span class="op">=</span><span class="st">'dep_delay'</span>, color <span class="op">=</span> <span class="st">'airport'</span>)) <span class="op">+</span></span>
+<span id="cb557-4"><a href="#cb557-4" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+</span></span>
+<span id="cb557-5"><a href="#cb557-5" aria-hidden="true" tabindex="-1"></a>geom_line() <span class="op">+</span></span>
+<span id="cb557-6"><a href="#cb557-6" aria-hidden="true" tabindex="-1"></a>theme_classic())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:2: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
+&lt;Figure Size: (640 x 480)&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-302-3.png" class="img-fluid" width="614"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="joins-with-missing-keys" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="joins-with-missing-keys"><span class="header-section-number">14.4</span> Joins with missing keys</h2>
+<section id="example-baby-names" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="example-baby-names"><span class="header-section-number">14.4.1</span> Example: Baby names</h3>
+<p>The data below contains counts of names for babies born in 1920 and 2020:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb559"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb559-1"><a href="#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb559-2"><a href="#cb559-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">"http://dlsun.github.io/pods/data/names/"</span></span>
+<span id="cb559-3"><a href="#cb559-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb559-4"><a href="#cb559-4" aria-hidden="true" tabindex="-1"></a>df_1920 <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"yob1920.txt"</span>, header<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb559-5"><a href="#cb559-5" aria-hidden="true" tabindex="-1"></a>                      names<span class="op">=</span>[<span class="st">"Name"</span>, <span class="st">"Sex"</span>, <span class="st">"Count"</span>])</span>
+<span id="cb559-6"><a href="#cb559-6" aria-hidden="true" tabindex="-1"></a>df_2020 <span class="op">=</span> pd.read_csv(data_dir <span class="op">+</span> <span class="st">"yob2020.txt"</span>, header<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb559-7"><a href="#cb559-7" aria-hidden="true" tabindex="-1"></a>                      names<span class="op">=</span>[<span class="st">"Name"</span>, <span class="st">"Sex"</span>, <span class="st">"Count"</span>])</span>
+<span id="cb559-8"><a href="#cb559-8" aria-hidden="true" tabindex="-1"></a>                      </span>
+<span id="cb559-9"><a href="#cb559-9" aria-hidden="true" tabindex="-1"></a>df_1920.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Name Sex  Count
+0      Mary   F  70975
+1   Dorothy   F  36645
+2     Helen   F  35098
+3  Margaret   F  27997
+4      Ruth   F  26100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb561"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb561-1"><a href="#cb561-1" aria-hidden="true" tabindex="-1"></a>df_2020.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Name Sex  Count
+0     Olivia   F  17641
+1       Emma   F  15656
+2        Ava   F  13160
+3  Charlotte   F  13065
+4     Sophia   F  13036</code></pre>
+</div>
+</div>
+</section>
+<section id="joins" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="joins"><span class="header-section-number">14.4.2</span> Joins</h3>
+<p>We can merge these two datasets on a primary key…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb563"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb563-1"><a href="#cb563-1" aria-hidden="true" tabindex="-1"></a>df_joined <span class="op">=</span> df_1920.merge(df_2020, on<span class="op">=</span>[<span class="st">"Name"</span>, <span class="st">"Sex"</span>], suffixes<span class="op">=</span>(<span class="st">"_1920"</span>, <span class="st">"_2020"</span>))</span>
+<span id="cb563-2"><a href="#cb563-2" aria-hidden="true" tabindex="-1"></a>df_joined.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Name Sex  Count_1920  Count_2020
+0      Mary   F       70975        2210
+1   Dorothy   F       36645         562
+2     Helen   F       35098         721
+3  Margaret   F       27997        2190
+4      Ruth   F       26100        1323</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-keys" class="level3" data-number="14.4.3">
+<h3 data-number="14.4.3" class="anchored" data-anchor-id="missing-keys"><span class="header-section-number">14.4.3</span> Missing Keys?</h3>
+<p>… but what happened to some of the names?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb565"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb565-1"><a href="#cb565-1" aria-hidden="true" tabindex="-1"></a>df_joined[df_joined[<span class="st">"Name"</span>] <span class="op">==</span> <span class="st">"Maya"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Empty DataFrame
+Columns: [Name, Sex, Count_1920, Count_2020]
+Index: []</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-keys-1" class="level3" data-number="14.4.4">
+<h3 data-number="14.4.4" class="anchored" data-anchor-id="missing-keys-1"><span class="header-section-number">14.4.4</span> Missing keys</h3>
+<ul>
+<li>Why isn’t Maya in the joined data?</li>
+</ul>
+<p>It is there in the 2020 data…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb567"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb567-1"><a href="#cb567-1" aria-hidden="true" tabindex="-1"></a>df_2020[df_2020[<span class="st">"Name"</span>] <span class="op">==</span> <span class="st">"Maya"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Name Sex  Count
+60     Maya   F   3724
+28914  Maya   M      6</code></pre>
+</div>
+</div>
+<p>…but not in the 1920 data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb569"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb569-1"><a href="#cb569-1" aria-hidden="true" tabindex="-1"></a>df_1920[df_1920[<span class="st">"Name"</span>] <span class="op">==</span> <span class="st">"Maya"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Empty DataFrame
+Columns: [Name, Sex, Count]
+Index: []</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-keys-2" class="level3" data-number="14.4.5">
+<h3 data-number="14.4.5" class="anchored" data-anchor-id="missing-keys-2"><span class="header-section-number">14.4.5</span> Missing keys</h3>
+<ul>
+<li><p>How does the <code>merge()</code> function determine which keys get kept?</p></li>
+<li><p>By default, in order to appear in the joined data, a key must be present in <em>both</em> tables.</p></li>
+</ul>
+</section>
+</section>
+<section id="other-types-of-joins" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="other-types-of-joins"><span class="header-section-number">14.5</span> Other Types of Joins</h2>
+<section id="types-of-joins" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">14.5.1</span> Types of Joins</h3>
+<ul>
+<li><p>How can we customize the behavior of joins for missing keys?</p></li>
+<li><p>By default, Pandas does an <strong>inner join</strong>, which only keeps keys that are present in <em>both</em> tables.</p></li>
+<li><p>An <strong>outer join</strong> keeps any key that is present in either table.</p></li>
+<li><p>A <strong>left join</strong> keeps all keys in the left table, even if they are not in the right table. But any keys that are only in the right table are dropped.</p></li>
+<li><p>A <strong>right join</strong> keeps all keys in the right table, even if they are not in the left table. But any keys that are only in the left table are dropped.</p></li>
+</ul>
+</section>
+<section id="types-of-joins-1" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="types-of-joins-1"><span class="header-section-number">14.5.2</span> Types of joins</h3>
+<p>We can customize the type of join using the <code>how=</code> parameter of <code>.merge()</code>. By default, <code>how="inner"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb571"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb571-1"><a href="#cb571-1" aria-hidden="true" tabindex="-1"></a>df_joined_outer <span class="op">=</span> df_1920.merge(df_2020, on<span class="op">=</span>[<span class="st">"Name"</span>, <span class="st">"Sex"</span>],</span>
+<span id="cb571-2"><a href="#cb571-2" aria-hidden="true" tabindex="-1"></a>                                how<span class="op">=</span><span class="st">"outer"</span>)</span>
+<span id="cb571-3"><a href="#cb571-3" aria-hidden="true" tabindex="-1"></a>df_joined_outer[df_joined_outer[<span class="st">"Name"</span>] <span class="op">==</span> <span class="st">"Maya"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Name Sex  Count_x  Count_y
+24999  Maya   F      NaN   3724.0
+25000  Maya   M      NaN      6.0</code></pre>
+</div>
+</div>
+</section>
+<section id="types-of-joins-2" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="types-of-joins-2"><span class="header-section-number">14.5.3</span> Types of Joins</h3>
+<ul>
+<li><p>Note the missing values for other columns, like Count, for 1920!</p></li>
+<li><p>What other type of join would have produced this output in the Maya row?</p></li>
+</ul>
+</section>
+<section id="types-of-joins-3" class="level3" data-number="14.5.4">
+<h3 data-number="14.5.4" class="anchored" data-anchor-id="types-of-joins-3"><span class="header-section-number">14.5.4</span> Types of Joins</h3>
+<ul>
+<li><p>Note the missing values for other columns, like Count, for 1920!</p></li>
+<li><p>What other type of join would have produced this output in the Maya row?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb573"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb573-1"><a href="#cb573-1" aria-hidden="true" tabindex="-1"></a>df_joined_right <span class="op">=</span> df_1920.merge(df_2020, on<span class="op">=</span>[<span class="st">"Name"</span>, <span class="st">"Sex"</span>],</span>
+<span id="cb573-2"><a href="#cb573-2" aria-hidden="true" tabindex="-1"></a>                                how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb573-3"><a href="#cb573-3" aria-hidden="true" tabindex="-1"></a>df_joined_right[df_joined_right[<span class="st">"Name"</span>] <span class="op">==</span> <span class="st">"Maya"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Name Sex  Count_x  Count_y
+60     Maya   F      NaN     3724
+28914  Maya   M      NaN        6</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="types-of-joins-4" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="types-of-joins-4"><span class="header-section-number">14.6</span> Types of Joins</h2>
+<p><img src="./images/joins.png" class="img-fluid"></p>
+<section id="quick-quiz-1" class="level3" data-number="14.6.1">
+<h3 data-number="14.6.1" class="anchored" data-anchor-id="quick-quiz-1"><span class="header-section-number">14.6.1</span> Quick Quiz</h3>
+<p>Which type of join would be best suited for each case?</p>
+<ol type="1">
+<li><p>We want to determine the names that have increased in popularity the most between 1920 and 2020.</p></li>
+<li><p>We want to graph the popularity of names over time.</p></li>
+<li><p>We want to determine the names that have decreased in popularity the most between 1920 and 2020.</p></li>
+</ol>
+</section>
+</section>
+<section id="many-to-many-joins" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="many-to-many-joins"><span class="header-section-number">14.7</span> Many-to-Many Joins</h2>
+<section id="many-to-many-relationships" class="level3 smaller" data-number="14.7.1">
+<h3 class="smaller anchored" data-number="14.7.1" data-anchor-id="many-to-many-relationships"><span class="header-section-number">14.7.1</span> Many-to-Many Relationships</h3>
+<ul>
+<li><p>So far, the keys we’ve joined on have been the primary key of (at least) one table.</p></li>
+<li><p>If we join to the primary key of another table, then the relationship is <strong>one-to-one</strong> (since primary keys uniquely identify rows).</p></li>
+<li><p>If we join to the foreign key of another table, then the relationship is <strong>one-to-many</strong>.</p></li>
+<li><p>What if we join on a key that is not a primary key?</p></li>
+<li><p>That is, what if the key does not uniquely identify rows in either table so that each value of the key might appear multiple times?</p></li>
+<li><p>This relaionship is called <strong>many-to-many</strong>.</p></li>
+</ul>
+</section>
+<section id="many-to-many-example" class="level3" data-number="14.7.2">
+<h3 data-number="14.7.2" class="anchored" data-anchor-id="many-to-many-example"><span class="header-section-number">14.7.2</span> Many-to-Many Example</h3>
+<p>What if we only joined on the name?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb575"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb575-1"><a href="#cb575-1" aria-hidden="true" tabindex="-1"></a>df_1920.merge(df_2020, on<span class="op">=</span><span class="st">"Name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Name Sex_x  Count_x Sex_y  Count_y
+0         Mary     F    70975     F     2210
+1         Mary     F    70975     M        5
+2      Dorothy     F    36645     F      562
+3        Helen     F    35098     F      721
+4     Margaret     F    27997     F     2190
+...        ...   ...      ...   ...      ...
+6158    Xavier     M        5     M     3876
+6159      York     M        5     F        6
+6160      York     M        5     M       14
+6161      Zeke     M        5     M      382
+6162      Zera     M        5     F       11
+
+[6163 rows x 5 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="preventing-bugs" class="level3" data-number="14.7.3">
+<h3 data-number="14.7.3" class="anchored" data-anchor-id="preventing-bugs"><span class="header-section-number">14.7.3</span> Preventing Bugs</h3>
+<ul>
+<li><p>Most of the time, many-to-many joins are a bug, caused by a misunderstanding about the primary key.</p></li>
+<li><p>Pandas allows us to specify the relationship we are expecting. It will fail with an error if the relationship is a different kind.</p></li>
+<li><p>For example, suppose we thought that “name” was the primary key of the baby name tables.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb577"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb577-1"><a href="#cb577-1" aria-hidden="true" tabindex="-1"></a>df_1920.merge(df_2020, on<span class="op">=</span><span class="st">"Name"</span>,</span>
+<span id="cb577-2"><a href="#cb577-2" aria-hidden="true" tabindex="-1"></a>              validate<span class="op">=</span><span class="st">"one_to_one"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>MergeError: Merge keys are not unique in either left or right dataset; not a one-to-one merge</code></pre>
+<p>Errors are (sometimes) your friend. They can prevent you from making even bigger mistakes!</p>
+</section>
+</section>
+<section id="filtering-joins" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">14.8</span> Filtering Joins</h2>
+<section id="filtering-joins-1" class="level3 smaller" data-number="14.8.1">
+<h3 class="smaller anchored" data-number="14.8.1" data-anchor-id="filtering-joins-1"><span class="header-section-number">14.8.1</span> Filtering Joins</h3>
+<ul>
+<li><p>Inner, outer, left, and right are known as <strong>mutating joins</strong>, because they create new combined datasets.</p></li>
+<li><p>There are two other types of joins that we use for <strong>filtering</strong> to get rid of some rows:</p></li>
+<li><p>A <strong>semi-join</strong> tells us which keys in the <em>left</em> <strong>are</strong> present in the <em>right</em>.</p></li>
+<li><p>An <strong>anti-join</strong> tells us which keys in the left <strong>are not</strong> present in the right.</p></li>
+<li><p>In Pandas, we can’t do these using <code>.merge()</code></p></li>
+</ul>
+</section>
+<section id="filtering-joins-2" class="level3" data-number="14.8.2">
+<h3 data-number="14.8.2" class="anchored" data-anchor-id="filtering-joins-2"><span class="header-section-number">14.8.2</span> Filtering joins</h3>
+<p>Which names existed in 1920 but don’t in 2020?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb579"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb579-1"><a href="#cb579-1" aria-hidden="true" tabindex="-1"></a>in_both <span class="op">=</span> df_1920[<span class="st">'Name'</span>].isin(df_2020[<span class="st">'Name'</span>])</span>
+<span id="cb579-2"><a href="#cb579-2" aria-hidden="true" tabindex="-1"></a>df_1920.loc[<span class="op">~</span>in_both, <span class="st">'Name'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>67          Myrtle
+245            Sue
+257         Nannie
+284         Virgie
+300      Bernadine
+           ...    
+10748         Ynes
+10750     Zaragoza
+10751        Zearl
+10752     Zeferino
+10755      Zygmont
+Name: Name, Length: 5638, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-4" class="level3" data-number="14.8.3">
+<h3 data-number="14.8.3" class="anchored" data-anchor-id="your-turn-4"><span class="header-section-number">14.8.3</span> Your turn</h3>
+<ul>
+<li><p>Did your name exist in 2020 but not 1920?</p></li>
+<li><p>If so, how has the popularity changed?</p></li>
 </ul>
 </section>
 </section>

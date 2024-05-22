@@ -936,6 +936,22 @@ Name: Name, Length: 5638, dtype: object</code></pre>
 <li class="fragment"><p>Did your name exist in 2020 but not 1920?</p></li>
 <li class="fragment"><p>If so, how has the popularity changed?</p></li>
 </ul>
+</section></section>
+<section>
+<section id="takeaways" class="title-slide slide level1 center">
+<h1>Takeaways</h1>
+
+</section>
+<section id="takeaways-1" class="slide level2">
+<h2>Takeaways</h2>
+<ul>
+<li class="fragment"><p>A <strong>primary key</strong> is one or more columns that uniquely indentify the rows.</p></li>
+<li class="fragment"><p>We can <strong>join</strong> (a.k.a. <strong>merge</strong>) datasets if they share a primary key, or if one has a <strong>foreign key</strong>.</p></li>
+<li class="fragment"><p>The default of <code>.merge()</code> is an <em>inner join</em>: only keys in both datasets are kept.</p></li>
+<li class="fragment"><p>We can instead specify a <em>left join</em>, <em>right join</em>, or <em>outer join</em>; think about which rows we want to keep.</p></li>
+<li class="fragment"><p><strong>Filterting joins</strong> like <em>anti-join</em> and <em>semi-join</em> can help you answer questions about the data.</p></li>
+<li class="fragment"><p>Use <code>.isin()</code> to see which keys in one dataset exist in the other.</p></li>
+</ul>
 <div class="footer footer-default">
 
 </div>

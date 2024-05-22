@@ -128,4 +128,13 @@ execute:
 
 {{< include 14-merge.qmd >}}
 
+::: lectitle
+# Hierarchical Data
+
+[Slides](slides-15-hierarchical.html)
+:::
+
+{{< include 15-hierarchical.qmd >}}
+
+
 

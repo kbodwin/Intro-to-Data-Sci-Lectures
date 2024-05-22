@@ -423,7 +423,7 @@ df_1920.loc[~in_both, 'Name']
 
 * We can instead specify a *left join*, *right join*, or *outer join*; think about which rows we want to keep.
 
-* **Filterting joins** like *anti-join* and *semi-join* can help you answer questions about the data.  
+* **Filtering joins** like *anti-join* and *semi-join* can help you answer questions about the data.  
 
 * Use `.isin()` to see which keys in one dataset exist in the other.
 
