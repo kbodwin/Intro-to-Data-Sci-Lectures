@@ -173,7 +173,7 @@ from plotnine import *
 from sklearn.metrics import pairwise_distances
 
 dists = pairwise_distances(df_scaled, centroids)
-dists
+dists[1:5]
 ```
 
 ### Step 2:  Assign each point to nearest centroid

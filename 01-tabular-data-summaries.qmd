@@ -64,7 +64,7 @@ We *read the data* into a program like `python` by specifying:
 
 ```{python}
 df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
-df
+df.head()
 ```
 
 ### Check in:

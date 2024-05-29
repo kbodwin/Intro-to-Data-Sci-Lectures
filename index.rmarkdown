@@ -1,17 +1,27 @@
 ---
 title: "DS 112 Lecture Notes"
 format: 
-  html: 
+  html:
+    theme: [minty]
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    css: styles.css
+  pdf: 
     theme: [minty]
     toc: true
     toc-depth: 1
     number-sections: true
     css: styles.css
 editor: visual
-execute:
-  cache: true
+#execute:
+#  cache: true
 ---
 
+```{python}
+#| include: false
+import pandas as pd
+```
 
 
 ::: lectitle
@@ -86,7 +96,7 @@ We *read the data* into a program like `python` by specifying:
 
 ```{python}
 df = pd.read_csv("https://datasci112.stanford.edu/data/titanic.csv")
-df
+df.head()
 ```
 
 ### Check in:
@@ -255,7 +265,7 @@ df["survived"] = df["survived"].astype("category")
 ```{r}
 #| echo: false
 library(knitr)
-kable(py$df)
+kable(head(py$df))
 ```
 
 ### Accessing rows and columns
@@ -269,7 +279,7 @@ df.iloc[5,]
 
 ::: {.column width="50%"}
 ```{python}
-df["name"]
+df["name"].head()
 ```
 :::
 :::
@@ -507,12 +517,6 @@ You can do this by:
 
 -   Using `+ scale_fill_manual(...)` to change the colors being used
 
-
-```{r}
-#| echo: false
-library(countdown)
-countdown(minutes = 15, left = "0")
-```
 :::
 
 ::: {.column width="40%"}
@@ -3651,7 +3655,6 @@ We apply the process:
 
 
 
-
 ::: lectitle
 # Regression and Cross-Validation
 
@@ -4539,7 +4542,6 @@ Let's graph the precision-recall curve together in a Colab.
 
 
 
-
 ::: lectitle
 # Logistic Regression
 
@@ -4768,7 +4770,7 @@ What if we had used different cutoffs besides $p > 0.5$?
 
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
-prob_cancer.round(2)
+prob_cancer.round(2)[1:5]
 ```
 
 ### Higher Threshold
@@ -4778,7 +4780,7 @@ What we used $p > 0.7$?
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
 pred_cancer_70 = prob_cancer[:,1] > .7
-pred_cancer_70
+pred_cancer_70[1:5]
 ```
 
 
@@ -4807,7 +4809,7 @@ What we used $p > 0.2$?
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
 pred_cancer_20 = prob_cancer[:,1] > .2
-pred_cancer_20
+pred_cancer_20[1:5]
 ```
 
 ### Lower Threshold
@@ -4964,7 +4966,7 @@ new_probs = pipeline2.predict_proba(df[["I0", "PA500"]])
 pd.DataFrame({
   "without_stdize": old_probs[:,1], 
   "with_stdize": new_probs[:,1]
-  })
+  }).head()
 ```
 
 ### Standardization: Do you need it?{.smaller}
@@ -5026,7 +5028,6 @@ pd.DataFrame({
 * We still use **cross-validated metrics** to decide between KNN and Logistic regression, and between different feature sets.
 
 * We still report **confusion matrices** and sometimes **precision-recall curves** of our final model.
-
 
 
 
@@ -5211,7 +5212,7 @@ from plotnine import *
 from sklearn.metrics import pairwise_distances
 
 dists = pairwise_distances(df_scaled, centroids)
-dists
+dists[1:5]
 ```
 
 ### Step 2:  Assign each point to nearest centroid
@@ -5796,7 +5797,7 @@ df_1920.loc[~in_both, 'Name']
 
 
 ::: lectitle
-# Hierarchical Data
+# Hierarchical Data and APIs
 
 [Slides](slides-15-hierarchical.html)
 :::
@@ -6058,5 +6059,222 @@ from plotnine import *
 * The collection of tabular datasets from each level might be stored in a **relational database**
 
 * The place where you will usually see hierarchical data is when querying **APIs**.
+
+
+
+::: lectitle
+# Webscraping
+
+[Slides](slides-16-webscraping.html)
+:::
+
+---
+title: "Webscraping"
+format:
+  revealjs: 
+    theme: [default, spring.scss]
+    incremental: true 
+    output-file: slides-16-webscraping.html
+    shift-heading-level-by: -1
+execute:
+  echo: true
+---
+
+```{python}
+
+```
+
+```{r}
+#| include: false
+library(reticulate)
+use_python("/usr/local/bin/python3")
+```
+
+```{python}
+#| include: false
+import numpy as np
+import pandas as pd
+from plotnine import *
+```
+
+
+## HTML
+
+### HyperText Markup Language (HTML){.smaller}
+
+*   HTML is the standard language for describing the layout of webpages.
+
+*   It is like XML, with special "tags" for hyperlinks, tables, images, etc.
+
+* You don't need to be an HTML expert to scrape webpages, but you do need to know a few basics.
+    
+* You can view the HTML of a website by:
+    + Putting `view-source:` in front of the url
+    + Right-click and choose "View Page Source" 
+
+* You can explore HTML "interactively" by 
+    + Right-click and "inspect" 
+    + Ctrl/Cmd+Shift+I
+
+### Hyperlinks
+
+The `<a>` **tag** indicates a (hyper)link.
+
+-   The `href=` **attribute** contains the URL.
+
+-   The displayed text is within the `<a>` tag.
+
+-   <a href="www.kelly-bodwin.com">This is a link</a>
+
+
+### Tables
+
+The `<table>` tag indicates a table.
+
+* The `<tr>` tag indicates a row.
+
+* The `<th>` and `<td>` tags indicate a cell within a row.
+
+* Don't forget that each tag also has a *closing tag* (`</table>`) at the end!
+
+### Tables
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+```
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Player</th>
+    <th>Saves</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Mariano Rivera</td>
+    <td>652</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Trevor Hoffman</td>
+    <td>601</td>
+  </tr>
+</table>
+```
+
+:::
+
+:::{.column width="50%"}
+
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Player</th>
+    <th>Saves</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Mariano Rivera</td>
+    <td>652</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Trevor Hoffman</td>
+    <td>601</td>
+  </tr>
+</table>
+
+:::
+::::
+
+## Web Scraping
+
+### Web Scraping{.smaller}
+
+* **Web scraping** is the process of getting information from a website to a dataset, without an API.
+
+* We "simply" search through the raw HTML text, using tags to guides us to what we want.
+
+* (What if what you want isn't nicely in tags?  Regular expressions.)
+
+* The `python` function used to make searching HTML is easier is `BeautifulSoup`
+
+* The challenging parts of webscraping are
+    + Identifying the **tag structure** or other *consistent structure* that contains your data.
+    + Looping through to find the data items and put them in the right place in a dataset
+
+### Let's try it!
+
+Let's use what we've just learned to scrape some data!
+
+[Colab link](https://colab.research.google.com/drive/1neQvH5uqoX1j74rgCbperbi-HV3uLd8N?usp=sharing)
+
+
+## Web Scraping and GenAI
+
+### Using GenAI
+
+* GenAI tools can help you "fish" through messy HTML
+
+* As the AI to **write code** for you (which you then test and edit, of course!), not to **scrape the data** for you.
+
+* Why?  
+    + It's not great at scraping from multiple pages
+    + Hallucinations!
+
+* (Example)
+
+## Ethics of Web Scraping
+
+### Ethical Considerations
+
+* Website owners have to pay a small amount each time you visit a webpage.
+
+* This is usually offset by advertising.
+
+* But when you do web scraping:
+    + it is easy to rack up a huge number of webpage visits,
+    + and you don't see any ads to offset this cost.
+    
+* Heavy scraping can hit the website so much or so frequently that it crashes!
+    
+    
+### robots.txt
+
+* Most websites have a `robots.txt` file in the home directory that
+indicate which bots are allowed to scrape and which pages they can scrape.
+
+* Here are a few examples:
+
+    -   <http://www.espn.com/robots.txt>
+
+    -   <http://www.nytimes.com/robots.txt>
+
+* However, `robots.txt` is informational only. It doesn't *prevent*
+    bots from scraping a webpage.
+
+### Preventing Web Scraping
+
+* Some websites take more drastic measures to prevent web scraping...
+
+![image](./images/scraping.png)
+## Takeaways
+
+### Takeaways
+
+* Web pages are made with **HTML**, and we can use that structure to **scrape** data automatically
+
+* Best case scenario: Your data lives in a `<table>`
+
+* Next best case:  There is some other consistent tag structure
+
+* (Worst case:  Need to use regular expressions)
+
+* **Always** check `robots.txt` before scraping a site!
+
+* **Always** build a small pause into your loop for scraping.
+
+* GenAI can help you with the "fiddly" part of identifying HTML structure.  (But **always** check and test its results!)
 
 

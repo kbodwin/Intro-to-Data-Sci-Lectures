@@ -220,7 +220,7 @@ What if we had used different cutoffs besides $p > 0.5$?
 
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
-prob_cancer.round(2)
+prob_cancer.round(2)[1:5]
 ```
 
 ### Higher Threshold
@@ -230,7 +230,7 @@ What we used $p > 0.7$?
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
 pred_cancer_70 = prob_cancer[:,1] > .7
-pred_cancer_70
+pred_cancer_70[1:5]
 ```
 
 
@@ -259,7 +259,7 @@ What we used $p > 0.2$?
 ```{python}
 prob_cancer = pipeline.predict_proba(df[["I0", "PA500"]])
 pred_cancer_20 = prob_cancer[:,1] > .2
-pred_cancer_20
+pred_cancer_20[1:5]
 ```
 
 ### Lower Threshold
@@ -416,7 +416,7 @@ new_probs = pipeline2.predict_proba(df[["I0", "PA500"]])
 pd.DataFrame({
   "without_stdize": old_probs[:,1], 
   "with_stdize": new_probs[:,1]
-  })
+  }).head()
 ```
 
 ### Standardization: Do you need it?{.smaller}

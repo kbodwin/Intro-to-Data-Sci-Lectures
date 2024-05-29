@@ -1,17 +1,27 @@
 ---
 title: "DS 112 Lecture Notes"
 format: 
-  html: 
+  html:
+    theme: [minty]
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    css: styles.css
+  pdf: 
     theme: [minty]
     toc: true
     toc-depth: 1
     number-sections: true
     css: styles.css
 editor: visual
-execute:
-  cache: true
+#execute:
+#  cache: true
 ---
 
+```{python}
+#| include: false
+import pandas as pd
+```
 
 ::: lectitle
 # Tabular Data Summaries
@@ -85,7 +95,6 @@ execute:
 
 {{< include 09-modeling.qmd >}}
 
-
 ::: lectitle
 # Regression and Cross-Validation
 
@@ -102,7 +111,6 @@ execute:
 
 {{< include 11-classification.qmd >}}
 
-
 ::: lectitle
 # Logistic Regression
 
@@ -110,7 +118,6 @@ execute:
 :::
 
 {{< include 12-logistic.qmd >}}
-
 
 ::: lectitle
 # Clustering with K-Means
@@ -129,12 +136,17 @@ execute:
 {{< include 14-merge.qmd >}}
 
 ::: lectitle
-# Hierarchical Data
+# Hierarchical Data and APIs
 
 [Slides](slides-15-hierarchical.html)
 :::
 
 {{< include 15-hierarchical.qmd >}}
 
+::: lectitle
+# Webscraping
 
+[Slides](slides-16-webscraping.html)
+:::
 
+{{< include 16-webscraping.qmd >}}

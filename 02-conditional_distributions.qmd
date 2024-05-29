@@ -40,7 +40,7 @@ df["survived"] = df["survived"].astype("category")
 ```{r}
 #| echo: false
 library(knitr)
-kable(py$df)
+kable(head(py$df))
 ```
 
 ### Accessing rows and columns
@@ -54,7 +54,7 @@ df.iloc[5,]
 
 ::: {.column width="50%"}
 ```{python}
-df["name"]
+df["name"].head()
 ```
 :::
 :::
@@ -292,12 +292,6 @@ You can do this by:
 
 -   Using `+ scale_fill_manual(...)` to change the colors being used
 
-
-```{r}
-#| echo: false
-library(countdown)
-countdown(minutes = 15, left = "0")
-```
 :::
 
 ::: {.column width="40%"}
