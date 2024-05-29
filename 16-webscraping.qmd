@@ -189,6 +189,17 @@ indicate which bots are allowed to scrape and which pages they can scrape.
 * Some websites take more drastic measures to prevent web scraping...
 
 ![image](./images/scraping.png)
+### Your Turn
+
+[This website](http://dmaorg.info/found/15398642_14/clancy.html) has mysterious letters with codes in them.
+
+Can you scrape the site to get a dataset of meta-information that might be useful in solving the puzzles?
+
+Think about things like:
+* Date the letter was posted
+* URL of the letter
+* Filename of the letter
+
 ## Takeaways
 
 ### Takeaways
